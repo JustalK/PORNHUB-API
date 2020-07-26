@@ -1,0 +1,41 @@
+{
+  "name": "pornnhub",
+  "version": "1.0.0",
+  "description": "PORNHUB",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justalk/pornhub.git"
+  },
+  "author": "Justal Kevin <justal.kevin@gmail.com> (teamkd.online)",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "files": [
+    "index.js",
+    "opt.js"
+  ],
+  "keywords": [
+    "porn"
+  ],
+  "dependencies": {
+    "got": "6.6.3",
+    "jsdom": "^16.3.0"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "execa": "^0.2.2",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  },
+  "bugs": {
+    "url": "https://github.com/justalk/pornhub/issues"
+  },
+  "homepage": "https://github.com/justalk/pornhub#readme",
+  "main": "index.js"
+}
