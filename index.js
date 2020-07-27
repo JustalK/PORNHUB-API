@@ -10,6 +10,7 @@ const options = {
 	upvotes: '.votesUp',
 	downvotes: '.votesDown',
 	percent: '.percent',
+	date: '',
 	author: '.video-detailed-info .usernameBadgesWrapper a',
 	pornstars: '.pornstarsWrapper .pstar-list-btn',
 	categories: '.categoriesWrapper a:not(.add-btn-small)',
@@ -32,6 +33,8 @@ const parseDom = (doc,keys) => {
 		
 		datas[x] = elm;
 	})
+	
+	datas["uploaddate"] = JSON.parse(window.document.querySelectorAll('script[type="application/ld+json"')[0].textContent).uploadDate;
 	
 	return datas;
 };
