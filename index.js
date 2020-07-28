@@ -39,6 +39,22 @@ const parseDom = (doc,keys) => {
 	return datas;
 };
 
+const getDownloadUrl = function(doc) {
+    const matches = doc.match(/(?<=\*\/)\w+/g), urls = []; 
+    for (let index = 0; index < matches.length; index++) { 
+        
+        let regex = new RegExp('(?<=' + matches[index] + '=")[^;]+(?=")', "g");
+        let value = doc.match(regex)[0].replace(/[" + "]/g, "");
+        
+        if (value.startsWith("https")) {
+            if (urls.length === 4) break;
+            urls.push(value);
+        } else urls[urls.length -1] += value;
+    }
+    
+    return urls;
+}
+
 module.exports = {
 	"page" : async (url, key) => {
 		const keys = Array.isArray(key) ? key : [key];
