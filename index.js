@@ -18,7 +18,8 @@ const options = {
 	categories: '.categoriesWrapper a:not(.add-btn-small)',
 	tags: '.tagsWrapper a:not(.add-btn-small)',
 	production: '.productionWrapper',
-	duration: 'meta[property="video:duration"]'
+	duration: 'meta[property="video:duration"]',
+	number_of_comment: '#cmtWrapper h2 span'
 }
 
 const scraper_content_informations = function(doc,keys) {
@@ -97,7 +98,8 @@ const type = {
 	'upload_date': 'Date',
 	'pornstars': 'Array',
 	'download_urls': 'URL',
-	'thumbnail': 'URL'
+	'thumbnail': 'URL',
+	'number_of_comment': 'Number'
 }
 
 const sanitizer = function(datas) {
@@ -132,7 +134,7 @@ const sanitizer_array = function(array) {
 }
 
 const sanitizer_number = function(value) {
-	value = value.replace(/[&A-Za-z,%]/g,"");
+	value = value.replace(/[\(\)&A-Za-z,%]/g,"");
 	value = Number(value);
 	return value;
 }
