@@ -9,8 +9,8 @@ const entities = new Entities();
 const options = {
 	title: '.title-container .title .inlineFree',
 	views: '.count',
-	upvotes: '.votesUp',
-	downvotes: '.votesDown',
+	up_votes: '.votesUp',
+	down_votes: '.votesDown',
 	percent: '.percent',
 	author: '.video-detailed-info .usernameBadgesWrapper a',
 	pornstars: '.pornstarsWrapper .pstar-list-btn',
@@ -24,7 +24,7 @@ const scraper_content_informations = function(doc,keys) {
 	const rsl = {};
 	Object.keys(options).filter(option => keys.includes(option)).map(x => {
 		let elm = Array.from(doc.querySelectorAll(options[x]));
-		if(!elm || elm.length===0) return datas[x] = "No data";
+		if(!elm || elm.length===0) return rsl[x] = "No data";
 
 		elm = elm.length===1 ? elm[0].textContent : elm.map(node => node.textContent);
 
@@ -40,8 +40,6 @@ const scraper_javascript_informations = function(doc,keys) {
 	if(keys.includes("description")) rsl["description"] = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).description;
 	if(keys.includes("thumbnail")) rsl["description"] = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).thumbnailUrl;
 
-	//thumbnailUrl
-
 	return rsl;
 }
 
@@ -52,8 +50,8 @@ const scraper_video_informations = function(source,keys) {
 	    const matches = source.match(/(?<=\*\/)\w+/g), urls = [];
 	    for (let index = 0; index < matches.length; index++) {
 
-	        let regex = new RegExp('(?<=' + matches[index] + '=")[^;]+(?=")', "g");
-	        let value = source.match(regex)[0].replace(/[" + "]/g, "");
+	        const regex = new RegExp('(?<=' + matches[index] + '=")[^;]+(?=")', "g");
+	        const value = source.match(regex)[0].replace(/[" + "]/g, "");
 
 	        if (value.startsWith("https")) {
 	            if (urls.length === 4) break;
@@ -76,7 +74,7 @@ const scraping = function(source,keys) {
 
 	datas = {...datas,...scraper_content_informations(doc,keys)};
 	datas = {...datas,...scraper_javascript_informations(doc,keys)};
-	datas = {...datas,...scraper_video_informations(source,keys)};
+	datas = {...datas,"download_urls": scraper_video_informations(source,keys)};
 
 	return datas;
 };
@@ -84,8 +82,8 @@ const scraping = function(source,keys) {
 const type = {
 	'title': 'String',
 	'views': 'Number',
-	'upvotes': 'Number',
-	'downvotes': 'Number',
+	'up_votes': 'Number',
+	'down_votes': 'Number',
 	'percent': 'Number',
 	'author': 'String',
 	'categories': 'Array',
@@ -95,7 +93,9 @@ const type = {
 	'image': 'String',
 	'duration': 'Number',
 	'upload_date': 'Date',
-	'pornstars': 'Array'
+	'pornstars': 'Array',
+	'download_urls': 'URL',
+	'thumbnail': 'URL'
 }
 
 const sanitizer = function(datas) {
@@ -109,7 +109,11 @@ const sanitizer = function(datas) {
 			case 'Array':
 				rsl[x] = sanitizer_array(datas[x]);
 				break;
+			case 'Number':
+				rsl[x] = sanitizer_number(datas[x]);
+				break;
 			default:
+				rsl[x] = datas[x]
 		}
 	})
 	return rsl;
@@ -125,6 +129,12 @@ const sanitizer_array = function(array) {
 	return array.map(x => sanitizer_string(x));
 }
 
+const sanitizer_number = function(value) {
+	value = value.replace(/[,%]/g,"");
+	value = Number(value);
+	return value;
+}
+
 module.exports = {
 	"scraper" : async function(url, key) {
 		const keys = Array.isArray(key) ? key : [key];
@@ -132,9 +142,8 @@ module.exports = {
 		try {
 			const response = await got(url);
 			const source = response.body;
-			let datas =  scraping(source,keys);
-			datas = sanitizer(datas);
-			return datas;
+			const datas =  scraping(source,keys);
+			return sanitizer(datas);
 		} catch (error) {
 			console.log(error);
 			if (error) {
