@@ -13,6 +13,7 @@ const options = {
 	down_votes: '.votesDown',
 	percent: '.percent',
 	author: '.video-detailed-info .usernameBadgesWrapper a',
+	author_subscriber: '.video-detailed-info .subscribers-count',
 	pornstars: '.pornstarsWrapper .pstar-list-btn',
 	categories: '.categoriesWrapper a:not(.add-btn-small)',
 	tags: '.tagsWrapper a:not(.add-btn-small)',
@@ -86,6 +87,7 @@ const type = {
 	'down_votes': 'Number',
 	'percent': 'Number',
 	'author': 'String',
+	'author_subscriber': 'Number',
 	'categories': 'Array',
 	'tags': 'Array',
 	'production': 'String',
@@ -130,7 +132,7 @@ const sanitizer_array = function(array) {
 }
 
 const sanitizer_number = function(value) {
-	value = value.replace(/[,%]/g,"");
+	value = value.replace(/[&A-Za-z,%]/g,"");
 	value = Number(value);
 	return value;
 }
