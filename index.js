@@ -116,6 +116,9 @@ const sanitizer = function(datas) {
 			case 'Number':
 				rsl[x] = sanitizer_number(datas[x]);
 				break;
+			case 'Date':
+				rsl[x] = sanitizer_date(datas[x]);
+				break;
 			default:
 				rsl[x] = datas[x]
 		}
@@ -137,6 +140,10 @@ const sanitizer_number = function(value) {
 	value = value.replace(/[\(\)&A-Za-z,%]/g,"");
 	value = Number(value);
 	return value;
+}
+
+const sanitizer_date = function(value) {
+	return new Date(value);
 }
 
 module.exports = {
