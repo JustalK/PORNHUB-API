@@ -3,6 +3,8 @@
 const got = require('got');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 const options = {
 	title: '.title-container .title .inlineFree',
@@ -15,8 +17,6 @@ const options = {
 	categories: '.categoriesWrapper a:not(.add-btn-small)',
 	tags: '.tagsWrapper a:not(.add-btn-small)',
 	production: '.productionWrapper',
-	description: 'meta[property="og:description"]',
-	image: 'meta[property="og:image"]',
 	duration: 'meta[property="video:duration"]'
 }
 
@@ -37,6 +37,10 @@ const scraper_javascript_informations = function(doc,keys) {
 	const rsl = {};
 
 	if(keys.includes("upload_date")) rsl["upload_date"] = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).uploadDate;
+	if(keys.includes("description")) rsl["description"] = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).description;
+	if(keys.includes("thumbnail")) rsl["description"] = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).thumbnailUrl;
+
+	//thumbnailUrl
 
 	return rsl;
 }
@@ -63,7 +67,7 @@ const scraper_video_informations = function(source,keys) {
     return rsl;
 }
 
-const parseDom = (source,keys) => {
+const scraping = function(source,keys) {
 	const dom = new JSDOM(source);
 	const doc = dom.window.document;
 
@@ -77,14 +81,60 @@ const parseDom = (source,keys) => {
 	return datas;
 };
 
+const type = {
+	'title': 'String',
+	'views': 'Number',
+	'upvotes': 'Number',
+	'downvotes': 'Number',
+	'percent': 'Number',
+	'author': 'String',
+	'categories': 'Array',
+	'tags': 'Array',
+	'production': 'String',
+	'description': 'String',
+	'image': 'String',
+	'duration': 'Number',
+	'upload_date': 'Date',
+	'pornstars': 'Array'
+}
+
+const sanitizer = function(datas) {
+	const rsl = {};
+	Object.keys(type).map(x => {
+		if(!datas[x]) return;
+		switch (type[x]) {
+			case 'String':
+				rsl[x] = sanitizer_string(datas[x]);
+				break;
+			case 'Array':
+				rsl[x] = sanitizer_array(datas[x]);
+				break;
+			default:
+		}
+	})
+	return rsl;
+}
+
+const sanitizer_string = function(value) {
+	value = value.replace(/[\t\n]/g,"")
+	value = entities.decode(value);
+	return value;
+}
+
+const sanitizer_array = function(array) {
+	return array.map(x => sanitizer_string(x));
+}
+
 module.exports = {
-	"page" : async (url, key) => {
+	"scraper" : async function(url, key) {
 		const keys = Array.isArray(key) ? key : [key];
 
 		try {
 			const response = await got(url);
 			const source = response.body;
-			return parseDom(source,keys);
+			let datas =  scraping(source,keys);
+			datas = sanitizer(datas);
+			return datas;
 		} catch (error) {
 			console.log(error);
 			if (error) {
