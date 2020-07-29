@@ -67,6 +67,15 @@ const scraper_video_informations = function(source,keys) {
     return rsl;
 }
 
+const scraper_comments_informations = function(doc,keys) {
+	const rsl = {};
+	//commentBlock
+	if(keys.includes("download_urls")) {
+
+	}
+	return rsl;
+}
+
 const scraping = function(source,keys) {
 	const dom = new JSDOM(source);
 	const doc = dom.window.document;
