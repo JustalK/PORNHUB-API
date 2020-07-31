@@ -9,7 +9,7 @@
   },
   "author": "Justal Kevin <justal.kevin@gmail.com> (teamkd.online)",
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=8.10.0"
   },
   "scripts": {
     "test": "xo && ava"
