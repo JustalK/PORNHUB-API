@@ -20,7 +20,7 @@ const options = {
 	production: '.productionWrapper',
 	duration: 'meta[property="video:duration"]',
 	number_of_comment: '#cmtWrapper h2 span'
-}
+};
 
 const scraper_content_informations = function(doc,keys) {
 	const rsl = {};
