@@ -12,7 +12,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "test": "ava"
+    "test": "xo && ava"
   },
   "files": [
     "index.js",
@@ -30,9 +30,6 @@
     "ava": "^2.4.0",
     "execa": "^0.2.2",
     "xo": "*"
-  },
-  "xo": {
-    "esnext": true
   },
   "bugs": {
     "url": "https://github.com/justalk/pornhub/issues"
