@@ -123,7 +123,6 @@ const type = {
 	tags: 'Array',
 	production: 'String',
 	description: 'String',
-	image: 'String',
 	duration: 'Number',
 	upload_date: 'Date',
 	pornstars: 'Array',
@@ -180,7 +179,7 @@ const sanitizer_date = function (value) {
 };
 
 module.exports = {
-	scraper: async function (url, key) {
+	page: async function (url, key) {
 		const keys = Array.isArray(key) ? key : [key];
 
 		try {
