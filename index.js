@@ -85,8 +85,20 @@ const scraper_video_informations = function (source, keys) {
 const scraper_comments_informations = function (doc, keys) {
 	const rsl = {};
 
-	if (keys.includes('download_urls')) {
-		return;
+	if (keys.includes('comments')) {
+		const comments = doc.querySelectorAll('.topCommentBlock');
+		let obj_comment = [];
+		comments.forEach((comment,index) => {
+			if(index==comments.length-1) return;
+			obj_comment.push({
+				"avatar": comment.querySelector(".avatarTrigger").getAttribute("data-src"),
+				"username": comment.querySelector(".usernameLink").innerHTML,
+				"date": sanitizer_string(comment.querySelector(".date").innerHTML),
+				"message": comment.querySelector(".commentMessage span").innerHTML,
+				"total_vote": sanitizer_number(comment.querySelector(".voteTotal").innerHTML)
+			})
+		})
+		rsl["comments"] = obj_comment;
 	}
 
 	return rsl;
@@ -105,6 +117,9 @@ const scraping = function (source, keys) {
 	datas = {...datas, ...scraper_content_informations(doc, keys)};
 	datas = {...datas, ...scraper_javascript_informations(doc, keys)};
 	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
+	datas = {...datas, ...scraper_comments_informations(doc, keys)};
+
+	console.log(datas);
 
 	return datas;
 };
@@ -126,7 +141,8 @@ const type = {
 	pornstars: 'Array',
 	download_urls: 'URL',
 	thumbnail: 'URL',
-	number_of_comment: 'Number'
+	number_of_comment: 'Number',
+	comments: 'Object'
 };
 
 const sanitizer = function (datas) {
@@ -148,7 +164,7 @@ const sanitizer = function (datas) {
 				return [x, datas[x]];
 		}
 	}).filter(x => x);
-	
+
 	return Object.fromEntries(rsl);
 };
 
