@@ -63,8 +63,8 @@ const scraper_video_informations = function (source, keys) {
 		const matches = source.match(/(?<=\*\/)\w+/g);
 		const urls = [];
 
-		for (let index = 0; index < matches.length; index++) {
-			const regex = new RegExp('(?<=' + matches[index] + '=")[^;]+(?=")', 'g');
+		for (const match of matches) {
+			const regex = new RegExp('(?<=' + match + '=")[^;]+(?=")', 'g');
 			const value = source.match(regex)[0].replace(/[" +]/g, '');
 
 			if (value.startsWith('https')) {
@@ -132,30 +132,25 @@ const type = {
 };
 
 const sanitizer = function (datas) {
-	const rsl = {};
-	Object.keys(type).map(x => {
+	const rsl = Object.keys(type).map(x => {
 		if (!datas[x]) {
 			return;
 		}
 
 		switch (type[x]) {
 			case 'String':
-				rsl[x] = sanitizer_string(datas[x]);
-				break;
+				return [x, sanitizer_string(datas[x])];
 			case 'Array':
-				rsl[x] = sanitizer_array(datas[x]);
-				break;
+				return [x, sanitizer_array(datas[x])];
 			case 'Number':
-				rsl[x] = sanitizer_number(datas[x]);
-				break;
+				return [x, sanitizer_number(datas[x])];
 			case 'Date':
-				rsl[x] = sanitizer_date(datas[x]);
-				break;
+				return [x, sanitizer_date(datas[x])];
 			default:
-				rsl[x] = datas[x];
+				return [x, datas[x]];
 		}
 	});
-	return rsl;
+	return Object.FromEntries(rsl);
 };
 
 const sanitizer_string = function (value) {
@@ -179,7 +174,7 @@ const sanitizer_date = function (value) {
 };
 
 module.exports = {
-	page: async function (url, key) {
+	page: async (url, key) => {
 		const keys = Array.isArray(key) ? key : [key];
 
 		try {
