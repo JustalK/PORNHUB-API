@@ -23,19 +23,16 @@ const options = {
 };
 
 const scraper_content_informations = function (doc, keys) {
-	const rsl = {};
-	Object.keys(options).filter(option => keys.includes(option)).map(x => {
+	return Object.fromEntries(Object.keys(options).filter(option => keys.includes(option)).map(x => {
 		let elm = [...doc.querySelectorAll(options[x])];
 		if (!elm || elm.length === 0) {
-			rsl[x] = 'No data';
-			return;
+			return [x, 'No data'];
 		}
 
 		elm = elm.length === 1 ? elm[0].textContent : elm.map(node => node.textContent);
 
-		rsl[x] = elm;
-	});
-	return rsl;
+		return [x, elm];
+	}));
 };
 
 const scraper_javascript_informations = function (doc, keys) {
@@ -57,7 +54,7 @@ const scraper_javascript_informations = function (doc, keys) {
 };
 
 const scraper_video_informations = function (source, keys) {
-	const rsl = {};
+	let rsl = {};
 
 	if (keys.includes('download_urls')) {
 		const matches = source.match(/(?<=\*\/)\w+/g);
@@ -78,7 +75,8 @@ const scraper_video_informations = function (source, keys) {
 			}
 		}
 
-		urls.map(x => rsl[x.match(/(?<=_)\d*P(?=_)/g)[0]] = x);
+		rsl = urls.map(x => [x.match(/(?<=_)\d*P(?=_)/g)[0], x]);
+		rsl = Object.fromEntries(rsl);
 	}
 
 	return rsl;
@@ -149,8 +147,9 @@ const sanitizer = function (datas) {
 			default:
 				return [x, datas[x]];
 		}
-	});
-	return Object.FromEntries(rsl);
+	}).filter(x => x);
+	
+	return Object.fromEntries(rsl);
 };
 
 const sanitizer_string = function (value) {
