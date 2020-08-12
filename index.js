@@ -104,7 +104,24 @@ const scraper_comments_informations = function (doc, keys) {
 	return rsl;
 };
 
-const scraping = function (source, keys) {
+
+const scraper_search_content_informations = function (doc, keys) {
+	const rsl = {};
+
+	const videos = doc.querySelectorAll('#videoSearchResult .pcVideoListItem');
+	let obj_videos = [];
+	videos.forEach((video,index) => {
+		obj_videos.push({
+			"link": "https://www.pornhub.com"+video.querySelector("a").getAttribute("href"),
+			"title": video.querySelector(".title a").getAttribute("title")
+		})
+	})
+	rsl["results"] = obj_videos;
+
+	return rsl;
+};
+
+const scraping_page = function (source, keys) {
 	const dom = new JSDOM(source);
 	const doc = dom.window.document;
 
@@ -121,6 +138,16 @@ const scraping = function (source, keys) {
 
 	return datas;
 };
+
+const scraping_search = function (source, keys) {
+	const dom = new JSDOM(source);
+	const doc = dom.window.document;
+
+	let datas = {};
+	datas = {...datas, ...scraper_search_content_informations(doc, keys)};
+
+	return datas;
+}
 
 const type = {
 	title: 'String',
@@ -193,8 +220,26 @@ module.exports = {
 		try {
 			const response = await got(url);
 			const source = response.body;
-			const datas = scraping(source, keys);
+			const datas = scraping_page(source, keys);
 			return sanitizer(datas);
+		} catch (error) {
+			console.log(error);
+			if (error) {
+				error.message = 'the requested data is not available';
+			}
+
+			return {data: error.message};
+		}
+	},
+	search: async (search, key) => {
+		const keys = Array.isArray(key) ? key : [key];
+
+		try {
+			// Search by country
+			const response = await got("https://www.pornhub.com/video/search?search="+search);
+			const source = response.body;
+			const datas = scraping_search(source, keys);
+			return datas;
 		} catch (error) {
 			console.log(error);
 			if (error) {

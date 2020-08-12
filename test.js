@@ -33,3 +33,10 @@ test('[PAGE] Title', async t => {
 	t.is(video.comments[0]["username"], 'kingsignature');
 	t.is(video.comments[0]["message"], 'full video');
 });
+
+test('[SEARCH] Aa', async t => {
+	const search = await m.search("Aa", []);
+
+	t.is(search.results[0].link, 'https://www.pornhub.com/view_video.php?viewkey=ph5ee4dc2780048');
+	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
+});
