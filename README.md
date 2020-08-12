@@ -48,6 +48,7 @@ async page(url, options)
 | thumbnail | Url of the thumbnail | String |
 | upload_date | Date of upload | Date |
 | download_urls | List of download link by quality | Object |
+| comments | List of comments with additionnals informations | Object |
 
 ### Examples
 
