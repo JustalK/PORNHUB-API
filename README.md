@@ -114,6 +114,12 @@ node install
 npm test
 ```
 
+Also, you can use the command under for running the test without the linter
+
+```
+npm run test-no
+```
+
 ### Note
 
 The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3.

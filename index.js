@@ -119,8 +119,6 @@ const scraping = function (source, keys) {
 	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
 	datas = {...datas, ...scraper_comments_informations(doc, keys)};
 
-	console.log(datas);
-
 	return datas;
 };
 
