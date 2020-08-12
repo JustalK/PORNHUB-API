@@ -113,7 +113,8 @@ const scraper_search_content_informations = function (doc, keys) {
 	videos.forEach((video,index) => {
 		obj_videos.push({
 			"link": "https://www.pornhub.com"+video.querySelector("a").getAttribute("href"),
-			"title": video.querySelector(".title a").getAttribute("title")
+			"title": video.querySelector(".title a").getAttribute("title"),
+			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data'
 		})
 	})
 	rsl["results"] = obj_videos;
