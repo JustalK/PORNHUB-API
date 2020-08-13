@@ -1,5 +1,6 @@
 'use strict';
 
+const utils = require('./utils');
 const got = require('got');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
@@ -115,6 +116,7 @@ const scraper_search_content_informations = function (doc, keys) {
 			"link": "https://www.pornhub.com"+video.querySelector("a").getAttribute("href"),
 			"title": video.querySelector(".title a").getAttribute("title"),
 			"hd": video.querySelector("a .marker-overlays .hd-thumbnail") ? true : false,
+			//"hd": video.querySelector("a .marker-overlays .hd-thumbnail .duration").innerHTML,
 			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data'
 		})
 	})
