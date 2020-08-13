@@ -117,6 +117,7 @@ const scraper_search_content_informations = function (doc, keys) {
 			"title": video.querySelector(".title a").getAttribute("title"),
 			"hd": video.querySelector("a .marker-overlays .hd-thumbnail") ? true : false,
 			"duration": utils.convert_to_second(video.querySelector("a .marker-overlays .duration").innerHTML),
+			"views": utils.convert_KM_to_unit(video.querySelector(".videoDetailsBlock var").innerHTML),
 			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data'
 		})
 	})
