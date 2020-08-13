@@ -39,7 +39,9 @@ test('[PAGE] Title', async t => {
 test('[SEARCH] Aa', async t => {
 	const search = await m.search("Aa", []);
 
+	console.log(search);
 	t.is(search.results[0].link, 'https://www.pornhub.com/view_video.php?viewkey=ph5ee4dc2780048');
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
+	t.is(search.results[0].hd, true);
 	t.is(search.results[0].author, 'branleur47');
 });
