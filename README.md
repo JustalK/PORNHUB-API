@@ -27,6 +27,16 @@ async page(url, options)
 | url | url of the page | String |
 | options | List of the options | Array or String if there is only one option|
 
+2. Scraping a search page pornhub
+
+```
+async search(value)
+```
+
+| name | description | type |
+| :--- | :---------- | :--- |
+| value | value search in pornhub | String |
+
 ### Options available
 
 | name | description | type |

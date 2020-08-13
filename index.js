@@ -118,6 +118,7 @@ const scraper_search_content_informations = function (doc, keys) {
 			"hd": video.querySelector("a .marker-overlays .hd-thumbnail") ? true : false,
 			"duration": utils.convert_to_second(video.querySelector("a .marker-overlays .duration").innerHTML),
 			"views": utils.convert_KM_to_unit(video.querySelector(".videoDetailsBlock var").innerHTML),
+			"premium": video.querySelector("a .marker-overlays .premiumIcon") ? true : false,
 			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data',
 			"ratings": utils.sanitizer_number(video.querySelector(".rating-container .value").innerHTML)
 		})
