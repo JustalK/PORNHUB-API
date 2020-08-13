@@ -44,4 +44,5 @@ test('[SEARCH] Aa', async t => {
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
 	t.is(search.results[0].hd, true);
 	t.is(search.results[0].author, 'branleur47');
+	t.assert(search.results[0].views >= 15400);
 });

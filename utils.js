@@ -1,3 +1,5 @@
+
+
 module.exports = {
     convert_to_second: (time) => {
         const time_splitted = time.split(':');
@@ -19,5 +21,10 @@ module.exports = {
             return Number(units.replace("M",""))*1000000;
         }
         return units;
+    },
+    sanitizer_number: (value) => {
+    	value = value.replace(/[()&A-Za-z,%]/g, '');
+    	value = Number(value);
+    	return value;
     }
 }

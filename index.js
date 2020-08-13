@@ -96,7 +96,7 @@ const scraper_comments_informations = function (doc, keys) {
 				"username": comment.querySelector(".usernameLink").innerHTML,
 				"date": sanitizer_string(comment.querySelector(".date").innerHTML),
 				"message": comment.querySelector(".commentMessage span").innerHTML,
-				"total_vote": sanitizer_number(comment.querySelector(".voteTotal").innerHTML)
+				"total_vote": utils.sanitizer_number(comment.querySelector(".voteTotal").innerHTML)
 			})
 		})
 		rsl["comments"] = obj_comment;
@@ -118,7 +118,8 @@ const scraper_search_content_informations = function (doc, keys) {
 			"hd": video.querySelector("a .marker-overlays .hd-thumbnail") ? true : false,
 			"duration": utils.convert_to_second(video.querySelector("a .marker-overlays .duration").innerHTML),
 			"views": utils.convert_KM_to_unit(video.querySelector(".videoDetailsBlock var").innerHTML),
-			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data'
+			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data',
+			"ratings": utils.sanitizer_number(video.querySelector(".rating-container .value").innerHTML)
 		})
 	})
 	rsl["results"] = obj_videos;
@@ -187,7 +188,7 @@ const sanitizer = function (datas) {
 			case 'Array':
 				return [x, sanitizer_array(datas[x])];
 			case 'Number':
-				return [x, sanitizer_number(datas[x])];
+				return [x, utils.sanitizer_number(datas[x])];
 			case 'Date':
 				return [x, sanitizer_date(datas[x])];
 			default:
@@ -206,12 +207,6 @@ const sanitizer_string = function (value) {
 
 const sanitizer_array = function (array) {
 	return array.map(x => sanitizer_string(x));
-};
-
-const sanitizer_number = function (value) {
-	value = value.replace(/[()&A-Za-z,%]/g, '');
-	value = Number(value);
-	return value;
 };
 
 const sanitizer_date = function (value) {
