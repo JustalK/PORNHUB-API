@@ -1,33 +1,18 @@
 'use strict';
 
 const utils = require('./utils');
+const constants = require('./consts');
 const got = require('got');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
-const options = {
-	title: '.title-container .title .inlineFree',
-	views: '.count',
-	up_votes: '.votesUp',
-	down_votes: '.votesDown',
-	percent: '.percent',
-	author: '.video-detailed-info .usernameBadgesWrapper a',
-	author_subscriber: '.video-detailed-info .subscribers-count',
-	pornstars: '.pornstarsWrapper .pstar-list-btn',
-	categories: '.categoriesWrapper a:not(.add-btn-small)',
-	tags: '.tagsWrapper a:not(.add-btn-small)',
-	production: '.productionWrapper',
-	duration: 'meta[property="video:duration"]',
-	number_of_comment: '#cmtWrapper h2 span'
-};
-
 const scraper_content_informations = (doc, keys) => {
-	return Object.fromEntries(Object.keys(options).filter(option => keys.includes(option)).map(x => {
-		let elm = [...doc.querySelectorAll(options[x])];
+	return Object.fromEntries(Object.keys(constants.options).filter(option => keys.includes(option)).map(x => {
+		let elm = [...doc.querySelectorAll(constants.options[x])];
 		if (!elm || elm.length === 0) {
-			return [x, 'No data'];
+			return [x, constants.NO_DATA];
 		}
 
 		elm = elm.length === 1 ? elm[0].textContent : elm.map(node => node.textContent);
@@ -119,7 +104,7 @@ const scraper_search_content_informations = (doc, keys) => {
 			"duration": utils.convert_to_second(video.querySelector("a .marker-overlays .duration").innerHTML),
 			"views": utils.convert_KM_to_unit(video.querySelector(".videoDetailsBlock var").innerHTML),
 			"premium": video.querySelector("a .marker-overlays .premiumIcon") ? true : false,
-			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : 'No Data',
+			"author": video.querySelector(".videoUploaderBlock .usernameWrap a") ? video.querySelector(".videoUploaderBlock .usernameWrap a").innerHTML : constants.NO_DATA,
 			"ratings": utils.sanitizer_number(video.querySelector(".rating-container .value").innerHTML)
 		})
 	})
@@ -156,44 +141,23 @@ const scraping_search = (source, keys) => {
 	return datas;
 }
 
-const type = {
-	title: 'String',
-	views: 'Number',
-	up_votes: 'Number',
-	down_votes: 'Number',
-	percent: 'Number',
-	author: 'String',
-	author_subscriber: 'Number',
-	categories: 'Array',
-	tags: 'Array',
-	production: 'String',
-	description: 'String',
-	duration: 'Number',
-	upload_date: 'Date',
-	pornstars: 'Array',
-	download_urls: 'URL',
-	thumbnail: 'URL',
-	number_of_comment: 'Number',
-	comments: 'Object'
-};
-
 const sanitizer = (datas) => {
-	const rsl = Object.keys(type).map(x => {
+	const rsl = Object.keys(constants.type).map(x => {
 		if (!datas[x]) {
 			return;
 		}
 
-		switch (type[x]) {
-			case 'String':
-				return [x, sanitizer_string(datas[x])];
-			case 'Array':
-				return [x, sanitizer_array(datas[x])];
-			case 'Number':
-				return [x, utils.sanitizer_number(datas[x])];
-			case 'Date':
-				return [x, sanitizer_date(datas[x])];
+		switch (constants.type[x]) {
+			case constants.js_type.STRING:
+				return [x.toLowerCase(), sanitizer_string(datas[x])];
+			case constants.js_type.ARRAY:
+				return [x.toLowerCase(), sanitizer_array(datas[x])];
+			case constants.js_type.NUMBER:
+				return [x.toLowerCase(), utils.sanitizer_number(datas[x])];
+			case constants.js_type.DATE:
+				return [x.toLowerCase(), sanitizer_date(datas[x])];
 			default:
-				return [x, datas[x]];
+				return [x.toLowerCase(), datas[x]];
 		}
 	}).filter(x => x);
 
@@ -216,7 +180,8 @@ const sanitizer_date = (value) => {
 
 module.exports = {
 	page: async (url, key) => {
-		const keys = Array.isArray(key) ? key : [key];
+		const array_keys = Array.isArray(key) ? key : [key];
+		const keys = array_keys.map(x => x.toUpperCase());
 
 		try {
 			const response = await got(url);
@@ -233,7 +198,7 @@ module.exports = {
 		}
 	},
 	search: async (search, key) => {
-		const keys = Array.isArray(key) ? key : [key];
+		const array_keys = Array.isArray(key) ? key : [key];
 
 		try {
 			// Search by country
