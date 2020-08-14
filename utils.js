@@ -1,4 +1,5 @@
-
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 module.exports = {
     convert_to_second: (time) => {
@@ -25,5 +26,16 @@ module.exports = {
     	value = value.replace(/[()&A-Za-z,%]/g, '');
     	value = Number(value);
     	return value;
+    },
+    sanitizer_string: (value) => {
+    	value = value.replace(/[\t\n]/g, '');
+    	value = entities.decode(value);
+    	return value;
+    },
+    sanitizer_array: (array) => {
+    	return array.map(x => module.exports.sanitizer_string(x));
+    },
+    sanitizer_date: (value) => {
+    	return new Date(value);
     }
 }

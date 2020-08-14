@@ -5,8 +5,6 @@ const constants = require('./consts');
 const got = require('got');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
-const Entities = require('html-entities').AllHtmlEntities;
-const entities = new Entities();
 
 const scraper_content_informations = (doc, keys) => {
 	return Object.fromEntries(Object.keys(constants.primary_selectors).filter(option => keys.includes(option)).map(x => {
@@ -152,35 +150,21 @@ const sanitizer = (datas) => {
 
 		switch (constants.type[x]) {
 			case constants.js_type.STRING:
-				return [x.toLowerCase(), sanitizer_string(datas[x])];
+				return [x.toLowerCase(), utils.sanitizer_string(datas[x])];
 			case constants.js_type.ARRAY:
-				return [x.toLowerCase(), sanitizer_array(datas[x])];
+				return [x.toLowerCase(), utils.sanitizer_array(datas[x])];
 			case constants.js_type.NUMBER:
 				return [x.toLowerCase(), utils.sanitizer_number(datas[x])];
 			case constants.js_type.DATE:
-				return [x.toLowerCase(), sanitizer_date(datas[x])];
+				return [x.toLowerCase(), utils.sanitizer_date(datas[x])];
 			case constants.js_type.NUMBER_KM:
-				return [x.toLowerCase(), convert_KM_to_unit(datas[x])];
+				return [x.toLowerCase(), utils.convert_KM_to_unit(datas[x])];
 			default:
 				return [x.toLowerCase(), datas[x]];
 		}
 	}).filter(x => x);
 
 	return Object.fromEntries(rsl);
-};
-
-const sanitizer_string = (value) => {
-	value = value.replace(/[\t\n]/g, '');
-	value = entities.decode(value);
-	return value;
-};
-
-const sanitizer_array = (array) => {
-	return array.map(x => sanitizer_string(x));
-};
-
-const sanitizer_date = (value) => {
-	return new Date(value);
 };
 
 module.exports = {
