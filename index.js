@@ -23,7 +23,7 @@ const options = {
 	number_of_comment: '#cmtWrapper h2 span'
 };
 
-const scraper_content_informations = function (doc, keys) {
+const scraper_content_informations = (doc, keys) => {
 	return Object.fromEntries(Object.keys(options).filter(option => keys.includes(option)).map(x => {
 		let elm = [...doc.querySelectorAll(options[x])];
 		if (!elm || elm.length === 0) {
@@ -36,7 +36,7 @@ const scraper_content_informations = function (doc, keys) {
 	}));
 };
 
-const scraper_javascript_informations = function (doc, keys) {
+const scraper_javascript_informations = (doc, keys) => {
 	const rsl = {};
 
 	if (keys.includes('upload_date')) {
@@ -54,7 +54,7 @@ const scraper_javascript_informations = function (doc, keys) {
 	return rsl;
 };
 
-const scraper_video_informations = function (source, keys) {
+const scraper_video_informations = (source, keys) => {
 	let rsl = {};
 
 	if (keys.includes('download_urls')) {
@@ -83,7 +83,7 @@ const scraper_video_informations = function (source, keys) {
 	return rsl;
 };
 
-const scraper_comments_informations = function (doc, keys) {
+const scraper_comments_informations = (doc, keys) => {
 	const rsl = {};
 
 	if (keys.includes('comments')) {
@@ -106,7 +106,7 @@ const scraper_comments_informations = function (doc, keys) {
 };
 
 
-const scraper_search_content_informations = function (doc, keys) {
+const scraper_search_content_informations = (doc, keys) => {
 	const rsl = {};
 
 	const videos = doc.querySelectorAll('#videoSearchResult .pcVideoListItem');
@@ -128,7 +128,7 @@ const scraper_search_content_informations = function (doc, keys) {
 	return rsl;
 };
 
-const scraping_page = function (source, keys) {
+const scraping_page = (source, keys) => {
 	const dom = new JSDOM(source);
 	const doc = dom.window.document;
 
@@ -146,7 +146,7 @@ const scraping_page = function (source, keys) {
 	return datas;
 };
 
-const scraping_search = function (source, keys) {
+const scraping_search = (source, keys) => {
 	const dom = new JSDOM(source);
 	const doc = dom.window.document;
 
@@ -177,7 +177,7 @@ const type = {
 	comments: 'Object'
 };
 
-const sanitizer = function (datas) {
+const sanitizer = (datas) => {
 	const rsl = Object.keys(type).map(x => {
 		if (!datas[x]) {
 			return;
@@ -200,17 +200,17 @@ const sanitizer = function (datas) {
 	return Object.fromEntries(rsl);
 };
 
-const sanitizer_string = function (value) {
+const sanitizer_string = (value) => {
 	value = value.replace(/[\t\n]/g, '');
 	value = entities.decode(value);
 	return value;
 };
 
-const sanitizer_array = function (array) {
+const sanitizer_array = (array) => {
 	return array.map(x => sanitizer_string(x));
 };
 
-const sanitizer_date = function (value) {
+const sanitizer_date = (value) => {
 	return new Date(value);
 };
 
