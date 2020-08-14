@@ -82,7 +82,7 @@ const scraper_comments_informations = (doc, keys) => {
 				return [x,comment.querySelector(constants.comment_selectors[x]).innerHTML];
 			}))
 
-			obj_comment.push(sanitizer(comment_datas))
+			obj_comment.push(utils.sanitizer(comment_datas))
 		})
 
 		rsl[constants.keys.COMMENTS] = obj_comment;
@@ -142,31 +142,6 @@ const scraping_search = (source, keys) => {
 	return datas;
 }
 
-const sanitizer = (datas) => {
-	const rsl = Object.keys(constants.type).map(x => {
-		if (!datas[x]) {
-			return;
-		}
-
-		switch (constants.type[x]) {
-			case constants.js_type.STRING:
-				return [x.toLowerCase(), utils.sanitizer_string(datas[x])];
-			case constants.js_type.ARRAY:
-				return [x.toLowerCase(), utils.sanitizer_array(datas[x])];
-			case constants.js_type.NUMBER:
-				return [x.toLowerCase(), utils.sanitizer_number(datas[x])];
-			case constants.js_type.DATE:
-				return [x.toLowerCase(), utils.sanitizer_date(datas[x])];
-			case constants.js_type.NUMBER_KM:
-				return [x.toLowerCase(), utils.convert_KM_to_unit(datas[x])];
-			default:
-				return [x.toLowerCase(), datas[x]];
-		}
-	}).filter(x => x);
-
-	return Object.fromEntries(rsl);
-};
-
 module.exports = {
 	page: async (url, key) => {
 		const array_keys = Array.isArray(key) ? key : [key];
@@ -176,7 +151,7 @@ module.exports = {
 			const response = await got(url);
 			const source = response.body;
 			const datas = scraping_page(source, keys);
-			return sanitizer(datas);
+			return utils.sanitizer(datas);
 		} catch (error) {
 			console.log(error);
 			if (error) {

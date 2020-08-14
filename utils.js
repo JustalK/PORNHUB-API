@@ -1,3 +1,4 @@
+const constants = require('./consts');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
@@ -37,5 +38,29 @@ module.exports = {
     },
     sanitizer_date: (value) => {
     	return new Date(value);
+    },
+    sanitizer: (datas) => {
+    	const rsl = Object.keys(constants.type).map(x => {
+    		if (!datas[x]) {
+    			return;
+    		}
+
+    		switch (constants.type[x]) {
+    			case constants.js_type.STRING:
+    				return [x.toLowerCase(), module.exports.sanitizer_string(datas[x])];
+    			case constants.js_type.ARRAY:
+    				return [x.toLowerCase(), module.exports.sanitizer_array(datas[x])];
+    			case constants.js_type.NUMBER:
+    				return [x.toLowerCase(), module.exports.sanitizer_number(datas[x])];
+    			case constants.js_type.DATE:
+    				return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
+    			case constants.js_type.NUMBER_KM:
+    				return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
+    			default:
+    				return [x.toLowerCase(), datas[x]];
+    		}
+    	}).filter(x => x);
+
+    	return Object.fromEntries(rsl);
     }
 }
