@@ -6,7 +6,7 @@ Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with th
 
 ## Function available
 
-1. Scraping a page pornhub
+###### Scraping a page pornhub
 
 ```js
 async page(url, options)
@@ -17,17 +17,7 @@ async page(url, options)
 | url | url of the page | String |
 | options | List of the options | Array or String if there is only one option|
 
-2. Scraping a search page pornhub
-
-```js
-async search(value)
-```
-
-| name | description | type |
-| :--- | :---------- | :--- |
-| value | value search in pornhub | String |
-
-### Options available
+Options available
 
 | name | description | type |
 | :--- | :---------- | :--- |
@@ -49,6 +39,16 @@ async search(value)
 | upload_date | Date of upload | Date |
 | download_urls | List of download link by quality | Object |
 | comments | List of comments with additionnals informations | Object |
+
+######  Scraping a search page pornhub
+
+```js
+async search(value)
+```
+
+| name | description | type |
+| :--- | :---------- | :--- |
+| value | value search in pornhub | String |
 
 ### Examples
 
