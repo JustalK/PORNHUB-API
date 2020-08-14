@@ -9,8 +9,8 @@ const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
 const scraper_content_informations = (doc, keys) => {
-	return Object.fromEntries(Object.keys(constants.options).filter(option => keys.includes(option)).map(x => {
-		let elm = [...doc.querySelectorAll(constants.options[x])];
+	return Object.fromEntries(Object.keys(constants.primary_selectors).filter(option => keys.includes(option)).map(x => {
+		let elm = [...doc.querySelectorAll(constants.primary_selectors[x])];
 		if (!elm || elm.length === 0) {
 			return [x, constants.NO_DATA];
 		}
@@ -71,20 +71,23 @@ const scraper_video_informations = (source, keys) => {
 const scraper_comments_informations = (doc, keys) => {
 	const rsl = {};
 
-	if (keys.includes('comments')) {
-		const comments = doc.querySelectorAll('.topCommentBlock');
+	if (keys.includes(constants.keys.COMMENTS)) {
+		const comments = doc.querySelectorAll(constants.global_selectors.COMMENTS_LIST);
 		let obj_comment = [];
 		comments.forEach((comment,index) => {
 			if(index==comments.length-1) return;
-			obj_comment.push({
-				"avatar": comment.querySelector(".avatarTrigger").getAttribute("data-src"),
-				"username": comment.querySelector(".usernameLink").innerHTML,
-				"date": sanitizer_string(comment.querySelector(".date").innerHTML),
-				"message": comment.querySelector(".commentMessage span").innerHTML,
-				"total_vote": utils.sanitizer_number(comment.querySelector(".voteTotal").innerHTML)
-			})
+
+			const comment_datas = Object.fromEntries(Object.keys(constants.comment_selectors).map(x => {
+				if(constants.element_attributs[x]) {
+					return [x,comment.querySelector(constants.comment_selectors[x]).getAttribute(constants.element_attributs[x])];
+				}
+				return [x,comment.querySelector(constants.comment_selectors[x]).innerHTML];
+			}))
+
+			obj_comment.push(sanitizer(comment_datas))
 		})
-		rsl["comments"] = obj_comment;
+
+		rsl[constants.keys.COMMENTS] = obj_comment;
 	}
 
 	return rsl;
@@ -156,6 +159,8 @@ const sanitizer = (datas) => {
 				return [x.toLowerCase(), utils.sanitizer_number(datas[x])];
 			case constants.js_type.DATE:
 				return [x.toLowerCase(), sanitizer_date(datas[x])];
+			case constants.js_type.NUMBER_KM:
+				return [x.toLowerCase(), convert_KM_to_unit(datas[x])];
 			default:
 				return [x.toLowerCase(), datas[x]];
 		}

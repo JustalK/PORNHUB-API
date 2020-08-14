@@ -17,7 +17,6 @@ module.exports = {
             return Number(units.replace("K",""))*1000;
         }
         if(units.includes("M")) {
-            console.log(Number(units.replace("M",""))*1000000)
             return Number(units.replace("M",""))*1000000;
         }
         return units;
