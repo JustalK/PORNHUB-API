@@ -44,5 +44,11 @@ module.exports = {
     	PRODUCTION: '.productionWrapper',
     	DURATION: 'meta[property="video:duration"]',
     	NUMBER_OF_COMMENT: '#cmtWrapper h2 span'
+    },
+    links: {
+        SEARCH: 'https://www.pornhub.com/video/search?search='
+    },
+    errors: {
+        DEFAULT: 'the requested data is not available'
     }
 }

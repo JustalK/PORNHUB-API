@@ -191,7 +191,7 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 			if (error) {
-				error.message = 'the requested data is not available';
+				error.message = constants.errors.DEFAULT;
 			}
 
 			return {data: error.message};
@@ -202,14 +202,14 @@ module.exports = {
 
 		try {
 			// Search by country
-			const response = await got("https://www.pornhub.com/video/search?search="+search);
+			const response = await got(constants.links.SEARCH+search);
 			const source = response.body;
 			const datas = scraping_search(source, keys);
 			return datas;
 		} catch (error) {
 			console.log(error);
 			if (error) {
-				error.message = 'the requested data is not available';
+				error.message = constants.errors.DEFAULT;
 			}
 
 			return {data: error.message};
