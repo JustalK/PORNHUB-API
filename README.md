@@ -17,9 +17,8 @@ async page(url, options)
 | url | url of the page | String |
 | options | List of the options | Array or String if there is only one option|
 
-Options available
 
-| name | description | type |
+| name of option | description | type |
 | :--- | :---------- | :--- |
 | title | Title | String |
 | description | Description | String |
@@ -58,7 +57,6 @@ async search(value)
 const video = await module-name.page(url, ['title']);
 ```
 
-Output :
 
 ```json
 {
@@ -72,8 +70,6 @@ Output :
 const video = await module-name.page(url, ['title','description']);
 ```
 
-Output :
-
 ```json
 {
 	"title": "Name of the video",
@@ -86,8 +82,6 @@ Output :
 ```js
 const video = await module-name.page(url, ['title','pornstars','download_urls']);
 ```
-
-Output :
 
 ```json
 {
@@ -106,8 +100,6 @@ Output :
 ```js
 const video = await module-name.page("Aa");
 ```
-
-Output :
 
 ```json
 [{
