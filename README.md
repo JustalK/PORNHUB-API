@@ -1,24 +1,14 @@
-<h1 align="center">
-<br>
-	<b>PORNHUB API</b>
-	<br>
-</h1>
+# PORNHUB API
 
-<h3 align="center">PORNHUB API</h3>
+Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page and to get the download links.
 
-### How to use
+`npm install module-name`
 
-Install the module
-
-```
-npm install module-name
-```
-
-### Function available
+## Function available
 
 1. Scraping a page pornhub
 
-```
+```js
 async page(url, options)
 ```
 
@@ -29,7 +19,7 @@ async page(url, options)
 
 2. Scraping a search page pornhub
 
-```
+```js
 async search(value)
 ```
 
@@ -62,78 +52,104 @@ async search(value)
 
 ### Examples
 
-1. Scraping the title of a video
+###### Scraping the title of a video
 
-Call :
-
-```
+```js
 const video = await module-name.page(url, ['title']);
 ```
 
 Output :
 
-```
+```json
 {
 	"title": "Name of the video"
 }
 ```
 
-2. Scraping the title of a video and the description
+###### Scraping the title of a video and the description
 
-Call :
-
-```
+```js
 const video = await module-name.page(url, ['title','description']);
 ```
 
 Output :
 
-```
+```json
 {
 	"title": "Name of the video",
 	"description": "Description of the video"
 }
 ```
 
-3. Scraping the name of the pornstars and the downloads links
+###### Scraping the name of the pornstars and the downloads links
 
-```
+```js
 const video = await module-name.page(url, ['title','pornstars','download_urls']);
 ```
 
 Output :
 
-```
+```json
 {
 	"title": "Title of the video",
 	"pornstars": ["Sophie A","Rocco B"],
 	"download_urls": {
 		"720" : "https://p.com/link1",
-		"480" : "https://p.com/link2"
+		"480" : "https://p.com/link2",
 		"360" : "https://p.com/link3"
 	}
 }
+```
+
+###### Scraping a search pornhub without options
+
+```js
+const video = await module-name.page("Aa");
+```
+
+Output :
+
+```json
+[{
+	"link": "https://p.com/link1",
+	"title": "Title of the video",
+	"hd": true,
+	"author": "Robert",
+	"duration": 13000,
+	"views": 1200,
+	"premium": true,
+	"rating": 80
+},{
+	"link": "https://p.com/link2",
+	"title": "Title of the video",
+	"hd": false,
+	"author": "Ggegwg",
+	"duration": 5120,
+	"views": 120,
+	"premium": false,
+	"rating": 60
+}]
 ```
 
 ### How to test
 
 For testing, install the node project and run the test command.
 
-```
+```shell
 node install
 npm test
 ```
 
 Also, you can use the command under for running the test without the linter
 
-```
+```shell
 npm run test-no
 ```
 
 ### Note
 
-The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3.
-If pornhub is blocked in your country, the API will not work. Keep that in mind.
+- The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3.
+- If pornhub is blocked in your country, the API will not work. Keep that in mind.
 
 ## License
 
