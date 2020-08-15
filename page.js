@@ -68,10 +68,6 @@ module.exports = {
     scraping_page: (source, keys) => {
     	const doc = source_to_dom(source);
 
-    	if (!keys || keys.length === 0) {
-    		return {};
-    	}
-
     	let datas = {};
 
     	datas = {...datas, ...scraper_content_informations(doc, keys)};

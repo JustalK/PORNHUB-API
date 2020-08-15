@@ -31,6 +31,7 @@ const error_message = (error) => {
 module.exports = {
 	page: async (url, key) => {
 		const keys = options_to_keys(key);
+		if(key.length === 0) return {};
 
 		try {
 			const source = await url_to_source(url);
@@ -42,6 +43,7 @@ module.exports = {
 	},
 	search: async (search, key) => {
 		const keys = options_to_keys(key);
+		if(key.length === 0) return {};
 
 		try {
 			const source = await url_to_source(constants.links.SEARCH+search);
