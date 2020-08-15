@@ -4,25 +4,7 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 const scraper_content_informations = (doc, keys) => {
-    return utils.scrap(doc,constants.primary_selectors,constants.page_element_attributs);
-};
-
-const scraper_javascript_informations = (doc, keys) => {
-	const rsl = {};
-
-	if (keys.includes('upload_date')) {
-		rsl.upload_date = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).uploadDate;
-	}
-
-	if (keys.includes('description')) {
-		rsl.description = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).description;
-	}
-
-	if (keys.includes('thumbnail')) {
-		rsl.thumbnail = JSON.parse(doc.querySelectorAll('script[type="application/ld+json"')[0].textContent).thumbnailUrl;
-	}
-
-	return rsl;
+    return utils.scrap(doc, constants.primary_selectors, constants.page_element_attributs);
 };
 
 const scraper_video_informations = (source, keys) => {
@@ -86,7 +68,6 @@ module.exports = {
     	let datas = {};
 
     	datas = {...datas, ...scraper_content_informations(doc, keys)};
-    	datas = {...datas, ...scraper_javascript_informations(doc, keys)};
     	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
     	datas = {...datas, ...scraper_comments_informations(doc, keys)};
 

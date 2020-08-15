@@ -33,7 +33,7 @@ module.exports = {
     	PORNSTARS: js_type.ARRAY,
     	DOWNLOAD_URLS: js_type.URL,
         LINK: js_type.URL_PORNHUB,
-    	THUMBNAIL: js_type.URL,
+    	THUMBNAIL_URL: js_type.URL,
         HD: js_type.BOOLEAN,
     	NUMBER_OF_COMMENT: js_type.NUMBER,
     	COMMENTS: js_type.OBJECT,
@@ -62,7 +62,10 @@ module.exports = {
     	TAGS: '.tagsWrapper a:not(.add-btn-small)',
     	PRODUCTION: '.productionWrapper',
     	DURATION: 'meta[property="video:duration"]',
-    	NUMBER_OF_COMMENT: '#cmtWrapper h2 span'
+    	NUMBER_OF_COMMENT: '#cmtWrapper h2 span',
+        UPLOAD_DATE: 'script[type="application/ld+json"',
+        DESCRIPTION: 'script[type="application/ld+json"',
+        THUMBNAIL_URL: 'script[type="application/ld+json"'
     },
     comment_selectors: {
         AVATAR: '.avatarTrigger',
@@ -109,7 +112,15 @@ module.exports = {
         USERNAME: 'innerHTML',
         DATE: 'innerHTML',
         MESSAGE: 'innerHTML',
-        TOTAL_VOTE: 'innerHTML'
+        TOTAL_VOTE: 'innerHTML',
+        UPLOAD_DATE: 'javascript',
+        DESCRIPTION: 'javascript',
+        THUMBNAIL_URL: 'javascript'
+    },
+    javascript: {
+        UPLOAD_DATE: 'uploadDate',
+        DESCRIPTION: 'description',
+        THUMBNAIL_URL: 'thumbnailUrl'
     },
     links: {
         BASE_URL: 'https://www.pornhub.com',

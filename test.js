@@ -17,6 +17,13 @@ test('[PAGE] Title & pornstars', async t => {
 	t.is(video.pornstars[1], 'Jessie Andrews');
 });
 
+test('[PAGE] Javascript elements', async t => {
+	const video = await m.page(url, ['thumbnail_url', 'upload_date']);
+
+	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
+	t.is(video.thumbnail_url, 'https://ci.phncdn.com/videos/201603/30/72472822/original/(m=eaAaGwObaaaa)(mh=9TJVuQEsiZeJVmtt)9.jpg');
+});
+
 test('[PAGE] Title', async t => {
 	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments']);
 

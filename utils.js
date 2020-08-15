@@ -42,6 +42,8 @@ module.exports = {
             			return [key, constants.NO_DATA];
             		}
                     return [key, elm.map(node => node.textContent)];
+                case 'javascript':
+                    return [key, JSON.parse(obj.querySelector(keys[key]).textContent)[constants.javascript[key]]];
                 case null:
                     return obj.querySelector(keys[key]) ? [key, true] : [key, false];
                 default:
