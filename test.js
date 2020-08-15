@@ -18,10 +18,9 @@ test('[PAGE] Title & pornstars', async t => {
 });
 
 test('[PAGE] Javascript elements', async t => {
-	const video = await m.page(url, ['thumbnail_url', 'upload_date']);
+	const video = await m.page(url, ['upload_date']);
 
 	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
-	t.is(video.thumbnail_url, 'https://ci.phncdn.com/videos/201603/30/72472822/original/(m=eaAaGwObaaaa)(mh=9TJVuQEsiZeJVmtt)9.jpg');
 });
 
 test('[PAGE] Title', async t => {

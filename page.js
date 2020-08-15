@@ -3,8 +3,19 @@ const constants = require('./consts');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
+const selectors_restriction = (keys) => {
+    let selectors = {}
+    Object.keys(constants.primary_selectors).map(selector => {
+        if(keys.includes(selector)) {
+            selectors[selector]=constants.primary_selectors[selector];
+        }
+    });
+    return selectors;
+}
+
 const scraper_content_informations = (doc, keys) => {
-    return utils.scrap(doc, constants.primary_selectors, constants.page_element_attributs);
+    const selectors = selectors_restriction(keys);
+    return utils.scrap(doc, selectors, constants.page_element_attributs);
 };
 
 const scraper_video_informations = (source, keys) => {
