@@ -6,10 +6,17 @@ const page = require('./page');
 const search = require('./search');
 const got = require('got');
 
+//TODO Search by country
+
 const options_to_keys = (key) => {
 	if(!key) return [];
 	const array_keys = Array.isArray(key) ? key : [key];
 	return array_keys.map(x => x.toUpperCase());
+}
+
+const url_to_source = (url) => {
+	const response = await got(url);
+	return response.body;
 }
 
 const error_message = (error) => {
@@ -26,8 +33,7 @@ module.exports = {
 		const keys = options_to_keys(key);
 
 		try {
-			const response = await got(url);
-			const source = response.body;
+			const source = url_to_source(url);
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
@@ -38,9 +44,7 @@ module.exports = {
 		const keys = options_to_keys(key);
 
 		try {
-			// Search by country
-			const response = await got(constants.links.SEARCH+search);
-			const source = response.body;
+			const source = url_to_source(constants.links.SEARCH+search);
 			const datas = search.scraping_search(source, keys);
 			return datas;
 		} catch (error) {
