@@ -66,7 +66,7 @@ const scraper_comments_informations = (doc, keys) => {
 
 module.exports = {
     scraping_page: (source, keys) => {
-    	const doc = source_to_dom(source);
+    	const doc = utils.source_to_dom(source);
 
     	let datas = {};
 
