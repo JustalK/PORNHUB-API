@@ -1,8 +1,14 @@
 const constants = require('./consts');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
+const jsdom = require('jsdom');
+const {JSDOM} = jsdom;
 
 module.exports = {
+    source_to_dom: (source) => {
+        const dom = new JSDOM(source);
+        return dom.window.document;
+    },
     convert_to_second: (time) => {
         const time_splitted = time.split(':');
         switch (time_splitted.length) {

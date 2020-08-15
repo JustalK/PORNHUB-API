@@ -1,7 +1,5 @@
 const utils = require('./utils');
 const constants = require('./consts');
-const jsdom = require('jsdom');
-const {JSDOM} = jsdom;
 
 const selectors_restriction = (keys) => {
     return Object.fromEntries(Object.keys(constants.primary_selectors).map(selector => {
@@ -68,8 +66,7 @@ const scraper_comments_informations = (doc, keys) => {
 
 module.exports = {
     scraping_page: (source, keys) => {
-    	const dom = new JSDOM(source);
-    	const doc = dom.window.document;
+    	const doc = source_to_dom(source);
 
     	if (!keys || keys.length === 0) {
     		return {};

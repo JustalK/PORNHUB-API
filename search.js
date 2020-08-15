@@ -19,8 +19,7 @@ const scraper_search_content_informations = (doc, keys) => {
 
 module.exports = {
     scraping_search: (source, keys) => {
-        const dom = new JSDOM(source);
-        const doc = dom.window.document;
+    	const doc = source_to_dom(source);
 
         let datas = {};
         datas = {...datas, ...scraper_search_content_informations(doc, keys)};
