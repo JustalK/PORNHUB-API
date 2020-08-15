@@ -4,13 +4,12 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 const selectors_restriction = (keys) => {
-    let selectors = {}
-    Object.keys(constants.primary_selectors).map(selector => {
+    return Object.fromEntries(Object.keys(constants.primary_selectors).map(selector => {
         if(keys.includes(selector)) {
-            selectors[selector]=constants.primary_selectors[selector];
+            return [selector, constants.primary_selectors[selector]];
         }
-    });
-    return selectors;
+        return;
+    }).filter(x => x));
 }
 
 const scraper_content_informations = (doc, keys) => {
