@@ -81,12 +81,7 @@ module.exports = {
         AUTHOR: '.videoUploaderBlock .usernameWrap a',
         RATINGS: '.rating-container .value'
     },
-    element_attributs: {
-        AVATAR: 'data-src',
-        USERNAME: 'innerHTML',
-        DATE: 'innerHTML',
-        MESSAGE: 'innerHTML',
-        TOTAL_VOTE: 'innerHTML',
+    page_search_element_attributs: {
         LINK: 'href',
         TITLE: 'title',
         HD: null,
@@ -95,6 +90,26 @@ module.exports = {
         PREMIUM: null,
         AUTHOR: 'innerHTML',
         RATINGS: 'innerHTML'
+    },
+    page_element_attributs: {
+        TITLE: 'textContent',
+        VIEWS: 'textContent',
+        UP_VOTES: 'textContent',
+        DOWN_VOTES: 'textContent',
+        PERCENT: 'textContent',
+        AUTHOR: 'textContent',
+        AUTHOR_SUBSCRIBER: 'textContent',
+        PORNSTARS: 'multi_textContent',
+        CATEGORIES: 'multi_textContent',
+        TAGS: 'multi_textContent',
+        PRODUCTION: 'textContent',
+        DURATION: 'textContent',
+        NUMBER_OF_COMMENT: 'textContent',
+        AVATAR: 'data-src',
+        USERNAME: 'innerHTML',
+        DATE: 'innerHTML',
+        MESSAGE: 'innerHTML',
+        TOTAL_VOTE: 'innerHTML'
     },
     links: {
         BASE_URL: 'https://www.pornhub.com',

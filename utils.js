@@ -23,19 +23,29 @@ module.exports = {
         }
         return units;
     },
-    scrap: (obj, keys) => {
+    scrap: (obj, keys, attributs) => {
         return Object.fromEntries(Object.keys(keys).map(key => {
-
-            switch (constants.element_attributs[key]) {
+            switch (attributs[key]) {
                 case 'innerHTML':
                     if(!obj.querySelector(keys[key])) {
                         return [key,constants.NO_DATA];
                     }
                     return [key,obj.querySelector(keys[key]).innerHTML];
+                case 'textContent':
+                    if(!obj.querySelector(keys[key])) {
+                        return [key,constants.NO_DATA];
+                    }
+                    return [key, obj.querySelector(keys[key]).textContent];
+                case 'multi_textContent':
+                    let elm = [...obj.querySelectorAll(keys[key])];
+                    if (!elm || elm.length === 0) {
+            			return [key, constants.NO_DATA];
+            		}
+                    return [key, elm.map(node => node.textContent)];
                 case null:
                     return obj.querySelector(keys[key]) ? [key, true] : [key, false];
                 default:
-                    return [key,obj.querySelector(keys[key]).getAttribute(constants.element_attributs[key])];
+                    return [key,obj.querySelector(keys[key]).getAttribute(attributs[key])];
             }
         }))
     },

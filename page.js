@@ -4,16 +4,7 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 const scraper_content_informations = (doc, keys) => {
-	return Object.fromEntries(Object.keys(constants.primary_selectors).filter(option => keys.includes(option)).map(x => {
-		let elm = [...doc.querySelectorAll(constants.primary_selectors[x])];
-		if (!elm || elm.length === 0) {
-			return [x, constants.NO_DATA];
-		}
-
-		elm = elm.length === 1 ? elm[0].textContent : elm.map(node => node.textContent);
-
-		return [x, elm];
-	}));
+    return utils.scrap(doc,constants.primary_selectors,constants.page_element_attributs);
 };
 
 const scraper_javascript_informations = (doc, keys) => {
@@ -72,7 +63,7 @@ const scraper_comments_informations = (doc, keys) => {
 		comments.forEach((comment,index) => {
 			if(index==comments.length-1) return;
 
-            const comment_datas = utils.scrap(comment,constants.comment_selectors);
+            const comment_datas = utils.scrap(comment,constants.comment_selectors,constants.page_element_attributs);
 			obj_comment.push(utils.sanitizer(comment_datas))
 		})
 
