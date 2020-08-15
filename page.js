@@ -72,13 +72,7 @@ const scraper_comments_informations = (doc, keys) => {
 		comments.forEach((comment,index) => {
 			if(index==comments.length-1) return;
 
-			const comment_datas = Object.fromEntries(Object.keys(constants.comment_selectors).map(x => {
-				if(constants.element_attributs[x]) {
-					return [x,comment.querySelector(constants.comment_selectors[x]).getAttribute(constants.element_attributs[x])];
-				}
-				return [x,comment.querySelector(constants.comment_selectors[x]).innerHTML];
-			}))
-
+            const comment_datas = utils.scrap(comment,constants.comment_selectors);
 			obj_comment.push(utils.sanitizer(comment_datas))
 		})
 

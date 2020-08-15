@@ -16,6 +16,7 @@ test('[PAGE] Title & pornstars', async t => {
 	t.is(video.pornstars[0], 'Rocco Reed');
 	t.is(video.pornstars[1], 'Jessie Andrews');
 });
+**/
 
 test('[PAGE] Title', async t => {
 	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments']);
@@ -33,8 +34,8 @@ test('[PAGE] Title', async t => {
 	t.is(video.comments[0]["username"], 'kingsignature');
 	t.is(video.comments[0]["message"], 'full video');
 });
-**/
 
+/**
 test('[SEARCH] Aa', async t => {
 	const search = await m.search("Aa", []);
 
@@ -46,3 +47,4 @@ test('[SEARCH] Aa', async t => {
 	t.assert(search.results[0].views >= 15400);
 	t.is(search.results[0].premium, false);
 });
+**/

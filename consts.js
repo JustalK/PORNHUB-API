@@ -77,6 +77,10 @@ module.exports = {
     },
     element_attributs: {
         AVATAR: 'data-src',
+        USERNAME: 'innerHTML',
+        DATE: 'innerHTML',
+        MESSAGE: 'innerHTML',
+        TOTAL_VOTE: 'innerHTML',
         LINK: 'href',
         TITLE: 'title',
         HD: null,
