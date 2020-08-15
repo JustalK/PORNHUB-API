@@ -14,7 +14,7 @@ const options_to_keys = (key) => {
 	return array_keys.map(x => x.toUpperCase());
 }
 
-const url_to_source = (url) => {
+const url_to_source = async (url) => {
 	const response = await got(url);
 	return response.body;
 }
@@ -33,7 +33,7 @@ module.exports = {
 		const keys = options_to_keys(key);
 
 		try {
-			const source = url_to_source(url);
+			const source = await url_to_source(url);
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
@@ -44,7 +44,7 @@ module.exports = {
 		const keys = options_to_keys(key);
 
 		try {
-			const source = url_to_source(constants.links.SEARCH+search);
+			const source = await url_to_source(constants.links.SEARCH+search);
 			const datas = search.scraping_search(source, keys);
 			return datas;
 		} catch (error) {
