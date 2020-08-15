@@ -23,6 +23,22 @@ module.exports = {
         }
         return units;
     },
+    scrap: (obj, keys) => {
+        return Object.fromEntries(Object.keys(keys).map(key => {
+
+            switch (constants.element_attributs[key]) {
+                case 'innerHTML':
+                    if(!obj.querySelector(keys[key])) {
+                        return [key,constants.NO_DATA];
+                    }
+                    return [key,obj.querySelector(keys[key]).innerHTML];
+                case null:
+                    return obj.querySelector(keys[key]) ? [key, true] : [key, false];
+                default:
+                    return [key,obj.querySelector(keys[key]).getAttribute(constants.element_attributs[key])];
+            }
+        }))
+    },
     sanitizer_number: (value) => {
     	value = value.replace(/[()&A-Za-z,%]/g, '');
     	value = Number(value);

@@ -41,6 +41,7 @@ module.exports = {
     },
     global_selectors: {
         COMMENTS_LIST: '.topCommentBlock',
+        SEARCH_LIST: '#videoSearchResult .pcVideoListItem'
     },
     primary_selectors: {
     	TITLE: '.title-container .title .inlineFree',
@@ -64,8 +65,26 @@ module.exports = {
         MESSAGE: '.commentMessage span',
         TOTAL_VOTE: '.voteTotal'
     },
+    primary_search_selectors: {
+        LINK: 'a',
+        TITLE: '.title a',
+        HD: 'a .marker-overlays .hd-thumbnail',
+        DURATION: 'a .marker-overlays .duration',
+        VIEWS: '.videoDetailsBlock var',
+        PREMIUM: 'a .marker-overlays .premiumIcon',
+        AUTHOR: '.videoUploaderBlock .usernameWrap a',
+        RATINGS: '.rating-container .value'
+    },
     element_attributs: {
-        AVATAR: 'data-src'
+        AVATAR: 'data-src',
+        LINK: 'href',
+        TITLE: 'title',
+        HD: null,
+        DURATION: 'innerHTML',
+        VIEWS: 'innerHTML',
+        PREMIUM: null,
+        AUTHOR: 'innerHTML',
+        RATINGS: 'innerHTML'
     },
     links: {
         SEARCH: 'https://www.pornhub.com/video/search?search='

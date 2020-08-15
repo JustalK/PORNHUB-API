@@ -2,7 +2,7 @@ import test from 'ava';
 import m from '.';
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
-
+/**
 test('[PAGE] Title with string', async t => {
 	const video = await m.page(url, 'title');
 
@@ -33,8 +33,8 @@ test('[PAGE] Title', async t => {
 	t.is(video.comments[0]["username"], 'kingsignature');
 	t.is(video.comments[0]["message"], 'full video');
 });
+**/
 
-/**
 test('[SEARCH] Aa', async t => {
 	const search = await m.search("Aa", []);
 
@@ -46,4 +46,3 @@ test('[SEARCH] Aa', async t => {
 	t.assert(search.results[0].views >= 15400);
 	t.is(search.results[0].premium, false);
 });
-**/

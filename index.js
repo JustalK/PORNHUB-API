@@ -3,7 +3,7 @@
 const utils = require('./utils');
 const constants = require('./consts');
 const page = require('./page');
-const search = require('./search');
+const page_search = require('./search');
 const got = require('got');
 
 //TODO Search by country
@@ -45,7 +45,7 @@ module.exports = {
 
 		try {
 			const source = await url_to_source(constants.links.SEARCH+search);
-			const datas = search.scraping_search(source, keys);
+			const datas = page_search.scraping_search(source, keys);
 			return datas;
 		} catch (error) {
 			return error_message(error);
