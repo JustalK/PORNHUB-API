@@ -12,6 +12,15 @@ const options_to_keys = (key) => {
 	return array_keys.map(x => x.toUpperCase());
 }
 
+const error_message = (error) => {
+	console.log(error);
+	if (error) {
+		error.message = constants.errors.DEFAULT;
+	}
+
+	return {data: error.message};
+}
+
 module.exports = {
 	page: async (url, key) => {
 		const keys = options_to_keys(key);
@@ -22,12 +31,7 @@ module.exports = {
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
-			console.log(error);
-			if (error) {
-				error.message = constants.errors.DEFAULT;
-			}
-
-			return {data: error.message};
+			return error_message(error);
 		}
 	},
 	search: async (search, key) => {
@@ -40,12 +44,7 @@ module.exports = {
 			const datas = search.scraping_search(source, keys);
 			return datas;
 		} catch (error) {
-			console.log(error);
-			if (error) {
-				error.message = constants.errors.DEFAULT;
-			}
-
-			return {data: error.message};
+			return error_message(error);
 		}
 	}
 };
