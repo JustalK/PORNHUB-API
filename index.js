@@ -6,10 +6,15 @@ const page = require('./page');
 const search = require('./search');
 const got = require('got');
 
+const options_to_keys = (key) => {
+	if(!key) return [];
+	const array_keys = Array.isArray(key) ? key : [key];
+	return array_keys.map(x => x.toUpperCase());
+}
+
 module.exports = {
 	page: async (url, key) => {
-		const array_keys = Array.isArray(key) ? key : [key];
-		const keys = array_keys.map(x => x.toUpperCase());
+		const keys = options_to_keys(key);
 
 		try {
 			const response = await got(url);
@@ -26,7 +31,7 @@ module.exports = {
 		}
 	},
 	search: async (search, key) => {
-		const array_keys = Array.isArray(key) ? key : [key];
+		const keys = options_to_keys(key);
 
 		try {
 			// Search by country
