@@ -1,11 +1,13 @@
 const js_type = {
     STRING: 'string',
     URL: 'url',
+    URL_PORNHUB: 'url pornhub',
     NUMBER: 'number',
     NUMBER_KM: 'number with KM',
     ARRAY: 'array',
     DATE: 'date',
-    OBJECT: 'object'
+    OBJECT: 'object',
+    BOOLEAN: 'boolean'
 }
 
 module.exports = {
@@ -16,7 +18,7 @@ module.exports = {
     },
     type: {
     	TITLE: js_type.STRING,
-    	VIEWS: js_type.NUMBER,
+    	VIEWS: js_type.NUMBER_KM,
     	UP_VOTES: js_type.NUMBER,
     	DOWN_VOTES: js_type.NUMBER,
     	PERCENT: js_type.NUMBER,
@@ -30,14 +32,18 @@ module.exports = {
     	UPLOAD_DATE: js_type.DATE,
     	PORNSTARS: js_type.ARRAY,
     	DOWNLOAD_URLS: js_type.URL,
+        LINK: js_type.URL_PORNHUB,
     	THUMBNAIL: js_type.URL,
+        HD: js_type.BOOLEAN,
     	NUMBER_OF_COMMENT: js_type.NUMBER,
     	COMMENTS: js_type.OBJECT,
     	AVATAR: js_type.STRING,
         USERNAME: js_type.STRING,
     	DATE: js_type.STRING,
     	MESSAGE: js_type.STRING,
-    	TOTAL_VOTE: js_type.NUMBER
+    	TOTAL_VOTE: js_type.NUMBER,
+    	PREMIUM: js_type.BOOLEAN,
+    	RATING: js_type.NUMBER
     },
     global_selectors: {
         COMMENTS_LIST: '.topCommentBlock',
@@ -91,6 +97,7 @@ module.exports = {
         RATINGS: 'innerHTML'
     },
     links: {
+        BASE_URL: 'https://www.pornhub.com',
         SEARCH: 'https://www.pornhub.com/video/search?search='
     },
     errors: {

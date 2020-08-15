@@ -57,7 +57,7 @@ module.exports = {
     },
     sanitizer: (datas) => {
     	const rsl = Object.keys(constants.type).map(x => {
-    		if (!datas[x]) {
+    		if (!datas[x] && constants.type[x]!=constants.js_type.BOOLEAN) {
     			return;
     		}
 
@@ -68,10 +68,14 @@ module.exports = {
     				return [x.toLowerCase(), module.exports.sanitizer_array(datas[x])];
     			case constants.js_type.NUMBER:
     				return [x.toLowerCase(), module.exports.sanitizer_number(datas[x])];
+                case constants.js_type.BOOLEAN:
+                    return [x.toLowerCase(), !!datas[x]];
     			case constants.js_type.DATE:
     				return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
     			case constants.js_type.NUMBER_KM:
     				return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
+                case constants.js_type.URL_PORNHUB:
+    				return [x.toLowerCase(), constants.links.BASE_URL+datas[x]];
     			default:
     				return [x.toLowerCase(), datas[x]];
     		}

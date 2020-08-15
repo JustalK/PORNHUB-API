@@ -6,10 +6,10 @@ const {JSDOM} = jsdom;
 const scraper_search_content_informations = (doc, keys) => {
 	const rsl = {};
 
-	const videos = doc.querySelectorAll(constants.global_selectors.SEARCH_LIST);
-	let obj_videos = [];
-	videos.forEach((video,index) => {
-        obj_videos.push(utils.scrap(video,constants.primary_search_selectors));
+	const videos = [...doc.querySelectorAll(constants.global_selectors.SEARCH_LIST)];
+	let obj_videos = videos.map((video,index) => {
+        const tmp = utils.scrap(video,constants.primary_search_selectors);
+        return utils.sanitizer(tmp);
 	})
 	rsl["results"] = obj_videos;
 
