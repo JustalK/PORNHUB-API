@@ -14,6 +14,16 @@ const options_to_keys = (key) => {
 	return array_keys.map(x => x.toUpperCase());
 }
 
+const get_queries_from_keys = (keys) => {
+	return Object.fromEntries(Object.keys(constants.queries).map(query => {
+		const key = keys.find(key => key.includes(query))
+		if(key) {
+			return [constants.queries[query], key.replace(query,"")]
+		}
+		return [];
+	}).filter(x => x));
+}
+
 const url_to_source = async (url) => {
 	const response = await got(url);
 	return response.body;
@@ -43,6 +53,7 @@ module.exports = {
 	},
 	search: async (search, key) => {
 		const keys = options_to_keys(key);
+		const queries = get_queries_from_keys(keys);
 
 		try {
 			const source = await url_to_source(constants.links.SEARCH+search);

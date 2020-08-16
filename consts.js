@@ -122,6 +122,9 @@ module.exports = {
         DESCRIPTION: 'description',
         THUMBNAIL_URL: 'thumbnailUrl'
     },
+    queries: {
+        PAGE_: 'PAGE'
+    },
     links: {
         BASE_URL: 'https://www.pornhub.com',
         SEARCH: 'https://www.pornhub.com/video/search?search='
