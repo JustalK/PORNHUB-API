@@ -4,6 +4,7 @@ const utils = require('./utils');
 const constants = require('./consts');
 const page = require('./page');
 const page_search = require('./search');
+const promise = require('promise');
 const got = require('got');
 
 //TODO Search by country
@@ -18,15 +19,22 @@ const get_queries_from_keys = (keys) => {
 	return Object.fromEntries(Object.keys(constants.queries).map(query => {
 		const key = keys.find(key => key.includes(query))
 		if(key) {
-			return [constants.queries[query], key.replace(query,"")]
+			return [constants.queries[query], utils.sanitizer_number(key.replace(query,""))]
 		}
 		return [];
 	}).filter(x => x));
 }
 
 const url_to_source = async (url) => {
-	const response = await got(url);
+	const safe_url = url.toLowerCase();
+	const response = await got(safe_url);
 	return response.body;
+}
+
+const multi_url_to_source = async (url, queries) => {
+	return await promise.all([...Array(queries.PAGE)].map(async (page,index) => {
+		return await url_to_source(constants.links.SEARCH+url+'&page='+(index+1));
+	}))
 }
 
 const error_message = (error) => {
@@ -54,9 +62,10 @@ module.exports = {
 	search: async (search, key) => {
 		const keys = options_to_keys(key);
 		const queries = get_queries_from_keys(keys);
+		if(!queries.PAGE) queries['PAGE'] = 1;
 
 		try {
-			const source = await url_to_source(constants.links.SEARCH+search);
+			const source = await multi_url_to_source(search, queries);
 			const datas = page_search.scraping_search(source, keys);
 			return datas;
 		} catch (error) {

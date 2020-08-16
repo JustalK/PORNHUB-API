@@ -23,7 +23,7 @@ module.exports = {
 
         let datas = {};
         datas = {...datas, ...scraper_search_content_informations(doc, keys)};
-
+		console.log(datas);
         return datas;
     }
 }
