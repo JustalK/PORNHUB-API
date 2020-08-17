@@ -53,7 +53,8 @@ async search(value)
 | name of option | type | description |
 | :--- | :---------- | :--- |
 | page_X | String | X specify the number of page search to scrap |
-| related_search | Array | The related search for the terms used |
+| related_search | Array | The related search |
+| related_pornstars | Array | The related pornstars |
 
 
 ### Examples
