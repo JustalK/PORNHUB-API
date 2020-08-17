@@ -11,7 +11,7 @@ const scraper_search_content_informations = (doc, keys) => {
         const tmp = utils.scrap(video,constants.secondary_search_selectors,constants.page_search_element_attributs);
         return utils.sanitizer(tmp);
 	})
-	rsl["results"] = obj_videos;
+	rsl[constants.keys.RESULTS] = obj_videos;
 
 	return rsl;
 }
@@ -23,7 +23,6 @@ module.exports = {
 
         let datas = {};
 		datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_search_selectors ,constants.page_search_element_attributs)};
-		console.log(datas);
 		datas = {...datas, ...scraper_search_content_informations(doc, keys)};
 
         return datas;

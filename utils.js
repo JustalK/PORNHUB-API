@@ -75,8 +75,8 @@ module.exports = {
     	return value;
     },
     sanitizer_string: (value) => {
-        value = value.trim();
     	value = value.replace(/[\t\n]/g, '');
+        value = value.trim();
     	value = entities.decode(value);
     	return value;
     },

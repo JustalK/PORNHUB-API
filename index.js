@@ -67,7 +67,7 @@ module.exports = {
 		try {
 			const source = await multi_url_to_source(search, queries);
 			const datas = page_search.scraping_search(source, keys);
-			return datas;
+			return utils.sanitizer(datas);
 		} catch (error) {
 			return error_message(error);
 		}

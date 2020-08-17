@@ -14,7 +14,8 @@ module.exports = {
     NO_DATA: 'No Data',
     js_type: js_type,
     keys: {
-        COMMENTS: 'COMMENTS'
+        COMMENTS: 'COMMENTS',
+        RESULTS: 'RESULTS'
     },
     type: {
     	TITLE: js_type.STRING,
@@ -45,7 +46,8 @@ module.exports = {
     	PREMIUM: js_type.BOOLEAN,
     	RATING: js_type.NUMBER,
         RELATED_SEARCH: js_type.ARRAY,
-        RELATED_PORNSTARS: js_type.ARRAY
+        RELATED_PORNSTARS: js_type.ARRAY,
+        RESULTS: js_type.OBJECT
     },
     global_selectors: {
         COMMENTS_LIST: '.topCommentBlock',
