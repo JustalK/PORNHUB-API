@@ -75,6 +75,10 @@ module.exports = {
         TOTAL_VOTE: '.voteTotal'
     },
     primary_search_selectors: {
+        RELATED_SEARCH: '.relatedSearch li a',
+        RELATED_PORNSTARS: '#relatedPornstarSidebar li a .pornstars-name'
+    },
+    secondary_search_selectors: {
         LINK: 'a',
         TITLE: '.title a',
         HD: 'a .marker-overlays .hd-thumbnail',
@@ -92,7 +96,8 @@ module.exports = {
         VIEWS: 'innerHTML',
         PREMIUM: null,
         AUTHOR: 'innerHTML',
-        RATINGS: 'innerHTML'
+        RATINGS: 'innerHTML',
+        RELATED_SEARCH: 'multi_textContent'
     },
     page_element_attributs: {
         TITLE: 'textContent',
