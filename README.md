@@ -50,9 +50,9 @@ async search(value)
 | value | value search in pornhub | String |
 | options | List of the options | Array or String if there is only one option|
 
-| name of option | description | type |
+| name of option | type | description |
 | :--- | :---------- | :--- |
-| page_X | X specify the number of page search to scrap | String |
+| page_X | String | X specify the number of page search to scrap |
 
 ### Examples
 
