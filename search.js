@@ -22,7 +22,7 @@ module.exports = {
     	const doc = utils.source_to_dom(source);
 
         let datas = {};
-		datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors ,constants.page_element_attributs)};
+		datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_search_selectors ,constants.page_search_element_attributs)};
         datas = {...datas, ...scraper_search_content_informations(doc, keys)};
 
         return datas;
