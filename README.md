@@ -12,32 +12,32 @@ Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with th
 async page(url, options)
 ```
 
-| name | description | type |
+| name | type | description |
 | :--- | :---------- | :--- |
-| url | url of the page | String |
-| options | List of the options | Array or String if there is only one option|
+| url | String | url of the page |
+| options | Array or String if there is only one option | List of the options |
 
 
-| name of option | description | type |
+| name of option | return type | description |
 | :--- | :---------- | :--- |
-| title | Title | String |
-| description | Description | String |
-| views | Number total of views | Number |
-| up_votes | Number of up vote | Number |
-| down_votes | Number of down vote | Number |
-| percent | Percent of up vote | Number |
-| author | Name of the uploader | String |
-| author_subscriber | Number of subscriber of the uploader | Number |
-| pornstars | Names of the pornstars | Array |
-| categories | List of the names of the categories | Array |
-| tags | List of the names of the tags | Array |
-| production | Type of production | String |
-| duration | Duration in second | Number |
-| number_of_comment | Total number of comments | Number |
-| thumbnail | Url of the thumbnail | String |
-| upload_date | Date of upload | Date |
-| download_urls | List of download link by quality | Object |
-| comments | List of comments with additionnals informations | Object |
+| title | String | Title |
+| description | String | Description |
+| views | Number | Number total of views |
+| up_votes | Number | Number of up vote |
+| down_votes | Number | Number of down vote |
+| percent | Number | Percent of up vote |
+| author | String | Name of the uploader |
+| author_subscriber | Number | Number of subscriber of the uploader |
+| pornstars | Array | Names of the pornstars |
+| categories | Array | List of the names of the categories |
+| tags | Array | List of the names of the tags |
+| production | String | Type of production |
+| duration | Number | Duration in second |
+| number_of_comment | Number | Total number of comments |
+| thumbnail | String | Url of the thumbnail |
+| upload_date | Date | Date of upload |
+| download_urls |  Object | List of download link by quality |
+| comments |  Object | List of comments with additionnals informations |
 
 ######  Scraping a search page pornhub
 
@@ -45,12 +45,12 @@ async page(url, options)
 async search(value)
 ```
 
-| name | description | type |
+| name | type | description |
 | :--- | :---------- | :--- |
-| value | value search in pornhub | String |
-| options | List of the options | Array or String if there is only one option|
+| value | String | value search in pornhub |
+| options | Array or String if there is only one option | List of the options |
 
-| name of option | type | description |
+| name of option | return type | description |
 | :--- | :---------- | :--- |
 | page_X | String | X specify the number of page search to scrap |
 | related_search | Array | The related search |
