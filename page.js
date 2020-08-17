@@ -1,20 +1,6 @@
 const utils = require('./utils');
 const constants = require('./consts');
 
-const selectors_restriction = (keys) => {
-    return Object.fromEntries(Object.keys(constants.primary_selectors).map(selector => {
-        if(keys.includes(selector)) {
-            return [selector, constants.primary_selectors[selector]];
-        }
-        return;
-    }).filter(x => x));
-}
-
-const scraper_content_informations = (doc, keys) => {
-    const selectors = selectors_restriction(keys);
-    return utils.scrap(doc, selectors, constants.page_element_attributs);
-};
-
 const scraper_video_informations = (source, keys) => {
 	let rsl = {};
 
@@ -70,7 +56,7 @@ module.exports = {
 
     	let datas = {};
 
-    	datas = {...datas, ...scraper_content_informations(doc, keys)};
+    	datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors ,constants.page_element_attributs)};
     	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
     	datas = {...datas, ...scraper_comments_informations(doc, keys)};
 
