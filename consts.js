@@ -43,7 +43,9 @@ module.exports = {
     	MESSAGE: js_type.STRING,
     	TOTAL_VOTE: js_type.NUMBER,
     	PREMIUM: js_type.BOOLEAN,
-    	RATING: js_type.NUMBER
+    	RATING: js_type.NUMBER,
+        RELATED_SEARCH: js_type.ARRAY,
+        RELATED_PORNSTARS: js_type.ARRAY
     },
     global_selectors: {
         COMMENTS_LIST: '.topCommentBlock',

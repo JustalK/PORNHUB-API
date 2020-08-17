@@ -43,7 +43,6 @@ test('[PAGE] Title', async t => {
 test('[SEARCH] Aa', async t => {
 	const search = await m.search("Aa", ['page_2','related_search','RELATED_PORNSTARS']);
 
-	console.log(search);
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
 	t.is(search.results[0].hd, true);
 	t.is(search.results[0].author, 'branleur47');
