@@ -97,7 +97,8 @@ module.exports = {
         PREMIUM: null,
         AUTHOR: 'innerHTML',
         RATINGS: 'innerHTML',
-        RELATED_SEARCH: 'multi_textContent'
+        RELATED_SEARCH: 'multi_textContent',
+        RELATED_PORNSTARS: 'multi_textContent'
     },
     page_element_attributs: {
         TITLE: 'textContent',
