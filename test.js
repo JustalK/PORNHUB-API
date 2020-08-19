@@ -23,6 +23,13 @@ test('[PAGE] Javascript elements', async t => {
 	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
 });
 
+test('[PAGE] Related Video', async t => {
+	const video = await m.page(url, ['related_videos']);
+
+	console.log(video);
+	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
+});
+
 test('[PAGE] Title', async t => {
 	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments']);
 
