@@ -52,17 +52,15 @@ const scraper_comments_informations = (doc, keys) => {
 const scraper_related_videos_informations = (doc, keys) => {
 	const rsl = {};
 
-	if (keys.includes(constants.keys.COMMENTS)) {
-		const comments = doc.querySelectorAll(constants.global_selectors.COMMENTS_LIST);
-		let obj_comment = [];
-		comments.forEach((comment,index) => {
-			if(index==comments.length-1) return;
-
-            const comment_datas = utils.scrap(comment,constants.comment_selectors,constants.page_element_attributs);
-			obj_comment.push(utils.sanitizer(comment_datas))
+	if (keys.includes(constants.keys.RELATED_VIDEOS)) {
+		const related_videos = doc.querySelectorAll(constants.global_selectors.RELATED_VIDEOS_LIST);
+		let obj_related_video = [];
+		related_videos.forEach((video,index) => {
+            const related_video_datas = utils.scrap(video,constants.comment_selectors,constants.page_element_attributs);
+			obj_related_video.push(utils.sanitizer(related_video_datas))
 		})
 
-		rsl[constants.keys.COMMENTS] = obj_comment;
+		rsl[constants.keys.RELATED_VIDEOS] = obj_related_video;
 	}
 
 	return rsl;
