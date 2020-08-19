@@ -49,6 +49,25 @@ const scraper_comments_informations = (doc, keys) => {
 	return rsl;
 };
 
+const scraper_related_videos_informations = (doc, keys) => {
+	const rsl = {};
+
+	if (keys.includes(constants.keys.COMMENTS)) {
+		const comments = doc.querySelectorAll(constants.global_selectors.COMMENTS_LIST);
+		let obj_comment = [];
+		comments.forEach((comment,index) => {
+			if(index==comments.length-1) return;
+
+            const comment_datas = utils.scrap(comment,constants.comment_selectors,constants.page_element_attributs);
+			obj_comment.push(utils.sanitizer(comment_datas))
+		})
+
+		rsl[constants.keys.COMMENTS] = obj_comment;
+	}
+
+	return rsl;
+};
+
 
 module.exports = {
     scraping_page: (source, keys) => {
@@ -59,6 +78,7 @@ module.exports = {
     	datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors ,constants.page_element_attributs)};
     	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
     	datas = {...datas, ...scraper_comments_informations(doc, keys)};
+    	datas = {...datas, ...scraper_related_videos_informations(doc, keys)};
 
     	return datas;
     }
