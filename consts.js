@@ -51,7 +51,8 @@ module.exports = {
     },
     global_selectors: {
         COMMENTS_LIST: '.topCommentBlock',
-        SEARCH_LIST: '#videoSearchResult .pcVideoListItem'
+        SEARCH_LIST: '#videoSearchResult .pcVideoListItem',
+        RELATED_VIDEO: '#relatedVideosCenter'
     },
     primary_selectors: {
     	TITLE: '.title-container .title .inlineFree',
@@ -72,6 +73,13 @@ module.exports = {
         THUMBNAIL_URL: 'script[type="application/ld+json"'
     },
     comment_selectors: {
+        AVATAR: '.avatarTrigger',
+        USERNAME: '.usernameLink',
+        DATE: '.date',
+        MESSAGE: '.commentMessage span',
+        TOTAL_VOTE: '.voteTotal'
+    },
+    related_video_selectors: {
         AVATAR: '.avatarTrigger',
         USERNAME: '.usernameLink',
         DATE: '.date',
