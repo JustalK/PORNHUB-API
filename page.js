@@ -56,7 +56,7 @@ const scraper_related_videos_informations = (doc, keys) => {
 		const related_videos = doc.querySelectorAll(constants.global_selectors.RELATED_VIDEOS_LIST);
 		let obj_related_video = [];
 		related_videos.forEach((video,index) => {
-            const related_video_datas = utils.scrap(video,constants.comment_selectors,constants.page_element_attributs);
+            const related_video_datas = utils.scrap(video,constants.related_video_selectors,constants.secondary_search_selectors);
 			obj_related_video.push(utils.sanitizer(related_video_datas))
 		})
 
