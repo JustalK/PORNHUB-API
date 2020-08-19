@@ -80,11 +80,14 @@ module.exports = {
         TOTAL_VOTE: '.voteTotal'
     },
     related_video_selectors: {
-        AVATAR: '.avatarTrigger',
-        USERNAME: '.usernameLink',
-        DATE: '.date',
-        MESSAGE: '.commentMessage span',
-        TOTAL_VOTE: '.voteTotal'
+        LINK: 'a',
+        TITLE: '.title a',
+        HD: 'a .marker-overlays .hd-thumbnail',
+        DURATION: 'a .marker-overlays .duration',
+        VIEWS: '.videoDetailsBlock var',
+        PREMIUM: 'a .marker-overlays .premiumIcon',
+        AUTHOR: '.videoUploaderBlock .usernameWrap a',
+        RATINGS: '.rating-container .value'
     },
     primary_search_selectors: {
         RELATED_SEARCH: '.relatedSearch li a',
