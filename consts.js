@@ -15,6 +15,7 @@ module.exports = {
     js_type: js_type,
     keys: {
         COMMENTS: 'COMMENTS',
+        RELATED_VIDEOS: 'RELATED_VIDEOS',
         RESULTS: 'RESULTS'
     },
     type: {
