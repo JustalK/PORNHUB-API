@@ -65,6 +65,7 @@ module.exports = {
                 case null:
                     return obj.querySelector(keys[key]) ? [key, true] : [key, false];
                 default:
+                    console.log(key);
                     return [key,obj.querySelector(keys[key]).getAttribute(attributs[key])];
             }
         }))
