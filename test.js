@@ -28,7 +28,7 @@ test('[PAGE] Related Video', async t => {
 	const video = await m.page(url, ['related_videos']);
 
 	console.log(video);
-	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
+	t.assert(video.related_videos.length == 6)
 });
 
 /**

@@ -65,7 +65,6 @@ module.exports = {
                 case null:
                     return obj.querySelector(keys[key]) ? [key, true] : [key, false];
                 default:
-                    console.log(key);
                     return [key,obj.querySelector(keys[key]).getAttribute(attributs[key])];
             }
         }))
@@ -106,6 +105,8 @@ module.exports = {
     				return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
     			case constants.js_type.NUMBER_KM:
     				return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
+                case constants.js_type.NUMBER_SECONDS:
+                    return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
                 case constants.js_type.URL_PORNHUB:
     				return [x.toLowerCase(), constants.links.BASE_URL+datas[x]];
     			default:
