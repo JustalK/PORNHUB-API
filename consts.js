@@ -49,7 +49,7 @@ module.exports = {
     	RATING: js_type.NUMBER,
         RELATED_SEARCH: js_type.ARRAY,
         RELATED_PORNSTARS: js_type.ARRAY,
-    	RELATED_VIDEOS: js_type.ARRAY,
+    	RELATED_VIDEOS: js_type.OBJECT,
         RESULTS: js_type.OBJECT
     },
     global_selectors: {

@@ -3,7 +3,6 @@ import m from '.';
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 
-/**
 test('[PAGE] Title with string', async t => {
 	const video = await m.page(url, 'title');
 
@@ -23,15 +22,13 @@ test('[PAGE] Javascript elements', async t => {
 
 	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
 });
-**/
+
 test('[PAGE] Related Video', async t => {
 	const video = await m.page(url, ['related_videos']);
 
-	console.log(video);
 	t.assert(video.related_videos.length == 8)
 });
 
-/**
 test('[PAGE] Title', async t => {
 	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments']);
 
@@ -58,4 +55,3 @@ test('[SEARCH] Aa', async t => {
 	t.assert(search.results[0].views >= 15400);
 	t.is(search.results[0].premium, false);
 });
-**/
