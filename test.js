@@ -28,7 +28,7 @@ test('[PAGE] Related Video', async t => {
 	const video = await m.page(url, ['related_videos']);
 
 	console.log(video);
-	t.assert(video.related_videos.length == 6)
+	t.assert(video.related_videos.length == 8)
 });
 
 /**
