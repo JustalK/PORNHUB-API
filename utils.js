@@ -69,6 +69,13 @@ module.exports = {
             }
         }))
     },
+    scraper_array: (doc, global, selectors, attributs) => {
+    	const elements = [...doc.querySelectorAll(global)];
+    	return elements.map((element, index) => {
+            const tmp = module.exports.scrap(element, selectors, attributs);
+            return module.exports.sanitizer(tmp);
+    	})
+    },
     sanitizer_number: (value) => {
     	value = value.replace(/[()&A-Za-z,%]/g, '');
     	value = Number(value);
