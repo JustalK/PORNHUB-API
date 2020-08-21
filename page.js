@@ -50,20 +50,10 @@ const scraper_comments_informations = (doc, keys) => {
 };
 
 const scraper_related_videos_informations = (doc, keys) => {
-	const rsl = {};
-
 	if (keys.includes(constants.keys.RELATED_VIDEOS)) {
-		const related_videos = doc.querySelectorAll(constants.global_selectors.RELATED_VIDEOS_LIST);
-		let obj_related_video = [];
-		related_videos.forEach((video,index) => {
-            const related_video_datas = utils.scrap(video,constants.related_video_selectors,constants.page_search_element_attributs);
-			obj_related_video.push(utils.sanitizer(related_video_datas))
-		})
-
-		rsl[constants.keys.RELATED_VIDEOS] = obj_related_video;
+		return { constants.keys.RELATED_VIDEOS: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs) };
 	}
-
-	return rsl;
+	return {};
 };
 
 
