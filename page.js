@@ -31,27 +31,15 @@ const scraper_video_informations = (source, keys) => {
 };
 
 const scraper_comments_informations = (doc, keys) => {
-	const rsl = {};
-
 	if (keys.includes(constants.keys.COMMENTS)) {
-		const comments = doc.querySelectorAll(constants.global_selectors.COMMENTS_LIST);
-		let obj_comment = [];
-		comments.forEach((comment,index) => {
-			if(index==comments.length-1) return;
-
-            const comment_datas = utils.scrap(comment,constants.comment_selectors,constants.page_element_attributs);
-			obj_comment.push(utils.sanitizer(comment_datas))
-		})
-
-		rsl[constants.keys.COMMENTS] = obj_comment;
+		return { [constants.keys.COMMENTS]: utils.scraper_array(doc, constants.global_selectors.COMMENTS_LIST, constants.comment_selectors, constants.page_element_attributs) };
 	}
-
-	return rsl;
+	return {};
 };
 
 const scraper_related_videos_informations = (doc, keys) => {
 	if (keys.includes(constants.keys.RELATED_VIDEOS)) {
-		return { constants.keys.RELATED_VIDEOS: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs) };
+		return { [constants.keys.RELATED_VIDEOS]: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs) };
 	}
 	return {};
 };
