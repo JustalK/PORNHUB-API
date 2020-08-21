@@ -1,11 +1,11 @@
 {
-  "name": "pornnhub",
+  "name": "@justalk/pornhub-api",
   "version": "1.0.0",
-  "description": "PORNHUB",
+  "description": "Very complete scrapper for the famous porn website pornhub",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justalk/pornhub.git"
+    "url": "git+https://github.com/justalk/pornhub-api.git"
   },
   "author": "Justal Kevin <justal.kevin@gmail.com> (teamkd.online)",
   "engines": {
@@ -34,8 +34,8 @@
     "xo": "*"
   },
   "bugs": {
-    "url": "https://github.com/justalk/pornhub/issues"
+    "url": "https://github.com/justalk/pornhub-api/issues"
   },
-  "homepage": "https://github.com/justalk/pornhub#readme",
+  "homepage": "https://github.com/justalk/pornhub-api#readme",
   "main": "index.js"
 }
