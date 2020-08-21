@@ -53,7 +53,7 @@ module.exports = {
         RESULTS: js_type.OBJECT
     },
     global_selectors: {
-        COMMENTS_LIST: '.topCommentBlock',
+        COMMENTS_LIST: '#cmtContent .topCommentBlock',
         SEARCH_LIST: '#videoSearchResult .pcVideoListItem',
         RELATED_VIDEOS_LIST: '#relatedVideosCenter li'
     },
