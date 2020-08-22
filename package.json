@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
+    "coveralls": "^3.1.0",
     "execa": "^0.2.2",
     "xo": "*"
   },
