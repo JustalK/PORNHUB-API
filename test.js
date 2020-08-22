@@ -20,13 +20,13 @@ test('[PAGE] Title & pornstars', async t => {
 test('[PAGE] Javascript elements', async t => {
 	const video = await m.page(url, ['upload_date']);
 
-	t.assert(video.upload_date.getTime() == new Date("2016-03-30T22:59:58.000Z").getTime())
+	t.assert(video.upload_date.getTime() === new Date('2016-03-30T22:59:58.000Z').getTime());
 });
 
 test('[PAGE] Related Video', async t => {
 	const video = await m.page(url, ['related_videos']);
 
-	t.assert(video.related_videos.length == 8)
+	t.assert(video.related_videos.length === 8);
 });
 
 test('[PAGE] Title', async t => {
@@ -42,12 +42,12 @@ test('[PAGE] Title', async t => {
 	t.is(video.tags[4], 'curvy');
 	t.is(video.categories[0], 'Babe');
 	t.is(video.categories[4], 'Pornstar');
-	t.is(video.comments[0]["username"], 'kingsignature');
-	t.is(video.comments[0]["message"], 'full video');
+	t.is(video.comments[0].username, 'kingsignature');
+	t.is(video.comments[0].message, 'full video');
 });
 
 test('[SEARCH] Aa', async t => {
-	const search = await m.search("Aa", ['page_2','related_search','RELATED_PORNSTARS']);
+	const search = await m.search('Aa', ['page_2', 'related_search', 'RELATED_PORNSTARS']);
 
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
 	t.is(search.results[0].hd, true);
