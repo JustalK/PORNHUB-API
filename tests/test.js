@@ -1,5 +1,5 @@
 const test = require('ava');
-const m = require('../index');
+const m = require('..');
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 
