@@ -2,6 +2,7 @@
 
 [![Node version](https://img.shields.io/node/v/@justalk/pornhub-api.svg?style=flat-square)](https://www.npmjs.com/package/@justalk/pornhub-api)
 [![Travis](https://img.shields.io/travis/com/justalk/pornhub-api.svg?style=flat-square)](https://travis-ci.com/github/JustalK/PORNHUB-API)
+[![Coverage Status](https://coveralls.io/repos/github/github/JustalK/PORNHUB-API/badge.svg?branch=master&style=flat-square)](https://coveralls.io/github/JustalK/PORNHUB-API?branch=master)
 
 Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page and to get the download links.
 
