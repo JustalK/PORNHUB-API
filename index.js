@@ -44,7 +44,7 @@ const error_message = error => {
 		error.message = constants.errors.DEFAULT;
 	}
 
-	return {data: error.message};
+	return {error: error.message};
 };
 
 module.exports = {

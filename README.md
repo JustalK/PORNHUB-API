@@ -8,7 +8,9 @@
 [![Dependency status](http://img.shields.io/david/justalk/pornhub-api.svg?style=flat-square)](https://david-dm.org/justalk/pornhub-api.svg)
 ![Last version](https://img.shields.io/github/license/justalk/pornhub-api.svg?style=flat-square)
 
-Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page and to get the download links.
+![Star the project](https://img.shields.io/github/stars/justalk/pornhub-api?style=social)
+
+Powrful scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page.
 
 `npm install @justalk/pornhub-api`
 

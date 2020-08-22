@@ -17,6 +17,7 @@ module.exports = {
 	keys: {
 		COMMENTS: 'COMMENTS',
 		RELATED_VIDEOS: 'RELATED_VIDEOS',
+		DOWNLOAD_URLS: 'DOWNLOAD_URLS',
 		RESULTS: 'RESULTS'
 	},
 	type: {
@@ -154,6 +155,6 @@ module.exports = {
 		SEARCH: 'https://www.pornhub.com/video/search?search='
 	},
 	errors: {
-		DEFAULT: 'the requested data is not available'
+		DEFAULT: 'An error occured'
 	}
 };

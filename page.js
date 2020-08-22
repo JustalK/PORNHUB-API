@@ -4,7 +4,7 @@ const constants = require('./consts');
 const scraper_video_informations = (source, keys) => {
 	let rsl = {};
 
-	if (keys.includes('download_urls')) {
+	if (keys.includes(constants.keys.DOWNLOAD_URLS)) {
 		const matches = source.match(/(?<=\*\/)\w+/g);
 		const urls = [];
 
