@@ -1,42 +1,45 @@
 {
-  "name": "@justalk/pornhub-api",
-  "version": "1.0.0",
-  "description": "Very complete scrapper for the famous porn website pornhub",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/justalk/pornhub-api.git"
-  },
-  "author": "Justal Kevin <justal.kevin@gmail.com> (teamkd.online)",
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "scripts": {
-    "test": "xo && ava",
-    "test-no": "ava"
-  },
-  "files": [
-    "index.js",
-    "opt.js"
-  ],
-  "keywords": [
-    "porn"
-  ],
-  "dependencies": {
-    "got": "6.6.3",
-    "html-entities": "^1.3.1",
-    "jsdom": "^16.3.0",
-    "promise": "^8.1.0"
-  },
-  "devDependencies": {
-    "ava": "^2.4.0",
-    "coveralls": "^3.1.0",
-    "execa": "^0.2.2",
-    "xo": "*"
-  },
-  "bugs": {
-    "url": "https://github.com/justalk/pornhub-api/issues"
-  },
-  "homepage": "https://github.com/justalk/pornhub-api#readme",
-  "main": "index.js"
+	"name": "@justalk/pornhub-api",
+	"version": "1.0.0",
+	"description": "Very complete scrapper for the famous porn website pornhub",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/justalk/pornhub-api.git"
+	},
+	"author": "Justal Kevin <justal.kevin@gmail.com> (teamkd.online)",
+	"engines": {
+		"node": ">=12.0.0"
+	},
+	"scripts": {
+		"test": "xo && nyc --reporter=html --reporter=text ava",
+		"coverage": "nyc report --reporter=text-lcov | coveralls"
+	},
+	"files": [
+		"index.js",
+		"opt.js"
+	],
+	"keywords": [
+		"porn"
+	],
+	"dependencies": {
+		"got": "6.6.3",
+		"html-entities": "^1.3.1",
+		"jsdom": "^16.3.0",
+		"promise": "^8.1.0"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"coveralls": "^3.1.0",
+		"execa": "^0.2.2",
+		"jscoverage": "^0.6.0",
+		"nodeunit": "^0.11.3",
+		"nyc": "^15.1.0",
+		"xo": "*"
+	},
+	"bugs": {
+		"url": "https://github.com/justalk/pornhub-api/issues"
+	},
+	"homepage": "https://github.com/justalk/pornhub-api#readme",
+	"main": "index.js"
 }
