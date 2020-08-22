@@ -32,30 +32,31 @@ const scraper_video_informations = (source, keys) => {
 
 const scraper_comments_informations = (doc, keys) => {
 	if (keys.includes(constants.keys.COMMENTS)) {
-		return { [constants.keys.COMMENTS]: utils.scraper_array(doc, constants.global_selectors.COMMENTS_LIST, constants.comment_selectors, constants.page_element_attributs) };
+		return {[constants.keys.COMMENTS]: utils.scraper_array(doc, constants.global_selectors.COMMENTS_LIST, constants.comment_selectors, constants.page_element_attributs)};
 	}
+
 	return {};
 };
 
 const scraper_related_videos_informations = (doc, keys) => {
 	if (keys.includes(constants.keys.RELATED_VIDEOS)) {
-		return { [constants.keys.RELATED_VIDEOS]: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs) };
+		return {[constants.keys.RELATED_VIDEOS]: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs)};
 	}
+
 	return {};
 };
 
-
 module.exports = {
-    scraping_page: (source, keys) => {
-    	const doc = utils.source_to_dom(source);
+	scraping_page: (source, keys) => {
+		const doc = utils.source_to_dom(source);
 
-    	let datas = {};
+		let datas = {};
 
-    	datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors ,constants.page_element_attributs)};
-    	datas = {...datas, download_urls: scraper_video_informations(source, keys)};
-    	datas = {...datas, ...scraper_comments_informations(doc, keys)};
-    	datas = {...datas, ...scraper_related_videos_informations(doc, keys)};
+		datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors, constants.page_element_attributs)};
+		datas = {...datas, download_urls: scraper_video_informations(source, keys)};
+		datas = {...datas, ...scraper_comments_informations(doc, keys)};
+		datas = {...datas, ...scraper_related_videos_informations(doc, keys)};
 
-    	return datas;
-    }
-}
+		return datas;
+	}
+};
