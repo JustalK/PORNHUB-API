@@ -10,11 +10,24 @@
 
 Scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page and to get the download links.
 
-`npm install module-name`
+`npm install @justalk/pornhub-api`
 
-## Function available
+## Features
 
-###### Scraping a page pornhub
+- **Scraper:** Parse any informations from a video page on PornHub : Related video. comments, view, vote up and so many others...
+
+- **Download links:** Get the download links in all the quality without registering
+
+- **Search pagination:** Possibility to scrap multiple page search
+
+- **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
+
+
+## API
+
+### Video page pornhub
+
+###### Function available for a page
 
 ```js
 async page(url, options)
@@ -25,6 +38,7 @@ async page(url, options)
 | url | String | url of the page |
 | options | Array or String if there is only one option | List of the options |
 
+###### Lists of options available for a page
 
 | name of option | return type | description |
 | :--- | :---------- | :--- |
@@ -47,7 +61,9 @@ async page(url, options)
 | download_urls |  Object | List of download link by quality |
 | comments |  Object | List of comments with additionnals informations |
 
-######  Scraping a search page pornhub
+### Search page pornhub
+
+###### Function available for the search
 
 ```js
 async search(value)
@@ -57,6 +73,8 @@ async search(value)
 | :--- | :---------- | :--- |
 | value | String | value search in pornhub |
 | options | Array or String if there is only one option | List of the options |
+
+###### Lists of options available for a search
 
 | name of option | return type | description |
 | :--- | :---------- | :--- |
@@ -156,8 +174,9 @@ npm run test-no
 
 ### Note
 
-- The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3.
-- If pornhub is blocked in your country, the API will not work. Keep that in mind.
+- The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3. I am waiting to upgrade.
+- If pornhub is blocked in your country, the API will obviously not work. You will need a proxy.
+- Pornhub block the srapper from time to time, I have not found a solution yet.
 
 ## License
 
