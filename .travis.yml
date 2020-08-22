@@ -2,3 +2,11 @@ language: node_js
 node_js:
   - '14'
   - '12'
+env:
+  global:
+    - COVERALLS_PARALLEL=true
+jobs:
+  include:
+    - script: COVERALLS_FLAG_NAME=test-1 make test
+notifications:
+  webhooks: https://coveralls.io/webhook
