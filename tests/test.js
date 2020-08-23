@@ -25,7 +25,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 
 test('[SEARCH] Aa', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
-	const search = await m.search('Aa', ['page_2', 'related_search', 'RELATED_PORNSTARS']);
+	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {page: 2});
 
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
 	t.is(search.results[0].hd, true);
@@ -37,7 +37,7 @@ test('[SEARCH] Aa', async t => {
 
 test('[SEARCH] Aa with special options', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
-	const search = await m.search('Aa', ['page_2', 'related_search', 'RELATED_PORNSTARS'], {'production': 'homemade'});
+	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {production: 'homemade'});
 
 	console.log(search);
 	t.is(search.results[0].title, 'SEXY AMATEUR TEEN GIRL SUNNA MINNIEMOUSE AA 4H0T1');
