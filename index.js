@@ -33,9 +33,18 @@ const url_to_source = async url => {
 	return response.body;
 };
 
-const multi_url_to_source = async (url, queries) => {
+const createLink = (url, page, options) => {
+	let q = '';
+	if(options && options.production) {
+		q += '&p=' + options.production;
+	}
+	return constants.links.SEARCH + url + '&page=' + (page + 1) + q;
+}
+
+const multi_url_to_source = async (url, queries, options) => {
 	return promise.all([...new Array(queries.PAGE)].map(async (page, index) => {
-		return url_to_source(constants.links.SEARCH + url + '&page=' + (index + 1));
+		console.log(createLink(url, index, options));
+		return url_to_source(createLink(url, index, options));
 	}));
 };
 
@@ -62,7 +71,7 @@ module.exports = {
 			return error_message(error);
 		}
 	},
-	search: async (search, key) => {
+	search: async (search, key, options) => {
 		const keys = options_to_keys(key);
 		const queries = get_queries_from_keys(keys);
 		if (!queries.PAGE) {
@@ -70,7 +79,7 @@ module.exports = {
 		}
 
 		try {
-			const source = await multi_url_to_source(search, queries);
+			const source = await multi_url_to_source(search, queries, options);
 			const datas = page_search.scraping_search(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {

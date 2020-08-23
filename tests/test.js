@@ -34,6 +34,15 @@ test('[SEARCH] Aa', async t => {
 	t.is(search.results[0].premium, false);
 });
 
+
+test('[SEARCH] Aa with special options', async t => {
+	t.timeout(10000, 'make sure pornhub website has been called');
+	const search = await m.search('Aa', ['page_2', 'related_search', 'RELATED_PORNSTARS'], {'production': 'homemade'});
+
+	console.log(search);
+	t.is(search.results[0].title, 'SEXY AMATEUR TEEN GIRL SUNNA MINNIEMOUSE AA 4H0T1');
+});
+
 test('[PAGE] Try to trigger an error', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
 	const video = await m.page('https://www.pornhub.com/view_video.php?viewkey=ph56', ['title']);
