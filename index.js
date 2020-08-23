@@ -27,10 +27,11 @@ const createLink = (url, page, options) => {
 	if(options.production) {
 		q += '&p=' + options.production;
 	}
-	return constants.links.SEARCH + url + '&page=' + (page + 1) + q;
+	const search = options.search ? options.search : 'video';
+	return constants.links.BASE_URL + search + constants.links.SEARCH + url + '&page=' + (page + 1) + q;
 }
 
-const multi_url_to_source = async (url, queries, options) => {
+const multi_url_to_source = async (url, options) => {
 	return promise.all([...new Array(options.page)].map(async (page, index) => {
 		console.log(createLink(url, index, options));
 		return url_to_source(createLink(url, index, options));
@@ -62,12 +63,12 @@ module.exports = {
 	},
 	search: async (search, key, options) => {
 		const keys = options_to_keys(key);
-		if (!options || options.page) {
+		if (!options || !options.page) {
 			options.page = 1;
 		}
 
 		try {
-			const source = await multi_url_to_source(search, queries, options);
+			const source = await multi_url_to_source(search, options);
 			const datas = page_search.scraping_search(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {

@@ -151,8 +151,8 @@ module.exports = {
 		PAGE_: 'PAGE'
 	},
 	links: {
-		BASE_URL: 'https://www.pornhub.com',
-		SEARCH: 'https://www.pornhub.com/video/search?search='
+		BASE_URL: 'https://www.pornhub.com/',
+		SEARCH: '/search?search='
 	},
 	errors: {
 		DEFAULT: 'An error occured'
