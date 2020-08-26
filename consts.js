@@ -52,7 +52,9 @@ module.exports = {
 		RELATED_PORNSTARS: js_type.ARRAY,
 		RELATED_VIDEOS: js_type.OBJECT,
 		RESULTS: js_type.OBJECT,
-		ACTOR: js_type.STRING
+		ACTOR: js_type.STRING,
+		VIDEO_NUMBER: js_type.STRING,
+		VIEW_NUMBER: js_type.STRING
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
@@ -125,7 +127,9 @@ module.exports = {
 		RATINGS: 'innerHTML',
 		RELATED_SEARCH: 'multi_textContent',
 		RELATED_PORNSTARS: 'multi_textContent',
-		ACTOR: 'innerHTML'
+		ACTOR: 'innerHTML',
+		VIDEO_NUMBER: 'innerHTML',
+		VIEW_NUMBER: 'innerHTML'
 	},
 	page_element_attributs: {
 		TITLE: 'textContent',
