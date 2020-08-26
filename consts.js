@@ -56,7 +56,8 @@ module.exports = {
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
 		SEARCH_LIST: '#videoSearchResult .pcVideoListItem',
-		RELATED_VIDEOS_LIST: '#relatedVideosCenter li'
+		RELATED_VIDEOS_LIST: '#relatedVideosCenter li',
+		PORNSTARS_LIST: '#pornstarsSearchResult li .wrap'
 	},
 	primary_selectors: {
 		TITLE: '.title-container .title .inlineFree',
