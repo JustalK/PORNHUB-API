@@ -110,7 +110,9 @@ module.exports = {
 		RATINGS: '.rating-container .value'
 	},
 	actors_search_selectors: {
-		ACTOR: 'title'
+		ACTOR: '.title',
+		VIDEO_NUMBER: '.videosNumber',
+		VIEW_NUMBER: '.pstarViews'
 	},
 	page_search_element_attributs: {
 		LINK: 'href',
