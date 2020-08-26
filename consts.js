@@ -51,7 +51,8 @@ module.exports = {
 		RELATED_SEARCH: js_type.ARRAY,
 		RELATED_PORNSTARS: js_type.ARRAY,
 		RELATED_VIDEOS: js_type.OBJECT,
-		RESULTS: js_type.OBJECT
+		RESULTS: js_type.OBJECT,
+		ACTOR: js_type.STRING
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
@@ -108,6 +109,9 @@ module.exports = {
 		AUTHOR: '.videoUploaderBlock .usernameWrap a',
 		RATINGS: '.rating-container .value'
 	},
+	actors_search_selectors: {
+		ACTOR: 'title'
+	},
 	page_search_element_attributs: {
 		LINK: 'href',
 		TITLE: 'title',
@@ -118,7 +122,8 @@ module.exports = {
 		AUTHOR: 'innerHTML',
 		RATINGS: 'innerHTML',
 		RELATED_SEARCH: 'multi_textContent',
-		RELATED_PORNSTARS: 'multi_textContent'
+		RELATED_PORNSTARS: 'multi_textContent',
+		ACTOR: 'innerHTML'
 	},
 	page_element_attributs: {
 		TITLE: 'textContent',

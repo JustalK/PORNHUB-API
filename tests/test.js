@@ -44,7 +44,7 @@ test('[SEARCH] Aa with special options', async t => {
 
 test('[SEARCH] Aa pornstars with special options', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
-	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {production: 'homemade', search: 'pornstars'});
+	const search = await m.search('Aa', ['related_search', 'ACTOR'], {production: 'homemade', search: 'pornstars'});
 
 	t.is(search.results[0].title, 'SEXY AMATEUR TEEN GIRL SUNNA MINNIEMOUSE AA 4H0T1');
 });
