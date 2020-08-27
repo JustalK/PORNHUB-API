@@ -34,14 +34,14 @@ test('[SEARCH] Aa', async t => {
 	t.is(search.results[0].premium, false);
 });
 
-/**
+
 test('[SEARCH] Aa pornstars with special options', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
 	const search = await m.search('Aa', ['ACTOR','VIDEO_NUMBER','VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
 
 	t.is(search.results[0].actor, 'Aaron Vick');
 });
-**/
+
 
 test('[PAGE] Try to trigger an error', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
