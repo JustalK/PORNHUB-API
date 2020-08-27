@@ -34,13 +34,6 @@ test('[SEARCH] Aa', async t => {
 	t.is(search.results[0].premium, false);
 });
 
-test('[SEARCH] Aa with special options', async t => {
-	t.timeout(10000, 'make sure pornhub website has been called');
-	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {production: 'homemade'});
-
-	t.is(search.results[0].title, 'SEXY AMATEUR TEEN GIRL SUNNA MINNIEMOUSE AA 4H0T1');
-});
-
 test('[SEARCH] Aa pornstars with special options', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
 	const search = await m.search('Aa', ['ACTOR','VIDEO_NUMBER','VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
