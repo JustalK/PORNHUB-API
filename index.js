@@ -33,7 +33,6 @@ const createLink = (url, page, options) => {
 
 const multi_url_to_source = async (url, options) => {
 	return promise.all([...new Array(options.page)].map(async (page, index) => {
-		console.log(createLink(url, index, options));
 		return url_to_source(createLink(url, index, options));
 	}));
 };
