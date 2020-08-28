@@ -103,7 +103,7 @@ module.exports = {
 	},
 	sanitizer: datas => {
 		const rsl = Object.keys(constants.type).map(x => {
-			if (!datas[x] && constants.type[x] !== constants.js_type.BOOLEAN) {
+			if (datas[x] === null || datas[x] === undefined) {
 				return;
 			}
 

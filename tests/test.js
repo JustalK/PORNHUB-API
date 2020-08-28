@@ -38,7 +38,6 @@ test('[SEARCH] Aa pornstars with special options', async t => {
 	t.timeout(10000, 'make sure pornhub website has been called');
 	const search = await m.search('Aa', ['ACTOR', 'RANK', 'VIDEO_NUMBER', 'VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
 
-	console.log(search);
 	t.is(search.results[0].actor, 'Aaron Vick');
 	t.assert(search.results[0].rank > 0 );
 });

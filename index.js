@@ -38,6 +38,7 @@ const multi_url_to_source = async (url, options) => {
 };
 
 const error_message = error => {
+	console.log(error);
 	if (error) {
 		error.message = constants.errors.DEFAULT;
 	}
