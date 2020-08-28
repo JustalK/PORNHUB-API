@@ -55,7 +55,7 @@ module.exports = {
 		ACTOR: js_type.STRING,
 		VIDEO_NUMBER: js_type.STRING,
 		VIEW_NUMBER: js_type.STRING,
-		RANK_NUMBER: js_type.NUMBER
+		RANK: js_type.NUMBER
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
@@ -116,7 +116,7 @@ module.exports = {
 		ACTOR: '.title',
 		VIDEO_NUMBER: '.videosNumber',
 		VIEW_NUMBER: '.pstarViews',
-		RANK_NUMBER: '.rank_number'
+		RANK: '.rank_number'
 	},
 	page_search_element_attributs: {
 		LINK: 'href',
@@ -131,7 +131,8 @@ module.exports = {
 		RELATED_PORNSTARS: 'multi_textContent',
 		ACTOR: 'innerHTML',
 		VIDEO_NUMBER: 'innerHTML',
-		VIEW_NUMBER: 'innerHTML'
+		VIEW_NUMBER: 'innerHTML',
+		RANK: 'innerHTML'
 	},
 	page_element_attributs: {
 		TITLE: 'textContent',
