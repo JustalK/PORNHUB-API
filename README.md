@@ -22,6 +22,8 @@ Powerful scraper for PornHub. Unlike others scrapers, it's working in 2020 Augus
 
 - **Search pagination:** Possibility to scrap multiple page search
 
+- **Search by different criteria:** Possibility to scrap search by actor or title
+
 - **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
 
 
@@ -38,11 +40,11 @@ async page(url, options)
 | name | type | description |
 | :--- | :---------- | :--- |
 | url | String | url of the page |
-| options | Array or String if there is only one option | List of the options |
+| keys | Array | List of the keys |
 
-###### Lists of options available for a page
+###### Lists of keys available for a page
 
-| name of option | return type | description |
+| name of key | return type | description |
 | :--- | :---------- | :--- |
 | title | String | Title |
 | description | String | Description |
@@ -74,9 +76,10 @@ async search(value)
 | name | type | description |
 | :--- | :---------- | :--- |
 | value | String | value search in pornhub |
+| keys | Array or String if there is only one option | List of the keys |
 | options | Array or String if there is only one option | List of the options |
 
-###### Lists of options available for a search
+###### Lists of keys available for a search by title
 
 | name of option | return type | description |
 | :--- | :---------- | :--- |
