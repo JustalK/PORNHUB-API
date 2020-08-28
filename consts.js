@@ -54,7 +54,8 @@ module.exports = {
 		RESULTS: js_type.OBJECT,
 		ACTOR: js_type.STRING,
 		VIDEO_NUMBER: js_type.STRING,
-		VIEW_NUMBER: js_type.STRING
+		VIEW_NUMBER: js_type.STRING,
+		RANK_NUMBER: js_type.NUMBER
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
@@ -114,7 +115,8 @@ module.exports = {
 	actors_search_selectors: {
 		ACTOR: '.title',
 		VIDEO_NUMBER: '.videosNumber',
-		VIEW_NUMBER: '.pstarViews'
+		VIEW_NUMBER: '.pstarViews',
+		RANK_NUMBER: '.rank_number'
 	},
 	page_search_element_attributs: {
 		LINK: 'href',
