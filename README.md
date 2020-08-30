@@ -92,6 +92,15 @@ async search(value)
 | ratings | Array | Positive rating of the video in percentage |
 
 
+###### Lists of keys available for a porn actor search
+
+| name of keys | return type | description |
+| :--- | :---------- | :--- |
+| actor | String | Name of the actor |
+| video_number | Number | Number of video of the actor |
+| view_number | Number | Number of view of the actor |
+| rank | Number | Rank of the actor |
+
 ### Examples
 
 ###### Scraping the title of a video
