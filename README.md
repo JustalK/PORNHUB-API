@@ -114,7 +114,8 @@ async search(value)
 ###### Scraping the title of a video
 
 ```js
-const video = await module-name.page(url, ['title']);
+const pornhub = require('@latsuj/pornhub-api');
+const video = await pornhub.page(url, ['title']);
 ```
 
 
@@ -127,7 +128,8 @@ const video = await module-name.page(url, ['title']);
 ###### Scraping the title of a video and the description
 
 ```js
-const video = await module-name.page(url, ['title','description']);
+const pornhub = require('@latsuj/pornhub-api');
+const video = await pornhub.page(url, ['title','description']);
 ```
 
 ```json
@@ -140,7 +142,8 @@ const video = await module-name.page(url, ['title','description']);
 ###### Scraping the name of the pornstars and the downloads links
 
 ```js
-const video = await module-name.page(url, ['title','pornstars','download_urls']);
+const pornhub = require('@latsuj/pornhub-api');
+const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 ```
 
 ```json
@@ -158,7 +161,8 @@ const video = await module-name.page(url, ['title','pornstars','download_urls'])
 ###### Scraping a search pornhub without options
 
 ```js
-const video = await module-name.page("Aa");
+const pornhub = require('@latsuj/pornhub-api');
+const video = await pornhub.search("Aa",["title","link","premium","hd"]);
 ```
 
 ```json
@@ -166,20 +170,32 @@ const video = await module-name.page("Aa");
 	"link": "https://p.com/link1",
 	"title": "Title of the video",
 	"hd": true,
-	"author": "Robert",
-	"duration": 13000,
-	"views": 1200,
-	"premium": true,
-	"rating": 80
+	"premium": true
 },{
 	"link": "https://p.com/link2",
 	"title": "Title of the video",
 	"hd": false,
-	"author": "Ggegwg",
-	"duration": 5120,
-	"views": 120,
-	"premium": false,
-	"rating": 60
+	"premium": false
+}]
+```
+
+###### Scraping a search pornhub with options
+
+```js
+const pornhub = require('@latsuj/pornhub-api');
+const video = await pornhub.search("Aa",["actor","rank"],{production: 'homemade', search: 'pornstars'});
+```
+
+```json
+[{
+	"actor": "Herica Alue",
+	"rank": 8005,
+},{
+	"actor": "Robert Laach",
+	"rank": 60
+},{
+	"actor": "Aalix Lolo",
+	"rank": 6500
 }]
 ```
 
