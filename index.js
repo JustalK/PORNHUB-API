@@ -24,12 +24,13 @@ const url_to_source = async url => {
 
 const createLink = (url, page, options) => {
 	let q = '';
-	if(options.production) {
+	if (options.production) {
 		q += '&p=' + options.production;
 	}
+
 	const search = options.search ? options.search : 'video';
 	return constants.links.BASE_URL + search + constants.links.SEARCH + url + '&page=' + (page + 1) + q;
-}
+};
 
 const multi_url_to_source = async (url, options) => {
 	return promise.all([...new Array(options.page)].map(async (page, index) => {

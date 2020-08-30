@@ -12,7 +12,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.pornstars[1], 'Jessie Andrews');
 	t.is(video.author, 'lovewetkissing');
 	t.is(video.percent, 70);
-	t.is(video.number_of_comment, 14);
+	t.is(video.number_of_comment, 13);
 	t.is(video.tags[0], 'kissing');
 	t.is(video.tags[4], 'curvy');
 	t.is(video.categories[0], 'Babe');
@@ -39,7 +39,7 @@ test('[SEARCH] Aa pornstars with special options', async t => {
 	const search = await m.search('Aa', ['ACTOR', 'RANK', 'VIDEO_NUMBER', 'VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
 
 	t.is(search.results[0].actor, 'Aaron Vick');
-	t.assert(search.results[0].rank > 0 );
+	t.assert(search.results[0].rank > 0);
 });
 
 test('[PAGE] Try to trigger an error', async t => {
