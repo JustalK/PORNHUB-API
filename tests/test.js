@@ -12,7 +12,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.pornstars[1], 'Jessie Andrews');
 	t.is(video.author, 'lovewetkissing');
 	t.is(video.percent, 70);
-	t.is(video.number_of_comment, 13);
+	t.assert(video.number_of_comment > 0);
 	t.is(video.tags[0], 'kissing');
 	t.is(video.tags[4], 'curvy');
 	t.is(video.categories[0], 'Babe');
