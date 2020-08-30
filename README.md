@@ -77,7 +77,15 @@ async search(value)
 | :--- | :---------- | :--- |
 | value | String | value search in pornhub |
 | keys | Array or String if there is only one option | List of the keys |
-| options | Array or String if there is only one option | List of the options |
+| options | Array | List of the optional options |
+
+###### Lists of options available for a search
+
+| name of options | return type | description |
+| :--- | :---------- | :--- |
+| page | Number | Number of page to scraper |
+| production | String | Type of production targeted : homemade or professional |
+| search | String | Type of search targeted : video or pornstars |
 
 ###### Lists of keys available for a search by title
 
