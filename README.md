@@ -84,12 +84,12 @@ async search(value)
 | name of keys | return type | description |
 | :--- | :---------- | :--- |
 | link | String | Link of the videos |
-| title | Array | Title of the videos |
-| duration | Array | Duration in seconds |
-| views | Array | Number total of views |
-| premium | Array | True if the video is premium, false if else |
-| author | Array | Author of the video |
-| ratings | Array | Positive rating of the video in percentage |
+| title | String | Title of the videos |
+| duration | Number | Duration in seconds |
+| views | Number | Number total of views |
+| premium | Boolean | True if the video is premium, false if else |
+| author | String | Author of the video |
+| ratings | Number | Positive rating of the video in percentage |
 
 
 ###### Lists of keys available for a porn actor search
