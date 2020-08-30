@@ -81,11 +81,15 @@ async search(value)
 
 ###### Lists of keys available for a search by title
 
-| name of option | return type | description |
+| name of keys | return type | description |
 | :--- | :---------- | :--- |
-| page_X | String | X specify the number of page search to scrap |
-| related_search | Array | The related search |
-| related_pornstars | Array | The related pornstars |
+| link | String | Link of the videos |
+| title | Array | Title of the videos |
+| duration | Array | Duration in seconds |
+| views | Array | Number total of views |
+| premium | Array | True if the video is premium, false if else |
+| author | Array | Author of the video |
+| ratings | Array | Positive rating of the video in percentage |
 
 
 ### Examples
