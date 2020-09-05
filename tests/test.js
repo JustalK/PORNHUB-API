@@ -1,10 +1,28 @@
 const test = require('ava');
+const nock = require('nock');
 const m = require('..');
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 
+/**
+* Mock the call to the url for always having the same result even if pornhub website evolve (New comments...)
+**/
+const scope = nock('https://www.pornhub.com')
+	.get('/view_video.php?viewkey=ph56fc59c124c0c')
+	.replyWithFile(200, './tests/page_pornhub.html')
+	.get('/video/search?search=aa&page=1')
+	.replyWithFile(200, './tests/search_pornhub_aa_page_1.html')
+	.get('/pornstars/search?search=aa&page=1&p=homemade')
+	.replyWithFile(200, './tests/search_pornhub_aa_actor_1.html')
+	.get('/video/search?search=aa&page=2')
+	.replyWithFile(200, './tests/search_pornhub_aa_page_2.html')
+	.get('/pornstars/search?search=aa')
+	.replyWithFile(200, './tests/search_pornhub_aa_actor_1.html')
+	.get('/view_video.php?viewkey=ph56')
+	.reply(404);
+
 test('[PAGE] Try all selector on a pornhub page', async t => {
-	t.timeout(10000, 'make sure pornhub website has been called');
+	t.timeout(3000, 'make sure pornhub website has been called');
 	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments', 'related_videos']);
 
 	t.is(video.title, 'Hot Kissing Scene');
@@ -24,7 +42,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 });
 
 test('[SEARCH] Aa', async t => {
-	t.timeout(10000, 'make sure pornhub website has been called');
+	t.timeout(3000, 'make sure pornhub website has been called');
 	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {page: 2});
 
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
@@ -35,7 +53,7 @@ test('[SEARCH] Aa', async t => {
 });
 
 test('[SEARCH] Aa pornstars with special options', async t => {
-	t.timeout(10000, 'make sure pornhub website has been called');
+	t.timeout(3000, 'make sure pornhub website has been called');
 	const search = await m.search('Aa', ['ACTOR', 'RANK', 'VIDEO_NUMBER', 'VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
 
 	t.is(search.results[0].actor, 'Aaron Vick');
@@ -43,7 +61,7 @@ test('[SEARCH] Aa pornstars with special options', async t => {
 });
 
 test('[PAGE] Try to trigger an error', async t => {
-	t.timeout(10000, 'make sure pornhub website has been called');
+	t.timeout(3000, 'make sure pornhub website has been called');
 	const video = await m.page('https://www.pornhub.com/view_video.php?viewkey=ph56', ['title']);
 
 	t.is(video.error, 'An error occured');
