@@ -214,6 +214,9 @@ Also, you can use the command under for running the test without the linter
 npm run test-no
 ```
 
+The tests are not execute on pornhub directly, the calls to pornhub are all mock with `nock` to save html page of pornhub.
+It has been done for having page that wont evolve through time. By example, if a comment is added on the real link, the tests will still be ok.
+
 ### Note
 
 - The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3. I am waiting to upgrade.
