@@ -7,6 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/JustalK/PORNHUB-API/badge.svg?branch=master&style=flat-square)](https://coveralls.io/github/JustalK/PORNHUB-API?branch=master)
 [![Dependency status](http://img.shields.io/david/justalk/pornhub-api.svg?style=flat-square)](https://david-dm.org/justalk/pornhub-api.svg)
 ![Last version](https://img.shields.io/github/license/justalk/pornhub-api.svg?style=flat-square)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/xojs/xo)
 
 ![Star the project](https://img.shields.io/github/stars/justalk/pornhub-api?style=social)
 
