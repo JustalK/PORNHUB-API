@@ -18,7 +18,7 @@
 	},
 	"files": [
 		"index.js",
-		"const.js",
+		"consts.js",
 		"opt.js",
 		"page.js",
 		"search.js",
