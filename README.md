@@ -27,7 +27,6 @@ Powerful scraper for PornHub. Unlike others scrapers, it's working in 2020 Augus
 
 - **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
 
-
 ## API
 
 ### Video page pornhub
@@ -61,7 +60,7 @@ async page(url, options)
 | production | String | Type of production |
 | duration | Number | Duration in second |
 | number_of_comment | Number | Total number of comments |
-| thumbnail | String | Url of the thumbnail |
+| thumbnail_url | String | Url of the thumbnail |
 | upload_date | Date | Date of upload |
 | download_urls |  Object | List of download link by quality |
 | comments |  Object | List of comments with additionnals informations |

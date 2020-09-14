@@ -23,13 +23,14 @@ const scope = nock('https://www.pornhub.com')
 
 test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.timeout(3000, 'make sure pornhub website has been called');
-	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments', 'related_videos']);
+	const video = await m.page(url, ['title', 'description', 'views', 'up_votes', 'down_votes', 'percent', 'thumbnail_url', 'author', 'author_subscriber', 'number_of_comment', 'pornstars', 'categories', 'tags', 'upload_date', 'download_urls', 'comments', 'related_videos']);
 
 	t.is(video.title, 'Hot Kissing Scene');
 	t.is(video.pornstars[0], 'Rocco Reed');
 	t.is(video.pornstars[1], 'Jessie Andrews');
 	t.is(video.author, 'lovewetkissing');
 	t.is(video.percent, 70);
+	t.not(video.thumbnail_url, undefined);
 	t.assert(video.number_of_comment > 0);
 	t.is(video.tags[0], 'kissing');
 	t.is(video.tags[4], 'curvy');
