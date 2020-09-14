@@ -18,7 +18,11 @@
 	},
 	"files": [
 		"index.js",
-		"opt.js"
+  	"const.js",
+  	"opt.js",
+		"page.js",
+		"search.js",
+		"utils.js"
 	],
 	"keywords": [
 		"porn",
