@@ -114,7 +114,7 @@ async search(value)
 ###### Scraping the title of a video
 
 ```js
-const pornhub = require('@latsuj/pornhub-api');
+const pornhub = require('@justalk/pornhub-api');
 const video = await pornhub.page(url, ['title']);
 ```
 
@@ -128,7 +128,7 @@ const video = await pornhub.page(url, ['title']);
 ###### Scraping the title of a video and the description
 
 ```js
-const pornhub = require('@latsuj/pornhub-api');
+const pornhub = require('@justalk/pornhub-api');
 const video = await pornhub.page(url, ['title','description']);
 ```
 
@@ -142,7 +142,7 @@ const video = await pornhub.page(url, ['title','description']);
 ###### Scraping the name of the pornstars and the downloads links
 
 ```js
-const pornhub = require('@latsuj/pornhub-api');
+const pornhub = require('@justalk/pornhub-api');
 const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 ```
 
@@ -161,7 +161,7 @@ const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 ###### Scraping a search pornhub without options
 
 ```js
-const pornhub = require('@latsuj/pornhub-api');
+const pornhub = require('@justalk/pornhub-api');
 const video = await pornhub.search("Aa",["title","link","premium","hd"]);
 ```
 
@@ -182,7 +182,7 @@ const video = await pornhub.search("Aa",["title","link","premium","hd"]);
 ###### Scraping a search pornhub with options
 
 ```js
-const pornhub = require('@latsuj/pornhub-api');
+const pornhub = require('@justalk/pornhub-api');
 const video = await pornhub.search("Aa",["actor","rank"],{production: 'homemade', search: 'pornstars'});
 ```
 
