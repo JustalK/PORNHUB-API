@@ -1,6 +1,6 @@
 {
 	"name": "@justalk/pornhub-api",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"description": "Very complete scrapper for the famous porn website pornhub",
 	"license": "MIT",
 	"repository": {
@@ -18,8 +18,8 @@
 	},
 	"files": [
 		"index.js",
-  	"const.js",
-  	"opt.js",
+		"const.js",
+		"opt.js",
 		"page.js",
 		"search.js",
 		"utils.js"
