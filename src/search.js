@@ -17,6 +17,10 @@ module.exports = {
 			datas[constants.keys.RESULTS] = utils.scraper_array(doc, constants.global_selectors.PORNSTARS_LIST, constants.actors_search_selectors, constants.page_search_element_attributs);
 		}
 
+		if (options.search === 'gifs') {
+			datas[constants.keys.RESULTS] = utils.scraper_array(doc, constants.global_selectors.GIFS_LIST, constants.gifs_search_selectors, constants.gif_element_attributs);
+		}
+
 		return datas;
 	}
 };

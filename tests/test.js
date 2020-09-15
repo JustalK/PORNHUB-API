@@ -19,7 +19,9 @@ const scope = nock('https://www.pornhub.com')
 	.get('/pornstars/search?search=aa')
 	.replyWithFile(200, './tests/search_pornhub_aa_actor_1.html')
 	.get('/view_video.php?viewkey=ph56')
-	.reply(404);
+	.reply(404)
+	.get('/gifs/search?search=doggy&page=1')
+	.replyWithFile(200, './tests/search_pornhub_doggy_gifs.html');
 
 test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.timeout(3000, 'make sure pornhub website has been called');
@@ -59,6 +61,22 @@ test('[SEARCH] Aa pornstars with special options', async t => {
 
 	t.is(search.results[0].actor, 'Aaron Vick');
 	t.assert(search.results[0].rank > 0);
+});
+
+test('[SEARCH] Doggy gifs with special options', async t => {
+	t.timeout(3000, 'make sure pornhub website has been called');
+	const search = await m.search('doggy', ['TITLE', 'THUMBNAIL_URL', 'LINK_MP4', 'LINK_WEBM'], {search: 'gifs'});
+
+	t.is(search.results[0].title, 'morning doggy');
+	t.is(search.results[0].thumbnail_url, 'https://dl.phncdn.com/pics/gifs/004/331/571/(m=bKW1KNV)(mh=vzX1GL0377Gigrxw)4331571a.jpg');
+	t.is(search.results[0].link_mp4, 'https://dl.phncdn.com/pics/gifs/004/331/571/4331571a.mp4');
+	t.is(search.results[0].link_webm, 'https://dl.phncdn.com/pics/gifs/004/331/571/4331571a.webm');
+	t.is(search.results[1].title, 'Sophie Dee Doggy Anal');
+	t.is(search.results[1].thumbnail_url, 'https://dl.phncdn.com/pics/gifs/005/296/662/(m=bKW1KNV)(mh=RRWPmEuWI13Ee-gQ)5296662a.jpg');
+	t.is(search.results[1].link_mp4, 'https://dl.phncdn.com/pics/gifs/005/296/662/5296662a.mp4');
+	t.is(search.results[1].link_webm, 'https://dl.phncdn.com/pics/gifs/005/296/662/5296662a.webm');
+
+	t.is(search.results.length, 34);
 });
 
 test('[PAGE] Try to trigger an error', async t => {

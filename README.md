@@ -85,9 +85,9 @@ async search(value)
 | :--- | :---------- | :--- |
 | page | Number | Number of page to scraper |
 | production | String | Type of production targeted : homemade or professional |
-| search | String | Type of search targeted : video or pornstars |
+| search | String | Type of search targeted : `video` or `pornstars` or `gifs` |
 
-###### Lists of keys available for a search by title
+###### Lists of keys available for a search by video
 
 | name of keys | return type | description |
 | :--- | :---------- | :--- |
@@ -108,6 +108,15 @@ async search(value)
 | video_number | Number | Number of video of the actor |
 | view_number | Number | Number of view of the actor |
 | rank | Number | Rank of the actor |
+
+###### Lists of keys available for a gifs search
+
+| name of keys | return type | description |
+| :--- | :---------- | :--- |
+| title | String | Title of the gif |
+| thumbnail_url | String | Url of the thumbnail |
+| link_mp4 | String | Url of the mp4 version |
+| link_webm | String | Url of the webm version |
 
 ### Examples
 

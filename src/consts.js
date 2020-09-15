@@ -55,13 +55,16 @@ module.exports = {
 		ACTOR: js_type.STRING,
 		VIDEO_NUMBER: js_type.STRING,
 		VIEW_NUMBER: js_type.STRING,
-		RANK: js_type.NUMBER
+		RANK: js_type.NUMBER,
+		LINK_MP4: js_type.URL,
+		LINK_WEBM: js_type.URL
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
 		SEARCH_LIST: '#videoSearchResult .pcVideoListItem',
 		RELATED_VIDEOS_LIST: '#relatedVideosCenter li',
-		PORNSTARS_LIST: '#pornstarsSearchResult li .wrap'
+		PORNSTARS_LIST: '#pornstarsSearchResult li .wrap',
+		GIFS_LIST: '.gifsWrapper .gifVideoBlock'
 	},
 	primary_selectors: {
 		TITLE: '.title-container .title .inlineFree',
@@ -118,6 +121,12 @@ module.exports = {
 		VIEW_NUMBER: '.pstarViews',
 		RANK: '.rank_number'
 	},
+	gifs_search_selectors: {
+		TITLE: '.title',
+		THUMBNAIL_URL: '.gifVideo',
+		LINK_MP4: '.gifVideo',
+		LINK_WEBM: '.gifVideo'
+	},
 	page_search_element_attributs: {
 		LINK: 'href',
 		TITLE: 'title',
@@ -156,6 +165,12 @@ module.exports = {
 		UPLOAD_DATE: 'javascript',
 		DESCRIPTION: 'javascript',
 		THUMBNAIL_URL: 'javascript'
+	},
+	gif_element_attributs: {
+		TITLE: 'textContent',
+		THUMBNAIL_URL: 'data-poster',
+		LINK_MP4: 'data-mp4',
+		LINK_WEBM: 'data-webm'
 	},
 	javascript: {
 		UPLOAD_DATE: 'uploadDate',
