@@ -15,7 +15,16 @@ Powerful scraper for PornHub. Unlike others scrapers, it's working in 2020 Augus
 
 `npm install @justalk/pornhub-api`
 
-## Features
+### Short Examples
+
+Scraping the title, pornstars and the download links of a page
+
+```js
+const pornhub = require('@justalk/pornhub-api');
+const video = await pornhub.page(url, ['title','pornstars','download_urls']);
+```
+
+### Features
 
 - **Scraper:** Parse any informations from a video page on PornHub : Related video. comments, view, vote up and so many others...
 
@@ -27,11 +36,7 @@ Powerful scraper for PornHub. Unlike others scrapers, it's working in 2020 Augus
 
 - **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
 
-## API
-
 ### Video page pornhub
-
-###### Function available for a page
 
 ```js
 async page(url, options)
@@ -42,7 +47,8 @@ async page(url, options)
 | url | String | url of the page |
 | keys | Array | List of the keys |
 
-###### Lists of keys available for a page
+<details>
+  <summary><b>Lists of options available for a search</b> (click to show)</summary>
 
 | name of key | return type | description |
 | :--- | :---------- | :--- |
@@ -65,9 +71,9 @@ async page(url, options)
 | download_urls |  Object | List of download link by quality |
 | comments |  Object | List of comments with additionnals informations |
 
-### Search page pornhub
+</details>
 
-###### Function available for the search
+### Search page pornhub
 
 ```js
 async search(value)
@@ -79,15 +85,20 @@ async search(value)
 | keys | Array or String if there is only one option | List of the keys |
 | options | Array | List of the optional options |
 
-###### Lists of options available for a search
+<details>
+  <summary><b>Lists of options available for a search</b> (click to show)</summary>
 
 | name of options | return type | description |
 | :--- | :---------- | :--- |
 | page | Number | Number of page to scraper |
 | production | String | Type of production targeted : homemade or professional |
-| search | String | Type of search targeted : video or pornstars |
+| search | String | Type of search targeted : `video` or `pornstars` or `gifs` |
 
-###### Lists of keys available for a search by title
+</details>
+
+
+<details>
+  <summary><b>Lists of keys available for a search by video</b> (click to show)</summary>
 
 | name of keys | return type | description |
 | :--- | :---------- | :--- |
@@ -99,8 +110,10 @@ async search(value)
 | author | String | Author of the video |
 | ratings | Number | Positive rating of the video in percentage |
 
+</details>
 
-###### Lists of keys available for a porn actor search
+<details>
+  <summary><b>Lists of keys available for a porn actor search</b> (click to show)</summary>
 
 | name of keys | return type | description |
 | :--- | :---------- | :--- |
@@ -109,9 +122,24 @@ async search(value)
 | view_number | Number | Number of view of the actor |
 | rank | Number | Rank of the actor |
 
+</details>
+
+<details>
+  <summary><b>Lists of keys available for a gifs search</b> (click to show)</summary>
+
+| name of keys | return type | description |
+| :--- | :---------- | :--- |
+| title | String | Title of the gif |
+| thumbnail_url | String | Url of the thumbnail |
+| link_mp4 | String | Url of the mp4 version |
+| link_webm | String | Url of the webm version |
+
+</details>
+
 ### Examples
 
-###### Scraping the title of a video
+<details>
+  <summary><b>Scraping the title of a video</b> (click to show)</summary>
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
@@ -125,7 +153,10 @@ const video = await pornhub.page(url, ['title']);
 }
 ```
 
-###### Scraping the title of a video and the description
+</details>
+
+<details>
+  <summary><b>Scraping the title of a video and the description</b> (click to show)</summary>
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
@@ -139,7 +170,10 @@ const video = await pornhub.page(url, ['title','description']);
 }
 ```
 
-###### Scraping the name of the pornstars and the downloads links
+</details>
+
+<details>
+  <summary><b>Scraping the name of the pornstars and the downloads links</b> (click to show)</summary>
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
@@ -158,7 +192,10 @@ const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 }
 ```
 
-###### Scraping a search pornhub without options
+</details>
+
+<details>
+  <summary><b>Scraping a search pornhub without options</b> (click to show)</summary>
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
@@ -179,7 +216,10 @@ const video = await pornhub.search("Aa",["title","link","premium","hd"]);
 }]
 ```
 
-###### Scraping a search pornhub with options
+</details>
+
+<details>
+  <summary><b>Scraping a search pornhub with options</b> (click to show)</summary>
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
@@ -199,7 +239,12 @@ const video = await pornhub.search("Aa",["actor","rank"],{production: 'homemade'
 }]
 ```
 
-### How to test
+</details>
+
+### How to test/contribute
+
+<details>
+  <summary><b>How to test the API ?</b> (click to show)</summary>
 
 For testing, install the node project and run the test command.
 
@@ -217,11 +262,38 @@ npm run test-no
 The tests are not execute on pornhub directly, the calls to pornhub are all mock with `nock` to save html page of pornhub.
 It has been done for having page that wont evolve through time. By example, if a comment is added on the real link, the tests will still be ok.
 
+</details>
+
+<details>
+  <summary><b>How to contribute ?</b> (click to show)</summary>
+
+Any contribution is welcomed !
+
+If you find an issue or just want to add your stone to the castle :
+
+1. Open an issue
+2. Fork the repository
+3. Create a new branch
+4. Pull Request your change
+5. Wait until I check your code
+6. Merge and add your name on this page forever !
+
+</details>
+
 ### Note
 
-- The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3. I am waiting to upgrade.
-- If pornhub is blocked in your country, the API will obviously not work. You will need a proxy.
-- Pornhub block the srapper from time to time, I have not found a solution yet.
+<details>
+  <summary><b>Why dont you use ava 3 ?</b> (click to show)</summary>
+The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3. I am waiting to upgrade.
+</details>
+<details>
+  <summary><b>Why does it not work in my country ?</b> (click to show)</summary>
+If pornhub is blocked in your country, the API will obviously not work. You will need a proxy.
+</details>
+<details>
+  <summary><b>Why does it not work at all sometimes ?</b> (click to show)</summary>
+Pornuhub has a scraper protection, if you scrap the website violently (let say hundreds pages in 10 seconds), your ip will be flag as a bot for few minute. Please be gentle with pornhub's server !
+</details>
 
 ## License
 
