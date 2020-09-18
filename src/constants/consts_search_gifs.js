@@ -12,4 +12,4 @@ module.exports = {
 		LINK_MP4: 'data-mp4',
 		LINK_WEBM: 'data-webm'
 	}
-}
+};

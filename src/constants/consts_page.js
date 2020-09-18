@@ -65,7 +65,7 @@ module.exports = {
 		MESSAGE: '.commentMessage span',
 		TOTAL_VOTE: '.voteTotal'
 	},
-	related_video_selectors: {
+	related_videos_selectors: {
 		LINK: 'a',
 		TITLE: '.title a',
 		HD: 'a .marker-overlays .hd-thumbnail',
@@ -80,4 +80,4 @@ module.exports = {
 		DESCRIPTION: 'description',
 		THUMBNAIL_URL: 'thumbnailUrl'
 	}
-}
+};

@@ -1,4 +1,5 @@
-const constants = require('./consts');
+const consts_global = require('./constants/consts_global');
+const consts_page = require('./constants/consts_page');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
@@ -19,8 +20,8 @@ module.exports = {
 		}).filter(x => x));
 	},
 	scraper_content_informations: (doc, keys, selectors, element_attributs) => {
-		const selectors = module.exports.selectors_restriction(keys, selectors);
-		return module.exports.scrap(doc, selectors, element_attributs);
+		const selectors_restricted = module.exports.selectors_restriction(keys, selectors);
+		return module.exports.scrap(doc, selectors_restricted, element_attributs);
 	},
 	convert_to_second: time => {
 		const time_splitted = time.split(':');
@@ -49,27 +50,27 @@ module.exports = {
 			switch (attributs[key]) {
 				case 'innerHTML':
 					if (!object.querySelector(keys[key])) {
-						return [key, constants.NO_DATA];
+						return [key, consts_global.NO_DATA];
 					}
 
 					return [key, object.querySelector(keys[key]).innerHTML];
 				case 'textContent':
 					if (!object.querySelector(keys[key])) {
-						return [key, constants.NO_DATA];
+						return [key, consts_global.NO_DATA];
 					}
 
 					return [key, object.querySelector(keys[key]).textContent];
 				case 'multi_textContent': {
 					const elm = [...object.querySelectorAll(keys[key])];
 					if (!elm || elm.length === 0) {
-						return [key, constants.NO_DATA];
+						return [key, consts_global.NO_DATA];
 					}
 
 					return [key, elm.map(node => node.textContent)];
 				}
 
 				case 'javascript':
-					return [key, JSON.parse(object.querySelector(keys[key]).textContent)[constants.javascript[key]]];
+					return [key, JSON.parse(object.querySelector(keys[key]).textContent)[consts_page.javascript[key]]];
 				case null:
 					return object.querySelector(keys[key]) ? [key, true] : [key, false];
 				default:
@@ -102,28 +103,28 @@ module.exports = {
 		return new Date(value);
 	},
 	sanitizer: datas => {
-		const rsl = Object.keys(constants.type).map(x => {
+		const rsl = Object.keys(consts_global.type).map(x => {
 			if (datas[x] === null || datas[x] === undefined) {
 				return;
 			}
 
-			switch (constants.type[x]) {
-				case constants.js_type.STRING:
+			switch (consts_global.type[x]) {
+				case consts_global.js_type.STRING:
 					return [x.toLowerCase(), module.exports.sanitizer_string(datas[x])];
-				case constants.js_type.ARRAY:
+				case consts_global.js_type.ARRAY:
 					return [x.toLowerCase(), module.exports.sanitizer_array(datas[x])];
-				case constants.js_type.NUMBER:
+				case consts_global.js_type.NUMBER:
 					return [x.toLowerCase(), module.exports.sanitizer_number(datas[x])];
-				case constants.js_type.BOOLEAN:
+				case consts_global.js_type.BOOLEAN:
 					return [x.toLowerCase(), Boolean(datas[x])];
-				case constants.js_type.DATE:
+				case consts_global.js_type.DATE:
 					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
-				case constants.js_type.NUMBER_KM:
+				case consts_global.js_type.NUMBER_KM:
 					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				case constants.js_type.NUMBER_SECONDS:
+				case consts_global.js_type.NUMBER_SECONDS:
 					return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
-				case constants.js_type.URL_PORNHUB:
-					return [x.toLowerCase(), constants.links.BASE_URL + datas[x]];
+				case consts_global.js_type.URL_PORNHUB:
+					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
 				default:
 					return [x.toLowerCase(), datas[x]];
 			}

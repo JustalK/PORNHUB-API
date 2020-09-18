@@ -19,4 +19,4 @@ module.exports = {
 		VIEW_NUMBER: 'innerHTML',
 		RANK: 'innerHTML'
 	}
-}
+};

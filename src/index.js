@@ -1,7 +1,7 @@
 'use strict';
 
 const utils = require('./utils');
-const constants = require('./consts');
+const consts_global = require('./constants/consts_global');
 const page = require('./page');
 const page_search = require('./search');
 const promise = require('promise');
@@ -29,7 +29,7 @@ const createLink = (url, page, options) => {
 	}
 
 	const search = options.search ? options.search : 'video';
-	return constants.links.BASE_URL + search + constants.links.SEARCH + url + '&page=' + (page + 1) + q;
+	return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
 };
 
 const multi_url_to_source = async (url, options) => {
@@ -40,7 +40,7 @@ const multi_url_to_source = async (url, options) => {
 
 const error_message = error => {
 	if (error) {
-		error.message = constants.errors.DEFAULT;
+		error.message = consts_global.errors.DEFAULT;
 	}
 
 	return {error: error.message};
