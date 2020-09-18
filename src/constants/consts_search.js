@@ -1,12 +1,9 @@
 module.exports = {
-	PORNSTARS_LIST: '#pornstarsSearchResult li .wrap',
-	pornstars_search_selectors: {
-		ACTOR: '.title',
-		VIDEO_NUMBER: '.videosNumber',
-		VIEW_NUMBER: '.pstarViews',
-		RANK: '.rank_number'
+	primary_search_selectors: {
+		RELATED_SEARCH: '.relatedSearch li a',
+		RELATED_PORNSTARS: '#relatedPornstarSidebar li a .pornstars-name'
 	},
-	pornstars_element_attributs: {
+	page_search_element_attributs: {
 		LINK: 'href',
 		TITLE: 'title',
 		HD: null,

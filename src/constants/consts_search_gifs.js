@@ -6,7 +6,7 @@ module.exports = {
 		LINK_MP4: '.gifVideo',
 		LINK_WEBM: '.gifVideo'
 	},
-	gif_element_attributs: {
+	gifs_element_attributs: {
 		TITLE: 'textContent',
 		THUMBNAIL_URL: 'data-poster',
 		LINK_MP4: 'data-mp4',

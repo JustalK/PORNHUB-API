@@ -61,9 +61,7 @@ module.exports = {
 	},
 	global_selectors: {
 		COMMENTS_LIST: '#cmtContent .topCommentBlock',
-		SEARCH_LIST: '#videoSearchResult .pcVideoListItem',
-		RELATED_VIDEOS_LIST: '#relatedVideosCenter li',
-		PORNSTARS_LIST: '#pornstarsSearchResult li .wrap'
+		RELATED_VIDEOS_LIST: '#relatedVideosCenter li'
 	},
 	primary_selectors: {
 		TITLE: '.title-container .title .inlineFree',
@@ -100,41 +98,11 @@ module.exports = {
 		AUTHOR: '.videoUploaderBlock .usernameWrap a',
 		RATINGS: '.rating-container .value'
 	},
-	primary_search_selectors: {
-		RELATED_SEARCH: '.relatedSearch li a',
-		RELATED_PORNSTARS: '#relatedPornstarSidebar li a .pornstars-name'
-	},
-	secondary_search_selectors: {
-		LINK: 'a',
-		TITLE: '.title a',
-		HD: 'a .marker-overlays .hd-thumbnail',
-		DURATION: 'a .marker-overlays .duration',
-		VIEWS: '.videoDetailsBlock var',
-		PREMIUM: 'a .marker-overlays .premiumIcon',
-		AUTHOR: '.videoUploaderBlock .usernameWrap a',
-		RATINGS: '.rating-container .value'
-	},
 	actors_search_selectors: {
 		ACTOR: '.title',
 		VIDEO_NUMBER: '.videosNumber',
 		VIEW_NUMBER: '.pstarViews',
 		RANK: '.rank_number'
-	},
-	page_search_element_attributs: {
-		LINK: 'href',
-		TITLE: 'title',
-		HD: null,
-		DURATION: 'innerHTML',
-		VIEWS: 'innerHTML',
-		PREMIUM: null,
-		AUTHOR: 'innerHTML',
-		RATINGS: 'innerHTML',
-		RELATED_SEARCH: 'multi_textContent',
-		RELATED_PORNSTARS: 'multi_textContent',
-		ACTOR: 'innerHTML',
-		VIDEO_NUMBER: 'innerHTML',
-		VIEW_NUMBER: 'innerHTML',
-		RANK: 'innerHTML'
 	},
 	page_element_attributs: {
 		TITLE: 'textContent',
