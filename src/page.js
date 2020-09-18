@@ -1,10 +1,11 @@
 const utils = require('./utils');
-const constants = require('./consts');
+const consts_global = require('./constants/consts_global');
+const consts_page = require('./constants/consts_page');
 
 const scraper_video_informations = (source, keys) => {
 	let rsl = {};
 
-	if (keys.includes(constants.keys.DOWNLOAD_URLS)) {
+	if (keys.includes(consts_global.keys.DOWNLOAD_URLS)) {
 		const matches = source.match(/(?<=\*\/)\w+/g);
 		const urls = [];
 
@@ -31,16 +32,16 @@ const scraper_video_informations = (source, keys) => {
 };
 
 const scraper_comments_informations = (doc, keys) => {
-	if (keys.includes(constants.keys.COMMENTS)) {
-		return {[constants.keys.COMMENTS]: utils.scraper_array(doc, constants.global_selectors.COMMENTS_LIST, constants.comment_selectors, constants.page_element_attributs)};
+	if (keys.includes(consts_global.keys.COMMENTS)) {
+		return {[consts_global.keys.COMMENTS]: utils.scraper_array(doc, consts_page.COMMENTS_LIST, consts_page.comment_selectors, consts_page.page_element_attributs)};
 	}
 
 	return {};
 };
 
 const scraper_related_videos_informations = (doc, keys) => {
-	if (keys.includes(constants.keys.RELATED_VIDEOS)) {
-		return {[constants.keys.RELATED_VIDEOS]: utils.scraper_array(doc, constants.global_selectors.RELATED_VIDEOS_LIST, constants.related_video_selectors, constants.page_search_element_attributs)};
+	if (keys.includes(consts_global.keys.RELATED_VIDEOS)) {
+		return {[consts_global.keys.RELATED_VIDEOS]: utils.scraper_array(doc, consts_page.RELATED_VIDEOS_LIST, consts_page.related_videos_selectors, consts_page.page_related_videos_element_attributs)};
 	}
 
 	return {};
@@ -52,7 +53,7 @@ module.exports = {
 
 		let datas = {};
 
-		datas = {...datas, ...utils.scraper_content_informations(doc, keys, constants.primary_selectors, constants.page_element_attributs)};
+		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_page.page_selectors, consts_page.page_element_attributs)};
 		datas = {...datas, download_urls: scraper_video_informations(source, keys)};
 		datas = {...datas, ...scraper_comments_informations(doc, keys)};
 		datas = {...datas, ...scraper_related_videos_informations(doc, keys)};

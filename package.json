@@ -16,14 +16,6 @@
 		"test-no": "ava",
 		"coverage": "nyc report --reporter=text-lcov | coveralls"
 	},
-	"files": [
-		"index.js",
-		"consts.js",
-		"opt.js",
-		"page.js",
-		"search.js",
-		"utils.js"
-	],
 	"keywords": [
 		"porn",
 		"pornhub",
