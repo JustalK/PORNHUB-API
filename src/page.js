@@ -41,7 +41,7 @@ const scraper_comments_informations = (doc, keys) => {
 
 const scraper_related_videos_informations = (doc, keys) => {
 	if (keys.includes(consts_global.keys.RELATED_VIDEOS)) {
-		return {[consts_global.keys.RELATED_VIDEOS]: utils.scraper_array(doc, consts_page.RELATED_VIDEOS_LIST, consts_page.related_video_selectors, consts_page.page_search_element_attributs)};
+		return {[consts_global.keys.RELATED_VIDEOS]: utils.scraper_array(doc, consts_page.RELATED_VIDEOS_LIST, consts_page.related_videos_selectors, consts_page.page_related_videos_element_attributs)};
 	}
 
 	return {};
@@ -53,7 +53,7 @@ module.exports = {
 
 		let datas = {};
 
-		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_page.primary_selectors, consts_page.page_element_attributs)};
+		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_page.page_selectors, consts_page.page_element_attributs)};
 		datas = {...datas, download_urls: scraper_video_informations(source, keys)};
 		datas = {...datas, ...scraper_comments_informations(doc, keys)};
 		datas = {...datas, ...scraper_related_videos_informations(doc, keys)};

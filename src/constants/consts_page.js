@@ -24,7 +24,7 @@ module.exports = {
 		DESCRIPTION: 'javascript',
 		THUMBNAIL_URL: 'javascript'
 	},
-	page_search_element_attributs: {
+	page_related_videos_element_attributs: {
 		LINK: 'href',
 		TITLE: 'title',
 		HD: null,
@@ -40,7 +40,7 @@ module.exports = {
 		VIEW_NUMBER: 'innerHTML',
 		RANK: 'innerHTML'
 	},
-	primary_selectors: {
+	page_selectors: {
 		TITLE: '.title-container .title .inlineFree',
 		VIEWS: '.count',
 		UP_VOTES: '.votesUp',

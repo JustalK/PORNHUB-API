@@ -9,17 +9,17 @@ module.exports = {
 		const dom = new JSDOM(source);
 		return dom.window.document;
 	},
-	selectors_restriction: (keys, primary_selectors) => {
-		return Object.fromEntries(Object.keys(primary_selectors).map(selector => {
+	selectors_restriction: (keys, selectors) => {
+		return Object.fromEntries(Object.keys(selectors).map(selector => {
 			if (keys.includes(selector)) {
-				return [selector, primary_selectors[selector]];
+				return [selector, selectors[selector]];
 			}
 
 			return null;
 		}).filter(x => x));
 	},
-	scraper_content_informations: (doc, keys, primary_selectors, element_attributs) => {
-		const selectors = module.exports.selectors_restriction(keys, primary_selectors);
+	scraper_content_informations: (doc, keys, selectors, element_attributs) => {
+		const selectors = module.exports.selectors_restriction(keys, selectors);
 		return module.exports.scrap(doc, selectors, element_attributs);
 	},
 	convert_to_second: time => {
