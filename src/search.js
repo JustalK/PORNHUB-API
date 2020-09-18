@@ -1,5 +1,6 @@
 const utils = require('./utils');
 const constants = require('./consts');
+const constants_search_gifs = require('./constants/consts_search_gifs');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
@@ -18,7 +19,7 @@ module.exports = {
 		}
 
 		if (options.search === 'gifs') {
-			datas[constants.keys.RESULTS] = utils.scraper_array(doc, constants.global_selectors.GIFS_LIST, constants.gifs_search_selectors, constants.gif_element_attributs);
+			datas[constants.keys.RESULTS] = utils.scraper_array(doc, constants_search_gifs.GIFS_LIST, constants_search_gifs.gifs_search_selectors, constants_search_gifs.gif_element_attributs);
 		}
 
 		return datas;
