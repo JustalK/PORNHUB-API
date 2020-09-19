@@ -34,6 +34,20 @@ test('[PAGE] Try only one selector on a pornhub page', async t => {
 	nock.cleanAll();
 });
 
+test('[PAGE] Try call on a pornhub page with exception', async t => {
+	nock('https://www.pornhub.com')
+		.get('/view_video.php?viewkey=ph56fc59c124c0d')
+		.replyWithFile(200, './tests/page_pornhub_exception.html');
+	const video = await m.page('https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0d', ['author', 'pornstars', 'production']);
+
+	console.log(video);
+
+	t.is(video.author, undefined);
+	t.is(video.pornstars, undefined);
+	t.is(video.production, undefined);
+	nock.cleanAll();
+});
+
 test('[PAGE] Try all selector on a pornhub page', async t => {
 	nock('https://www.pornhub.com')
 		.get('/video/search?search=aa&page=1')
