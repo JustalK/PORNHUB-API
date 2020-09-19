@@ -9,6 +9,7 @@ const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 **/
 const scope = nock('https://www.pornhub.com')
 	.get('/view_video.php?viewkey=ph56fc59c124c0c')
+	.times(2)
 	.replyWithFile(200, './tests/page_pornhub.html')
 	.get('/video/search?search=aa&page=1')
 	.replyWithFile(200, './tests/search_pornhub_aa_page_1.html')
@@ -22,6 +23,13 @@ const scope = nock('https://www.pornhub.com')
 	.reply(404)
 	.get('/gifs/search?search=doggy&page=1')
 	.replyWithFile(200, './tests/search_pornhub_doggy_gifs.html');
+
+test('[PAGE] Try only one selector on a pornhub page', async t => {
+	t.timeout(3000, 'make sure pornhub website has been called');
+	const video = await m.page(url, ['title']);
+
+	t.is(video.title, 'Hot Kissing Scene');
+});
 
 test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.timeout(3000, 'make sure pornhub website has been called');
