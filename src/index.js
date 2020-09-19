@@ -39,17 +39,13 @@ const multi_url_to_source = async (url, options) => {
 };
 
 const error_message = error => {
-	if (error) {
-		error.message = consts_global.errors.DEFAULT;
-	}
-
-	return {error: error.message};
+	return {error: consts_global.errors.DEFAULT};
 };
 
 module.exports = {
 	page: async (url, key) => {
 		const keys = options_to_keys(key);
-		if (key.length === 0) {
+		if (keys.length === 0) {
 			return {};
 		}
 
@@ -64,6 +60,7 @@ module.exports = {
 	search: async (search, key, options) => {
 		const keys = options_to_keys(key);
 		if (!options || !options.page) {
+			options = options ? options : {};
 			options.page = 1;
 		}
 
