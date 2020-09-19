@@ -49,7 +49,7 @@ const error_message = error => {
 module.exports = {
 	page: async (url, key) => {
 		const keys = options_to_keys(key);
-		if (key.length === 0) {
+		if (keys.length === 0) {
 			return {};
 		}
 

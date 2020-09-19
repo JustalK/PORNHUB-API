@@ -24,6 +24,13 @@ const scope = nock('https://www.pornhub.com')
 	.get('/gifs/search?search=doggy&page=1')
 	.replyWithFile(200, './tests/search_pornhub_doggy_gifs.html');
 
+test('[PAGE] Test with no keys', async t => {
+	t.timeout(3000, 'make sure pornhub website has been called');
+	const video = await m.page(url);
+
+	t.is(Object.keys(video).length, 0);
+});
+
 test('[PAGE] Try only one selector on a pornhub page', async t => {
 	t.timeout(3000, 'make sure pornhub website has been called');
 	const video = await m.page(url, ['title']);
