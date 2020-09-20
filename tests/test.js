@@ -153,7 +153,7 @@ test('[SEARCH] Aa', async t => {
 	t.is(search.results[38].premium, false);
 	nock.cleanAll();
 });
-/**
+
 test('[SEARCH] Aa pornstars with special options', async t => {
 	nock('https://www.pornhub.com')
 		.get('/pornstars/search?search=aa')
