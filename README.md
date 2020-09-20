@@ -102,13 +102,8 @@ async search(value)
 
 | name of keys | return type | description |
 | :--- | :---------- | :--- |
-| link | String | Link of the videos |
-| title | String | Title of the videos |
-| duration | Number | Duration in seconds |
-| views | Number | Number total of views |
-| premium | Boolean | True if the video is premium, false if else |
-| author | String | Author of the video |
-| ratings | Number | Positive rating of the video in percentage |
+| related_search | String | List of the related researches |
+| related_pornstars | String | List of the related pornstars |
 
 </details>
 
