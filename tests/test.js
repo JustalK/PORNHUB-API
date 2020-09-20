@@ -45,7 +45,7 @@ test('[PAGE] Try call on a pornhub page with exception', async t => {
 	t.is(video.production, undefined);
 	nock.cleanAll();
 });
-**/
+
 test('[PAGE] Try all selector on a pornhub page', async t => {
 	nock('https://www.pornhub.com')
 		.get('/view_video.php?viewkey=ph56fc59c124c0e')
@@ -105,23 +105,55 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.related_videos[0].premium, false);
 	nock.cleanAll();
 });
-/**
+**/
 test('[SEARCH] Aa', async t => {
 	nock('https://www.pornhub.com')
-		.get('/pornstars/search?search=aa&page=1&p=homemade')
-		.replyWithFile(200, './tests/search_pornhub_aa_actor_1.html')
+		.get('/video/search?search=aa&page=1')
+		.replyWithFile(200, './tests/search_pornhub_aa_page_1.html')
 		.get('/video/search?search=aa&page=2')
 		.replyWithFile(200, './tests/search_pornhub_aa_page_2.html');
-	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {page: 2});
+	const search = await m.search('Aa', ['related_search', 'related_pornstars', 'author'], {page: 2});
 
+	t.is(search.related_search.length, 7);
+	t.is(search.related_search[0], 'anal');
+	t.is(search.related_search[1], 'brazzers');
+	t.is(search.related_search[2], 'amateur allure pov');
+	t.is(search.related_search[3], 'ass');
+	t.is(search.related_search[4], 'amateurallure');
+	t.is(search.related_search[5], 'asian');
+	t.is(search.related_search[6], 'small tits');
+	t.is(search.related_pornstars.length, 3);
+	t.is(search.related_pornstars[0], 'Ashley Alban');
+	t.is(search.related_pornstars[1], 'Skylar Valentine');
+	t.is(search.related_pornstars[2], 'Chanel Grey');
+
+	t.is(search.results.length, 40);
 	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
-	t.is(search.results[0].hd, true);
+	t.is(search.results[0].views, 23200);
 	t.is(search.results[0].author, 'branleur47');
-	t.assert(search.results[0].views >= 15400);
+	t.is(search.results[0].duration, 179);
+	t.is(search.results[0].link, 'https://www.pornhub.com/https://www.pornhub.com/view_video.php?viewkey=ph5ee4dc2780048');
+	t.is(search.results[0].hd, true);
 	t.is(search.results[0].premium, false);
+
+	t.is(search.results[1].title, 'Skylar Valentine Chanel Grey AA');
+	t.is(search.results[1].views, 14300);
+	t.is(search.results[1].author, 'KingEdwards8');
+	t.is(search.results[1].duration, 5080);
+	t.is(search.results[1].link, 'https://www.pornhub.com/https://www.pornhub.com/view_video.php?viewkey=ph5e7aa39889710');
+	t.is(search.results[1].hd, true);
+	t.is(search.results[1].premium, false);
+
+	t.is(search.results[38].title, 'Thick white girl pussy for teen bbc');
+	t.is(search.results[38].views, 1000);
+	t.is(search.results[38].author, 'Deepsouthbbc');
+	t.is(search.results[38].duration, 49);
+	t.is(search.results[38].link, 'https://www.pornhub.com/https://www.pornhub.com/view_video.php?viewkey=ph5f31fa8300005');
+	t.is(search.results[38].hd, true);
+	t.is(search.results[38].premium, false);
 	nock.cleanAll();
 });
-
+/**
 test('[SEARCH] Aa pornstars with special options', async t => {
 	nock('https://www.pornhub.com')
 		.get('/pornstars/search?search=aa')
