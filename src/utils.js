@@ -97,11 +97,11 @@ module.exports = {
 		return value;
 	},
 	remove_duplicate: array => {
-		return array.filter((item, index) => array.indexOf(item) !== index);
+		return array.filter((item, index) => array.indexOf(item) === index);
 	},
 	sanitizer_array: array => {
-		array = module.exports.remove_duplicate(array);
-		return array.map(x => module.exports.sanitizer_string(x));
+		array = array.map(x => module.exports.sanitizer_string(x));
+		return module.exports.remove_duplicate(array);
 	},
 	sanitizer_date: value => {
 		return new Date(value);
