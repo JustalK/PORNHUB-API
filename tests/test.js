@@ -3,7 +3,7 @@ const nock = require('nock');
 const m = require('../src');
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
-/**
+
 test('[PAGE] Test with no keys', async t => {
 	nock('https://www.pornhub.com')
 		.get('/view_video.php?viewkey=ph56fc59c124c0c')
@@ -105,7 +105,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.related_videos[0].premium, false);
 	nock.cleanAll();
 });
-**/
+
 test('[SEARCH] Aa', async t => {
 	nock('https://www.pornhub.com')
 		.get('/video/search?search=aa&page=1')
@@ -203,4 +203,3 @@ test('[SEARCH] Try to trigger an error', async t => {
 	t.is(search.error, 'An error occured');
 	nock.cleanAll();
 });
-**/
