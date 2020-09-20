@@ -54,7 +54,7 @@ module.exports = {
 		let datas = {};
 
 		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_page.page_selectors, consts_page.page_element_attributs)};
-		datas = {...datas, download_urls: scraper_video_informations(source, keys)};
+		datas = {...datas, DOWNLOAD_URLS: scraper_video_informations(source, keys)};
 		datas = {...datas, ...scraper_comments_informations(doc, keys)};
 		datas = {...datas, ...scraper_related_videos_informations(doc, keys)};
 
