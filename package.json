@@ -13,7 +13,7 @@
 	},
 	"scripts": {
 		"test": "xo && nyc --reporter=html --reporter=text ava",
-		"test-no": "ava",
+		"test-no": "ava --verbose --timeout=20s",
 		"coverage": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"keywords": [

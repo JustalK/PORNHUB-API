@@ -4,6 +4,17 @@ const m = require('../src');
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 
+test('[PAGE] Test page model', async t => {
+	nock('https://www.pornhub.com')
+		.get('/model/teacher-of-magic')
+		.replyWithFile(200, './tests/page_model.html');
+	const video = await m.model('Teacher of Magic');
+
+	console.log(video);
+
+	t.is(Object.keys(video).length, 0);
+	nock.cleanAll();
+});
 test('[PAGE] Test with no keys', async t => {
 	nock('https://www.pornhub.com')
 		.get('/view_video.php?viewkey=ph56fc59c124c0c')
@@ -14,6 +25,7 @@ test('[PAGE] Test with no keys', async t => {
 	nock.cleanAll();
 });
 
+/**
 test('[PAGE] Try only one selector on a pornhub page with a string', async t => {
 	nock('https://www.pornhub.com')
 		.get('/view_video.php?viewkey=ph56fc59c124c0c')
@@ -137,3 +149,4 @@ test('[SEARCH] Try to trigger an error', async t => {
 	t.is(search.error, 'An error occured');
 	nock.cleanAll();
 });
+**/

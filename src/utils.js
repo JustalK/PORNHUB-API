@@ -6,6 +6,14 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 module.exports = {
+	name_to_url: name => {
+		if (name === null) {
+			return null;
+		}
+
+		const slug = name.replace(/\s/gi, '-').toLowerCase();
+		return consts_global.links.BASE_URL + consts_global.links.MODEL + slug;
+	},
 	source_to_dom: source => {
 		const dom = new JSDOM(source);
 		return dom.window.document;
