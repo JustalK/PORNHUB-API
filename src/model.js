@@ -8,7 +8,7 @@ module.exports = {
 
 		let datas = {};
 		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_model.model_selectors, consts_model.model_element_attributs)};
-		
+
 		return datas;
 	}
-}
+};
