@@ -6,8 +6,8 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 module.exports = {
-	name_to_url: name => {
-		if (name === null) {
+	name_to_url: (name = null) => {
+		if (name === null || name === '') {
 			return null;
 		}
 
