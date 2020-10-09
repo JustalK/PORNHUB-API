@@ -47,7 +47,7 @@ module.exports = {
 		DOWN_VOTES: '.votesDown',
 		PERCENT: '.percent',
 		AUTHOR: '.video-detailed-info .usernameBadgesWrapper a',
-		AUTHOR_SUBSCRIBER: '.video-detailed-info .subscribers-count',
+		AUTHOR_SUBSCRIBER: '.userInfo span:nth-child(4)',
 		PORNSTARS: '.pornstarsWrapper .pstar-list-btn',
 		CATEGORIES: '.categoriesWrapper a:not(.add-btn-small)',
 		TAGS: '.tagsWrapper a:not(.add-btn-small)',

@@ -14,7 +14,7 @@
 	"scripts": {
 		"test": "xo && nyc --reporter=html --reporter=text ava --verbose --timeout=20s",
 		"test-no": "ava tests/static/* --verbose --timeout=20s",
-		"test-p": "ava tests/static/tests_utils.js --verbose --timeout=20s",
+		"test-p": "ava tests/dynamic/tests_page.js --verbose --timeout=20s",
 		"coverage": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"keywords": [
