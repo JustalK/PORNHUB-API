@@ -13,7 +13,10 @@ test('[PAGE] Test page model', async t => {
 		'author_subscriber',
 		'pornstars',
 		'categories',
-		'tags'
+		'tags',
+		'production',
+		'duration',
+		'number_of_comment'
 	]);
 
 	console.log(page)
@@ -33,4 +36,8 @@ test('[PAGE] Test page model', async t => {
 	t.is(page.categories[0], 'Babe');
 	t.not(page.tags, undefined);
 	t.is(page.tags[0], 'kissing');
+	t.not(page.number_of_comment, undefined);
+	t.not(page.number_of_comment, 0);
+	t.is(page.production, 'professional');
+	t.is(page.duration, 266);
 });

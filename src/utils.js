@@ -62,6 +62,12 @@ module.exports = {
 					}
 
 					return [key, object.querySelector(keys[key]).innerHTML];
+				case 'dataContent':
+					if (!object.querySelector(keys[key])) {
+						return [key, consts_global.NO_DATA];
+					}
+
+					return [key, object.querySelector(keys[key]).getAttribute('content')];
 				case 'textContent':
 					if (!object.querySelector(keys[key])) {
 						return [key, consts_global.NO_DATA];
