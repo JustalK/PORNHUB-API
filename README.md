@@ -70,6 +70,7 @@ async page(url, options)
 | upload_date | Date | Date of upload |
 | download_urls |  Object | List of download link by quality |
 | comments |  Object | List of comments with additionnals informations |
+| related_videos |  Object | List of related video with additionnals informations |
 
 </details>
 

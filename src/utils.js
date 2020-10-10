@@ -6,8 +6,11 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 module.exports = {
-	name_to_url: (name = null) => {
-		if (name === null || name === '') {
+	is_parameter_missing: parameter => {
+		return parameter === null || parameter === '' || parameter === undefined;
+	},
+	name_to_url: name => {
+		if (module.exports.is_parameter_missing(name)) {
 			return null;
 		}
 
@@ -32,6 +35,10 @@ module.exports = {
 		return module.exports.scrap(doc, selectors_restricted, element_attributs);
 	},
 	convert_to_second: time => {
+		if (module.exports.is_parameter_missing(time)) {
+			return consts_global.NO_DATA;
+		}
+
 		const time_splitted = time.split(':');
 		switch (time_splitted.length) {
 			case 3:

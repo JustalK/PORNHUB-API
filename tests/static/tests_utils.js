@@ -24,3 +24,33 @@ test('[UTILS] Test name_to_url without a parameter', async t => {
 
 	t.is(url, null);
 });
+
+test('[UTILS] Test convert_to_second with good parameter minutes and seconds', async t => {
+	const timestamp = await m.convert_to_second('3:35');
+	t.is(timestamp, 215);
+});
+
+test('[UTILS] Test convert_to_second with good parameter hours, minutes and seconds', async t => {
+	const timestamp = await m.convert_to_second('2:03:35');
+	t.is(timestamp, 7415);
+});
+
+test('[UTILS] Test convert_to_second with good parameter seconds', async t => {
+	const timestamp = await m.convert_to_second('00:35');
+	t.is(timestamp, 35);
+});
+
+test('[UTILS] Test convert_to_second with bad parameter empty', async t => {
+	const timestamp = await m.convert_to_second('');
+	t.is(timestamp, 'No Data');
+});
+
+test('[UTILS] Test convert_to_second with good parameter null', async t => {
+	const timestamp = await m.convert_to_second(null);
+	t.is(timestamp, 'No Data');
+});
+
+test('[UTILS] Test convert_to_second with good parameter none', async t => {
+	const timestamp = await m.convert_to_second();
+	t.is(timestamp, 'No Data');
+});

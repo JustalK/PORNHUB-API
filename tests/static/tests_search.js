@@ -2,18 +2,6 @@ const test = require('ava');
 const nock = require('nock');
 const m = require('../../src');
 
-const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
-
-test('[PAGE] Test page model', async t => {
-	nock('https://www.pornhub.com')
-		.get('/model/teacher-of-magic')
-		.replyWithFile(200, './tests/datas/page_model.html');
-	const model = await m.model('Teacher of Magic', ['TITLE']);
-
-	t.is(model.title, 'Teacher of Magic');
-	nock.cleanAll();
-});
-
 test('[SEARCH] Aa', async t => {
 	nock('https://www.pornhub.com')
 		.get('/pornstars/search?search=aa&page=1&p=homemade')
