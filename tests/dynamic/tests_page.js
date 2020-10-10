@@ -16,7 +16,10 @@ test('[PAGE] Test page model', async t => {
 		'tags',
 		'production',
 		'duration',
-		'number_of_comment'
+		'number_of_comment',
+		'thumbnail_url',
+		'upload_date',
+		'download_urls'
 	]);
 
 	console.log(page)
@@ -40,4 +43,7 @@ test('[PAGE] Test page model', async t => {
 	t.not(page.number_of_comment, 0);
 	t.is(page.production, 'professional');
 	t.is(page.duration, 266);
+	t.not(page.thumbnail_url, undefined);
+	t.not(page.upload_date, undefined);
+	t.not(page.download_urls, undefined);
 });

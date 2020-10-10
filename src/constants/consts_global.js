@@ -35,7 +35,7 @@ module.exports = {
 		DURATION: js_type.NUMBER,
 		UPLOAD_DATE: js_type.DATE,
 		PORNSTARS: js_type.ARRAY,
-		DOWNLOAD_URLS: js_type.URL,
+		DOWNLOAD_URLS: js_type.OBJECT,
 		LINK: js_type.URL_PORNHUB,
 		THUMBNAIL_URL: js_type.URL,
 		HD: js_type.BOOLEAN,
