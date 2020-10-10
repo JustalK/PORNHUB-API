@@ -8,12 +8,8 @@ const page_model = require('./model');
 
 module.exports = {
 	page: async (url, key) => {
-		const keys = utils.options_to_keys(key);
-		if (keys.length === 0) {
-			return {};
-		}
-
 		try {
+			const keys = utils.options_to_keys(key);
 			const source = await utils.url_to_source(url);
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
@@ -22,9 +18,8 @@ module.exports = {
 		}
 	},
 	model: async (name, key) => {
-		const keys = utils.options_to_keys(key);
-
 		try {
+			const keys = utils.options_to_keys(key);
 			const url = utils.name_to_url(name);
 			const source = await utils.url_to_source(url);
 			const datas = page_model.scrap(source, keys);
@@ -34,13 +29,13 @@ module.exports = {
 		}
 	},
 	search: async (search, key, options) => {
-		const keys = utils.options_to_keys(key);
-		if (!options || !options.page) {
-			options = options ? options : {};
-			options.page = 1;
-		}
-
 		try {
+			const keys = utils.options_to_keys(key);
+			if (!options || !options.page) {
+				options = options ? options : {};
+				options.page = 1;
+			}
+
 			const source = await utils.multi_url_to_source(search, options);
 			const datas = page_search.scraping_search(source, keys, options);
 			return utils.sanitizer(datas);

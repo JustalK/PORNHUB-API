@@ -10,7 +10,7 @@ test('[PAGE] Test with no keys', async t => {
 		.replyWithFile(200, './tests/datas/page_pornhub.html');
 	const video = await m.page(url);
 
-	t.is(Object.keys(video).length, 0);
+	t.is(video.error, 'An error occured');
 	nock.cleanAll();
 });
 

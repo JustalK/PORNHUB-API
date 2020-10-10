@@ -12,12 +12,18 @@ module.exports = {
 		return parameter === null || parameter === '' || parameter === undefined;
 	},
 	options_to_keys: key => {
-		if (!key) {
-			return [];
+		if (module.exports.is_parameter_missing(key)) {
+			throw new Error('A key need to be used with this call');
 		}
 
 		const array_keys = Array.isArray(key) ? key : [key];
-		return array_keys.map(x => x.toUpperCase());
+		const array_keys_uppercase = array_keys.map(x => x.toUpperCase());
+
+		if (array_keys_uppercase === null) {
+			throw new Error('No valid key has been entered');
+		}
+
+		return array_keys_uppercase;
 	},
 	createLink: (url, page, options) => {
 		let q = '';
@@ -175,8 +181,6 @@ module.exports = {
 					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
 				case consts_global.js_type.NUMBER_KM:
 					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				// OLD: case consts_global.js_type.NUMBER_SECONDS:
-				// OLD: return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
 				case consts_global.js_type.URL_PORNHUB:
 					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
 				default:
