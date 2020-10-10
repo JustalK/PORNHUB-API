@@ -6,13 +6,6 @@ const page = require('./page');
 const page_search = require('./search');
 const page_model = require('./model');
 const promise = require('promise');
-const got = require('got');
-
-const url_to_source = async url => {
-	const safe_url = url.toLowerCase();
-	const response = await got(safe_url);
-	return response.body;
-};
 
 const createLink = (url, page, options) => {
 	let q = '';
@@ -26,7 +19,7 @@ const createLink = (url, page, options) => {
 
 const multi_url_to_source = async (url, options) => {
 	return promise.all([...new Array(options.page)].map(async (page, index) => {
-		return url_to_source(createLink(url, index, options));
+		return utils.url_to_source(createLink(url, index, options));
 	}));
 };
 
@@ -42,7 +35,7 @@ module.exports = {
 		}
 
 		try {
-			const source = await url_to_source(url);
+			const source = await utils.url_to_source(url);
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
@@ -54,7 +47,7 @@ module.exports = {
 
 		try {
 			const url = utils.name_to_url(name);
-			const source = await url_to_source(url);
+			const source = await utils.url_to_source(url);
 			const datas = page_model.scrap(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {

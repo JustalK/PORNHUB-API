@@ -4,6 +4,7 @@ const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
+const got = require('got');
 
 module.exports = {
 	is_parameter_missing: parameter => {
@@ -16,6 +17,11 @@ module.exports = {
 
 		const array_keys = Array.isArray(key) ? key : [key];
 		return array_keys.map(x => x.toUpperCase());
+	},
+	url_to_source: async url => {
+		const safe_url = url.toLowerCase();
+		const response = await got(safe_url);
+		return response.body;
 	},
 	name_to_url: name => {
 		if (module.exports.is_parameter_missing(name)) {
