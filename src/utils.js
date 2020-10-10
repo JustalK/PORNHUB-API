@@ -4,10 +4,45 @@ const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
+const got = require('got');
+const promise = require('promise');
 
 module.exports = {
 	is_parameter_missing: parameter => {
 		return parameter === null || parameter === '' || parameter === undefined;
+	},
+	options_to_keys: key => {
+		if (module.exports.is_parameter_missing(key)) {
+			throw new Error('A key need to be used with this call');
+		}
+
+		const array_keys = Array.isArray(key) ? key : [key];
+		const array_keys_uppercase = array_keys.map(x => x.toUpperCase());
+
+		if (array_keys_uppercase.length === 0) {
+			throw new Error('A key need to be used with this call');
+		}
+
+		return array_keys_uppercase;
+	},
+	createLink: (url, page, options) => {
+		let q = '';
+		if (options.production) {
+			q += '&p=' + options.production;
+		}
+
+		const search = options.search ? options.search : 'video';
+		return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
+	},
+	url_to_source: async url => {
+		const safe_url = url.toLowerCase();
+		const response = await got(safe_url);
+		return response.body;
+	},
+	multi_url_to_source: async (url, options) => {
+		return promise.all([...new Array(options.page)].map(async (page, index) => {
+			return module.exports.url_to_source(module.exports.createLink(url, index, options));
+		}));
 	},
 	name_to_url: name => {
 		if (module.exports.is_parameter_missing(name)) {
@@ -146,8 +181,6 @@ module.exports = {
 					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
 				case consts_global.js_type.NUMBER_KM:
 					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				// OLD: case consts_global.js_type.NUMBER_SECONDS:
-				// OLD: return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
 				case consts_global.js_type.URL_PORNHUB:
 					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
 				default:
@@ -156,5 +189,8 @@ module.exports = {
 		}).filter(x => x);
 
 		return Object.fromEntries(rsl);
+	},
+	error_message: error => {
+		return {error: consts_global.errors.DEFAULT};
 	}
 };
