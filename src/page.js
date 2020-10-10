@@ -57,7 +57,7 @@ module.exports = {
 		datas = {...datas, DOWNLOAD_URLS: scraper_video_informations(source, keys)};
 		datas = {...datas, ...scraper_comments_informations(doc, keys)};
 		datas = {...datas, ...scraper_related_videos_informations(doc, keys)};
-		console.log(datas);
+
 		return datas;
 	}
 };

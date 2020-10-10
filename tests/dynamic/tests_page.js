@@ -19,10 +19,10 @@ test('[PAGE] Test page model', async t => {
 		'number_of_comment',
 		'thumbnail_url',
 		'upload_date',
-		'download_urls'
+		'download_urls',
+		'comments',
+		'related_videos'
 	]);
-
-	console.log(page)
 
 	t.is(page.title, 'Hot Kissing Scene');
 	t.not(page.description, undefined);
@@ -46,4 +46,21 @@ test('[PAGE] Test page model', async t => {
 	t.not(page.thumbnail_url, undefined);
 	t.not(page.upload_date, undefined);
 	t.not(page.download_urls, undefined);
+	t.not(page.download_urls['720P'], undefined);
+	t.not(page.download_urls['480P'], undefined);
+	t.not(page.download_urls['240P'], undefined);
+	t.not(page.comments, undefined);
+	t.not(page.comments[0].avatar, undefined);
+	t.not(page.comments[0].username, undefined);
+	t.not(page.comments[0].date, undefined);
+	t.not(page.comments[0].message, undefined);
+	t.not(page.comments[0].total_vote, undefined);
+	t.not(page.related_videos, undefined);
+	t.not(page.related_videos[0].title, undefined);
+	t.not(page.related_videos[0].views, undefined);
+	t.not(page.related_videos[0].author, undefined);
+	t.not(page.related_videos[0].duration, undefined);
+	t.not(page.related_videos[0].link, undefined);
+	t.not(page.related_videos[0].hd, undefined);
+	t.not(page.related_videos[0].premium, undefined);
 });
