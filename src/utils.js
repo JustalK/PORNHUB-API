@@ -19,8 +19,8 @@ module.exports = {
 		const array_keys = Array.isArray(key) ? key : [key];
 		const array_keys_uppercase = array_keys.map(x => x.toUpperCase());
 
-		if (array_keys_uppercase === null) {
-			throw new Error('No valid key has been entered');
+		if (array_keys_uppercase.length === 0) {
+			throw new Error('A key need to be used with this call');
 		}
 
 		return array_keys_uppercase;

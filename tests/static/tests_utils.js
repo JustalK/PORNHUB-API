@@ -26,6 +26,13 @@ test('[UTILS] Test name_to_url without a parameter', async t => {
 	t.is(url, null);
 });
 
+test('[UTILS] Test options_to_keys without a parameter', async t => {
+	const error = await t.throws(() => {
+		m.options_to_keys([]);
+	});
+	t.is(error.message, 'A key need to be used with this call');
+});
+
 test('[UTILS] Test convert_to_second with good parameter minutes and seconds', async t => {
 	const timestamp = await m.convert_to_second('3:35');
 	t.is(timestamp, 215);
