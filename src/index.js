@@ -8,15 +8,6 @@ const page_model = require('./model');
 const promise = require('promise');
 const got = require('got');
 
-const options_to_keys = key => {
-	if (!key) {
-		return [];
-	}
-
-	const array_keys = Array.isArray(key) ? key : [key];
-	return array_keys.map(x => x.toUpperCase());
-};
-
 const url_to_source = async url => {
 	const safe_url = url.toLowerCase();
 	const response = await got(safe_url);
@@ -45,7 +36,7 @@ const error_message = error => {
 
 module.exports = {
 	page: async (url, key) => {
-		const keys = options_to_keys(key);
+		const keys = utils.options_to_keys(key);
 		if (keys.length === 0) {
 			return {};
 		}
@@ -59,7 +50,7 @@ module.exports = {
 		}
 	},
 	model: async (name, key) => {
-		const keys = options_to_keys(key);
+		const keys = utils.options_to_keys(key);
 
 		try {
 			const url = utils.name_to_url(name);
@@ -71,7 +62,7 @@ module.exports = {
 		}
 	},
 	search: async (search, key, options) => {
-		const keys = options_to_keys(key);
+		const keys = utils.options_to_keys(key);
 		if (!options || !options.page) {
 			options = options ? options : {};
 			options.page = 1;

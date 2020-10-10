@@ -9,6 +9,14 @@ module.exports = {
 	is_parameter_missing: parameter => {
 		return parameter === null || parameter === '' || parameter === undefined;
 	},
+	options_to_keys: key => {
+		if (!key) {
+			return [];
+		}
+
+		const array_keys = Array.isArray(key) ? key : [key];
+		return array_keys.map(x => x.toUpperCase());
+	},
 	name_to_url: name => {
 		if (module.exports.is_parameter_missing(name)) {
 			return null;
