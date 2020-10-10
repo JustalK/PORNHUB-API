@@ -6,10 +6,6 @@ const page = require('./page');
 const page_search = require('./search');
 const page_model = require('./model');
 
-const error_message = error => {
-	return {error: consts_global.errors.DEFAULT};
-};
-
 module.exports = {
 	page: async (url, key) => {
 		const keys = utils.options_to_keys(key);
@@ -22,7 +18,7 @@ module.exports = {
 			const datas = page.scraping_page(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
-			return error_message(error);
+			return utils.error_message(error);
 		}
 	},
 	model: async (name, key) => {
@@ -34,7 +30,7 @@ module.exports = {
 			const datas = page_model.scrap(source, keys);
 			return utils.sanitizer(datas);
 		} catch (error) {
-			return error_message(error);
+			return utils.error_message(error);
 		}
 	},
 	search: async (search, key, options) => {
@@ -49,7 +45,7 @@ module.exports = {
 			const datas = page_search.scraping_search(source, keys, options);
 			return utils.sanitizer(datas);
 		} catch (error) {
-			return error_message(error);
+			return utils.error_message(error);
 		}
 	}
 };

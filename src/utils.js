@@ -185,5 +185,8 @@ module.exports = {
 		}).filter(x => x);
 
 		return Object.fromEntries(rsl);
+	},
+	error_message: error => {
+		return {error: consts_global.errors.DEFAULT};
 	}
 };
