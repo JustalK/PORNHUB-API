@@ -5,6 +5,7 @@ const entities = new Entities();
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const got = require('got');
+const promise = require('promise');
 
 module.exports = {
 	is_parameter_missing: parameter => {
@@ -18,10 +19,24 @@ module.exports = {
 		const array_keys = Array.isArray(key) ? key : [key];
 		return array_keys.map(x => x.toUpperCase());
 	},
+	createLink: (url, page, options) => {
+		let q = '';
+		if (options.production) {
+			q += '&p=' + options.production;
+		}
+
+		const search = options.search ? options.search : 'video';
+		return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
+	},
 	url_to_source: async url => {
 		const safe_url = url.toLowerCase();
 		const response = await got(safe_url);
 		return response.body;
+	},
+	multi_url_to_source: async (url, options) => {
+		return promise.all([...new Array(options.page)].map(async (page, index) => {
+			return module.exports.url_to_source(module.exports.createLink(url, index, options));
+		}));
 	},
 	name_to_url: name => {
 		if (module.exports.is_parameter_missing(name)) {

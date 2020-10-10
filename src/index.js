@@ -5,23 +5,6 @@ const consts_global = require('./constants/consts_global');
 const page = require('./page');
 const page_search = require('./search');
 const page_model = require('./model');
-const promise = require('promise');
-
-const createLink = (url, page, options) => {
-	let q = '';
-	if (options.production) {
-		q += '&p=' + options.production;
-	}
-
-	const search = options.search ? options.search : 'video';
-	return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
-};
-
-const multi_url_to_source = async (url, options) => {
-	return promise.all([...new Array(options.page)].map(async (page, index) => {
-		return utils.url_to_source(createLink(url, index, options));
-	}));
-};
 
 const error_message = error => {
 	return {error: consts_global.errors.DEFAULT};
@@ -62,7 +45,7 @@ module.exports = {
 		}
 
 		try {
-			const source = await multi_url_to_source(search, options);
+			const source = await utils.multi_url_to_source(search, options);
 			const datas = page_search.scraping_search(source, keys, options);
 			return utils.sanitizer(datas);
 		} catch (error) {
