@@ -46,7 +46,7 @@ module.exports = {
 			case 2:
 				return ((+Number(time_splitted[0])) * 60) + (+Number(time_splitted[1]));
 			default:
-				return time;
+				return Number(time);
 		}
 	},
 	convert_KM_to_unit: units => {

@@ -35,9 +35,14 @@ test('[UTILS] Test convert_to_second with good parameter hours, minutes and seco
 	t.is(timestamp, 7415);
 });
 
-test('[UTILS] Test convert_to_second with good parameter seconds', async t => {
+test('[UTILS] Test convert_to_second with good parameter seconds timer', async t => {
 	const timestamp = await m.convert_to_second('00:35');
 	t.is(timestamp, 35);
+});
+
+test('[UTILS] Test convert_to_second with good parameter seconds', async t => {
+	const timestamp = await m.convert_to_second('22');
+	t.is(timestamp, 22);
 });
 
 test('[UTILS] Test convert_to_second with bad parameter empty', async t => {
