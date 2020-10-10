@@ -30,12 +30,12 @@ module.exports = {
 		AUTHOR_SUBSCRIBER: js_type.NUMBER,
 		CATEGORIES: js_type.ARRAY,
 		TAGS: js_type.ARRAY,
-		PRODUCTIONS: js_type.STRING,
+		PRODUCTION: js_type.STRING,
 		DESCRIPTION: js_type.STRING,
-		DURATION: js_type.NUMBER_SECONDS,
+		DURATION: js_type.NUMBER,
 		UPLOAD_DATE: js_type.DATE,
 		PORNSTARS: js_type.ARRAY,
-		DOWNLOAD_URLS: js_type.URL,
+		DOWNLOAD_URLS: js_type.OBJECT,
 		LINK: js_type.URL_PORNHUB,
 		THUMBNAIL_URL: js_type.URL,
 		HD: js_type.BOOLEAN,
@@ -64,7 +64,8 @@ module.exports = {
 	},
 	links: {
 		BASE_URL: 'https://www.pornhub.com/',
-		SEARCH: '/search?search='
+		SEARCH: '/search?search=',
+		MODEL: 'model/'
 	},
 	errors: {
 		DEFAULT: 'An error occured'

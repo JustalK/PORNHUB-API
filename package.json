@@ -12,8 +12,9 @@
 		"node": ">=12.0.0"
 	},
 	"scripts": {
-		"test": "xo && nyc --reporter=html --reporter=text ava",
-		"test-no": "ava",
+		"test": "xo && nyc --reporter=html --reporter=text ava --verbose --timeout=20s",
+		"test-no": "ava tests/static/* --verbose --timeout=20s",
+		"test-p": "ava tests/static/tests_utils.js --verbose --timeout=20s",
 		"coverage": "nyc report --reporter=text-lcov | coveralls"
 	},
 	"keywords": [

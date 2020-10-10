@@ -6,6 +6,17 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
 module.exports = {
+	is_parameter_missing: parameter => {
+		return parameter === null || parameter === '' || parameter === undefined;
+	},
+	name_to_url: name => {
+		if (module.exports.is_parameter_missing(name)) {
+			return null;
+		}
+
+		const slug = name.replace(/\s/gi, '-').toLowerCase();
+		return consts_global.links.BASE_URL + consts_global.links.MODEL + slug;
+	},
 	source_to_dom: source => {
 		const dom = new JSDOM(source);
 		return dom.window.document;
@@ -24,6 +35,10 @@ module.exports = {
 		return module.exports.scrap(doc, selectors_restricted, element_attributs);
 	},
 	convert_to_second: time => {
+		if (module.exports.is_parameter_missing(time)) {
+			return consts_global.NO_DATA;
+		}
+
 		const time_splitted = time.split(':');
 		switch (time_splitted.length) {
 			case 3:
@@ -31,7 +46,7 @@ module.exports = {
 			case 2:
 				return ((+Number(time_splitted[0])) * 60) + (+Number(time_splitted[1]));
 			default:
-				return time;
+				return Number(time);
 		}
 	},
 	convert_KM_to_unit: units => {
@@ -54,6 +69,12 @@ module.exports = {
 					}
 
 					return [key, object.querySelector(keys[key]).innerHTML];
+				case 'dataContent':
+					if (!object.querySelector(keys[key])) {
+						return [key, consts_global.NO_DATA];
+					}
+
+					return [key, object.querySelector(keys[key]).getAttribute('content')];
 				case 'textContent':
 					if (!object.querySelector(keys[key])) {
 						return [key, consts_global.NO_DATA];
@@ -125,8 +146,8 @@ module.exports = {
 					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
 				case consts_global.js_type.NUMBER_KM:
 					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				case consts_global.js_type.NUMBER_SECONDS:
-					return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
+				// OLD: case consts_global.js_type.NUMBER_SECONDS:
+				// OLD: return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
 				case consts_global.js_type.URL_PORNHUB:
 					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
 				default:
