@@ -142,8 +142,8 @@ module.exports = {
 					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
 				case consts_global.js_type.NUMBER_KM:
 					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				case consts_global.js_type.NUMBER_SECONDS:
-					return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
+				// OLD: case consts_global.js_type.NUMBER_SECONDS:
+				// OLD: return [x.toLowerCase(), module.exports.convert_to_second(datas[x])];
 				case consts_global.js_type.URL_PORNHUB:
 					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
 				default:
