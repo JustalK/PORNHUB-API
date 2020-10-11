@@ -1,3 +1,5 @@
+![Alt text](/imgs/pornhub-api.jpg?raw=true "pornhub api")
+
 # PORNHUB API
 
 ![Last version npm](https://img.shields.io/npm/v/@justalk/pornhub-api.svg?style=flat-square)
@@ -21,6 +23,7 @@ Scraping the title, pornstars and the download links of a page
 
 ```js
 const pornhub = require('@justalk/pornhub-api');
+const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 ```
 
