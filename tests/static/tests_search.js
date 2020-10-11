@@ -20,9 +20,9 @@ test('[SEARCH] Aa', async t => {
 
 test('[SEARCH] Aa pornstars with special options', async t => {
 	nock('https://www.pornhub.com')
-		.get('/pornstars/search?search=aa')
+		.get('/pornstars/search?search=ac&page=1&p=homemade')
 		.replyWithFile(200, './tests/datas/search_pornhub_aa_actor_1.html');
-	const search = await m.search('Aa', ['ACTOR', 'RANK', 'VIDEO_NUMBER', 'VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
+	const search = await m.search('Ac', ['ACTOR', 'RANK', 'VIDEO_NUMBER', 'VIEW_NUMBER'], {production: 'homemade', search: 'pornstars'});
 
 	t.is(search.results[0].actor, 'Aaron Vick');
 	t.assert(search.results[0].rank > 0);
