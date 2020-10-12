@@ -10,7 +10,8 @@ test('[PAGE] Test page model', async t => {
 		'TITLE',
 		'DESCRIPTION',
 		'RANK_MODEL',
-		'RANK_WEEK_MODEL'
+		'RANK_WEEK_MODEL',
+		'RANK_MONTH_MODEL'
 	]);
 
 	console.log(model);
@@ -19,6 +20,7 @@ test('[PAGE] Test page model', async t => {
 	t.not(model.description, undefined);
 	t.is(model.rank_model, 53);
 	t.is(model.rank_week_model, 41);
+	t.is(model.rank_month_model, 53);
 	nock.cleanAll();
 });
 

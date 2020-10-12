@@ -35,6 +35,7 @@ module.exports = {
 		DURATION: js_type.NUMBER,
 		RANK_MODEL: js_type.NUMBER,
 		RANK_WEEK_MODEL: js_type.NUMBER,
+		RANK_MONTH_MODEL: js_type.NUMBER,
 		UPLOAD_DATE: js_type.DATE,
 		PORNSTARS: js_type.ARRAY,
 		DOWNLOAD_URLS: js_type.OBJECT,
