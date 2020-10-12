@@ -8,13 +8,17 @@ test('[PAGE] Test page model', async t => {
 		.replyWithFile(200, './tests/datas/page_model.html');
 	const model = await m.model('Teacher of Magic', [
 		'TITLE',
-		'DESCRIPTION'
+		'DESCRIPTION',
+		'RANK_MODEL',
+		'RANK_WEEK_MODEL'
 	]);
 
 	console.log(model);
 
 	t.is(model.title, 'Teacher of Magic');
 	t.not(model.description, undefined);
+	t.is(model.rank_model, 53);
+	t.is(model.rank_week_model, 41);
 	nock.cleanAll();
 });
 

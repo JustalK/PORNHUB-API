@@ -33,6 +33,8 @@ module.exports = {
 		PRODUCTION: js_type.STRING,
 		DESCRIPTION: js_type.STRING,
 		DURATION: js_type.NUMBER,
+		RANK_MODEL: js_type.NUMBER,
+		RANK_WEEK_MODEL: js_type.NUMBER,
 		UPLOAD_DATE: js_type.DATE,
 		PORNSTARS: js_type.ARRAY,
 		DOWNLOAD_URLS: js_type.OBJECT,
