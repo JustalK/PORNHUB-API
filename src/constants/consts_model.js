@@ -4,7 +4,8 @@ module.exports = {
 		RANK_MODEL: '.rankingInfo div:nth-child(1) .big',
 		RANK_WEEK_MODEL: '.rankingInfo div:nth-child(2) .big',
 		RANK_MONTH_MODEL: '.rankingInfo div:nth-child(3) .big',
-		RANK_LAST_MODEL: '.rankingInfo div:nth-child(4) .big',
+		RANK_LAST_MONTH_MODEL: '.rankingInfo div:nth-child(4) .big',
+		RANK_YEAR_MODEL: '.rankingInfo div:nth-child(5) .big',
 		DESCRIPTION: '.model-details .aboutMeSection div:nth-child(2)'
 	},
 	model_element_attributs: {
@@ -13,6 +14,7 @@ module.exports = {
 		RANK_MODEL: 'textContent',
 		RANK_WEEK_MODEL: 'textContent',
 		RANK_MONTH_MODEL: 'textContent',
-		RANK_LAST_MODEL: 'textContent'
+		RANK_LAST_MONTH_MODEL: 'textContent',
+		RANK_YEAR_MODEL: 'textContent'
 	}
 };
