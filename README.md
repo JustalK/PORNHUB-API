@@ -1,7 +1,5 @@
 ![Alt text](/imgs/pornhub-api.jpg?raw=true "pornhub api")
 
-# PORNHUB API
-
 ![Last version npm](https://img.shields.io/npm/v/@justalk/pornhub-api.svg?style=flat-square)
 ![Last version](https://img.shields.io/github/v/tag/justalk/pornhub-api.svg?style=flat-square)
 [![Node version](https://img.shields.io/node/v/@justalk/pornhub-api.svg?style=flat-square)](https://www.npmjs.com/package/@justalk/pornhub-api)
