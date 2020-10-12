@@ -1,7 +1,5 @@
 ![Alt text](/imgs/pornhub-api.jpg?raw=true "pornhub api")
 
-# PORNHUB API
-
 ![Last version npm](https://img.shields.io/npm/v/@justalk/pornhub-api.svg?style=flat-square)
 ![Last version](https://img.shields.io/github/v/tag/justalk/pornhub-api.svg?style=flat-square)
 [![Node version](https://img.shields.io/node/v/@justalk/pornhub-api.svg?style=flat-square)](https://www.npmjs.com/package/@justalk/pornhub-api)
@@ -13,7 +11,7 @@
 
 ![Star the project](https://img.shields.io/github/stars/justalk/pornhub-api?style=social)
 
-Powerful scraper for PornHub. Unlike others scrapers, it's working in 2020 August with their new website. It allows you to get any informations out of any page.
+Powerful updated scraper for PornHub. Unlike others scrapers, it's working in 2020 October with their new website. It allows you to get any informations out of any page.
 
 `npm install @justalk/pornhub-api`
 
@@ -29,13 +27,13 @@ const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 
 ### Features
 
-- **Scraper:** Parse any informations from a video page on PornHub : Related video. comments, view, vote up and so many others...
+- **Scraper:** Parse any page of pornhub : search page, model, video page...
 
 - **Download links:** Get the download links in all the quality without registering
 
-- **Search pagination:** Possibility to scrap multiple page search
+- **Search pagination:** This api can scrap multiple page at the same time
 
-- **Search by different criteria:** Possibility to scrap search by actor or title
+- **Search by different criteria:** Possibility to scrap different part of the site and to take advantage of the filter
 
 - **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
 
@@ -80,14 +78,14 @@ async page(url, options)
 ### Search page pornhub
 
 ```js
-async search(value)
+async search(value, keys, options)
 ```
 
 | name | type | description |
 | :--- | :---------- | :--- |
 | value | String | value search in pornhub |
 | keys | Array or String if there is only one option | List of the keys |
-| options | Array | List of the optional options |
+| options | Array | [OPTIONNAL] List of the optional options |
 
 <details>
   <summary><b>Lists of options available for a search</b> (click to show)</summary>
@@ -132,6 +130,32 @@ async search(value)
 | thumbnail_url | String | Url of the thumbnail |
 | link_mp4 | String | Url of the mp4 version |
 | link_webm | String | Url of the webm version |
+
+</details>
+
+### Model page pornhub
+
+```js
+async model(name, keys)
+```
+
+| name | type | description |
+| :--- | :---------- | :--- |
+| name | String | name of the model in pornhub |
+| keys | Array or String if there is only one option | List of the keys |
+
+<details>
+  <summary><b>Lists of keys available for a model page</b> (click to show)</summary>
+
+| name of keys | return type | description |
+| :--- | :---------- | :--- |
+| title | String | The name of the model |
+| description | String | The description of the model |
+| rank_model | String | The actual rank of the model |
+| rank_week_model | String | The rank of the model for the week |
+| rank_month_model | String | The rank of the model for this month |
+| rank_last_month_model | String | The rank of the model for last month |
+| rank_year_model | String | The rank of the model for this year |
 
 </details>
 
