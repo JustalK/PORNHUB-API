@@ -1,8 +1,10 @@
 module.exports = {
 	model_selectors: {
-		TITLE: 'h1'
+		TITLE: 'h1',
+		DESCRIPTION: '.model-details .aboutMeSection div:nth-child(2)'
 	},
 	model_element_attributs: {
-		TITLE: 'innerHTML'
+		TITLE: 'innerHTML',
+		DESCRIPTION: 'innerHTML'
 	}
 };

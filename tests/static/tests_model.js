@@ -6,9 +6,15 @@ test('[PAGE] Test page model', async t => {
 	nock('https://www.pornhub.com')
 		.get('/model/teacher-of-magic')
 		.replyWithFile(200, './tests/datas/page_model.html');
-	const model = await m.model('Teacher of Magic', ['TITLE']);
+	const model = await m.model('Teacher of Magic', [
+		'TITLE',
+		'DESCRIPTION'
+	]);
+
+	console.log(model);
 
 	t.is(model.title, 'Teacher of Magic');
+	t.not(model.description, undefined);
 	nock.cleanAll();
 });
 
