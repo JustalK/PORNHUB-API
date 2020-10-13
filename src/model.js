@@ -10,5 +10,12 @@ module.exports = {
 		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_model.model_selectors, consts_model.model_element_attributs)};
 
 		return datas;
+	},
+	filter: (datas, keys) => {
+		if(datas.VIDEO_NUMBER) {
+			const match = datas.VIDEO_NUMBER.match(/(?<=of )\d+/gi,'');
+			datas.VIDEO_NUMBER = match[0];
+		}
+		return datas;
 	}
 };

@@ -58,7 +58,7 @@ module.exports = {
 		RELATED_VIDEOS: js_type.OBJECT,
 		RESULTS: js_type.OBJECT,
 		ACTOR: js_type.STRING,
-		VIDEO_NUMBER: js_type.STRING,
+		VIDEO_NUMBER: js_type.NUMBER,
 		VIEW_NUMBER: js_type.STRING,
 		RANK: js_type.NUMBER,
 		LINK_MP4: js_type.URL,
