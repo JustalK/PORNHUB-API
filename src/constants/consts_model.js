@@ -6,7 +6,8 @@ module.exports = {
 		RANK_MONTH_MODEL: '.rankingInfo div:nth-child(3) .big',
 		RANK_LAST_MONTH_MODEL: '.rankingInfo div:nth-child(4) .big',
 		RANK_YEAR_MODEL: '.rankingInfo div:nth-child(5) .big',
-		DESCRIPTION: '.model-details .aboutMeSection div:nth-child(2)'
+		DESCRIPTION: '.model-details .aboutMeSection div:nth-child(2)',
+		VIDEO_NUMBER: '.pornstarVideosCounter'
 	},
 	model_element_attributs: {
 		TITLE: 'innerHTML',
@@ -15,6 +16,7 @@ module.exports = {
 		RANK_WEEK_MODEL: 'textContent',
 		RANK_MONTH_MODEL: 'textContent',
 		RANK_LAST_MONTH_MODEL: 'textContent',
-		RANK_YEAR_MODEL: 'textContent'
+		RANK_YEAR_MODEL: 'textContent',
+		VIDEO_NUMBER: 'textContent'
 	}
 };

@@ -13,7 +13,8 @@ test('[PAGE] Test page model', async t => {
 		'RANK_WEEK_MODEL',
 		'RANK_MONTH_MODEL',
 		'RANK_LAST_MONTH_MODEL',
-		'RANK_YEAR_MODEL'
+		'RANK_YEAR_MODEL',
+		'VIDEO_NUMBER'
 	]);
 
 	console.log(model);
@@ -25,6 +26,7 @@ test('[PAGE] Test page model', async t => {
 	t.is(model.rank_month_model, 53);
 	t.is(model.rank_last_month_model, 52);
 	t.is(model.rank_year_model, 44);
+	t.is(model.video_number, 242);
 	nock.cleanAll();
 });
 
