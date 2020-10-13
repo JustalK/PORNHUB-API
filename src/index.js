@@ -23,7 +23,7 @@ module.exports = {
 			const url = utils.name_to_url(name);
 			const source = await utils.url_to_source(url);
 			const datas = page_model.scrap(source, keys);
-			const datas_filtered = page_model.filter(datas, keys);
+			const datas_filtered = page_model.filter_value(datas, keys);
 			return utils.sanitizer(datas_filtered);
 		} catch (error) {
 			return utils.error_message(error);
