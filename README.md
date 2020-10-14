@@ -13,7 +13,13 @@
 
 Powerful updated scraper for PornHub. Unlike others scrapers, it's working in 2020 October with their new website. It allows you to get any informations out of any page.
 
+### Installation
+
 `npm install @justalk/pornhub-api`
+
+or if you use yarn
+
+`yarn add @justalk/pornhub-api --ignore-engines`
 
 ### Short Examples
 
