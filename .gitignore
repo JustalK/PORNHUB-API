@@ -1,0 +1,17 @@
+# Logs
+*.log
+
+# eclipse lock configuration yarn and node
+*.lock
+package-lock.json
+
+# compile documentation
+coverage
+
+# Dependency directory
+node_modules
+
+.editorconfig
+
+# Optional npm cache directory
+.npm
