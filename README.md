@@ -13,7 +13,13 @@
 
 Powerful updated scraper for PornHub. Unlike others scrapers, it's working in 2020 October with their new website. It allows you to get any informations out of any page.
 
+### Installation
+
 `npm install @justalk/pornhub-api`
+
+or if you use yarn
+
+`yarn add @justalk/pornhub-api --ignore-engines`
 
 ### Short Examples
 
@@ -305,10 +311,6 @@ If you find an issue or just want to add your stone to the castle :
 
 ### Note
 
-<details>
-  <summary><b>Why dont you use ava 3 ?</b> (click to show)</summary>
-The version of ava is limited to 2.4.0 because the ESM is not yet compatible on ava 3. I am waiting to upgrade.
-</details>
 <details>
   <summary><b>Why does it not work in my country ?</b> (click to show)</summary>
 If pornhub is blocked in your country, the API will obviously not work. You will need a proxy.
