@@ -155,7 +155,7 @@ module.exports = {
 	sanitizer_key: value => {
 		value = module.exports.sanitizer_string(value);
 		value = value.replace(/\s/g, '_');
-		value = value.replace(/\:/g, '');
+		value = value.replace(/:/g, '');
 		value = value.toUpperCase();
 		return value;
 	},
@@ -198,7 +198,6 @@ module.exports = {
 		return Object.fromEntries(rsl);
 	},
 	error_message: error => {
-		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };

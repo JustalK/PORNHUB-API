@@ -30,8 +30,6 @@ test('[PAGE] Test page model', async t => {
 		'JOINED'
 	]);
 
-	console.log(model);
-
 	t.is(model.title, 'Teacher of Magic');
 	t.not(model.description, undefined);
 	t.is(model.rank_model, 53);
@@ -45,7 +43,7 @@ test('[PAGE] Test page model', async t => {
 	t.is(model.gender, 'Female');
 	t.not(model.birthday, undefined);
 	t.is(model.age, 40);
-	t.is(model.height, `5' 7" (170cm)`);
+	t.is(model.height, '5\' 7" (170cm)');
 	t.is(model.weight, '156lbs. (71kg)');
 	t.is(model.ethnicity, 'Other');
 	t.is(model.video_views, 385264877);
