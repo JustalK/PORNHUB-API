@@ -43,7 +43,7 @@ test('[PAGE] Test page model', async t => {
 	t.is(model.relationship_status, 'Open');
 	t.is(model.interested_in, 'Guys and Girls');
 	t.is(model.gender, 'Female');
-	t.is(model.birthday, 'Jan 26, 1980');
+	t.not(model.birthday, undefined);
 	t.is(model.age, 40);
 	t.is(model.height, `5' 7" (170cm)`);
 	t.is(model.weight, '156lbs. (71kg)');

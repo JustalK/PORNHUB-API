@@ -66,7 +66,7 @@ module.exports = {
 		RELATIONSHIP_STATUS: js_type.STRING,
 		INTERESTED_IN: js_type.STRING,
 		GENDER: js_type.STRING,
-		BIRTHDAY: js_type.STRING,
+		BIRTHDAY: js_type.DATE,
 		AGE: js_type.NUMBER,
 		HEIGHT: js_type.STRING,
 		WEIGHT: js_type.STRING,
