@@ -15,7 +15,19 @@ test('[PAGE] Test page model', async t => {
 		'RANK_LAST_MONTH_MODEL',
 		'RANK_YEAR_MODEL',
 		'VIDEO_NUMBER',
-		'RELATIONSHIP_STATUS'
+		'RELATIONSHIP_STATUS',
+		'RELATIONSHIP_STATUS',
+		'INTERESTED_IN',
+		'GENDER',
+		'BIRTHDAY',
+		'AGE',
+		'HEIGHT',
+		'WEIGHT',
+		'ETHNICITY',
+		'VIDEO_VIEWS',
+		'PROFILE_VIEWS',
+		'VIDEOS_WATCHED',
+		'JOINED'
 	]);
 
 	console.log(model);
@@ -28,6 +40,18 @@ test('[PAGE] Test page model', async t => {
 	t.is(model.rank_last_month_model, 52);
 	t.is(model.rank_year_model, 44);
 	t.is(model.video_number, 242);
+	t.is(model.relationship_status, 'Open');
+	t.is(model.interested_in, 'Guys and Girls');
+	t.is(model.gender, 'Female');
+	t.is(model.birthday, 'Jan 26, 1980');
+	t.is(model.age, 40);
+	t.is(model.height, `5' 7" (170cm)`);
+	t.is(model.weight, '156lbs. (71kg)');
+	t.is(model.ethnicity, 'Other');
+	t.is(model.video_views, 385264877);
+	t.is(model.profile_views, 19136136);
+	t.is(model.videos_watched, 3647);
+	t.is(model.joined, '4 years ago');
 	nock.cleanAll();
 });
 
