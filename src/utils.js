@@ -152,6 +152,13 @@ module.exports = {
 		value = entities.decode(value);
 		return value;
 	},
+	sanitizer_key: value => {
+		value = module.exports.sanitizer_string(value);
+		value = value.replace(/\s/g, '_');
+		value = value.replace(/\:/g, '');
+		value = value.toUpperCase();
+		return value;
+	},
 	remove_duplicate: array => {
 		return array.filter((item, index) => array.indexOf(item) === index);
 	},
@@ -191,6 +198,7 @@ module.exports = {
 		return Object.fromEntries(rsl);
 	},
 	error_message: error => {
+		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };
