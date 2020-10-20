@@ -62,7 +62,19 @@ module.exports = {
 		VIEW_NUMBER: js_type.STRING,
 		RANK: js_type.NUMBER,
 		LINK_MP4: js_type.URL,
-		LINK_WEBM: js_type.URL
+		LINK_WEBM: js_type.URL,
+		RELATIONSHIP_STATUS: js_type.STRING,
+		INTERESTED_IN: js_type.STRING,
+		GENDER: js_type.STRING,
+		BIRTHDAY: js_type.STRING,
+		AGE: js_type.NUMBER,
+		HEIGHT: js_type.STRING,
+		WEIGHT: js_type.STRING,
+		ETHNICITY: js_type.STRING,
+		VIDEO_VIEWS: js_type.NUMBER,
+		PROFILE_VIEWS: js_type.NUMBER,
+		VIDEOS_WATCHED: js_type.NUMBER,
+		JOINED: js_type.STRING
 	},
 	queries: {
 		PAGE_: 'PAGE'

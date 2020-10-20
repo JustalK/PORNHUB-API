@@ -1,4 +1,5 @@
 module.exports = {
+	PROFIL_INFOS_LIST: '.infoPiece',
 	model_selectors: {
 		TITLE: 'h1',
 		RANK_MODEL: '.rankingInfo div:nth-child(1) .big',

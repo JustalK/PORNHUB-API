@@ -14,7 +14,8 @@ test('[PAGE] Test page model', async t => {
 		'RANK_MONTH_MODEL',
 		'RANK_LAST_MONTH_MODEL',
 		'RANK_YEAR_MODEL',
-		'VIDEO_NUMBER'
+		'VIDEO_NUMBER',
+		'RELATIONSHIP_STATUS'
 	]);
 
 	console.log(model);

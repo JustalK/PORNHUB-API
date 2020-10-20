@@ -3,10 +3,10 @@ const consts_global = require('./constants/consts_global');
 const consts_model = require('./constants/consts_model');
 
 module.exports = {
-	scrap_unfixed_content_informations: (doc, keys, selectors, attributs) => {
-		const elements = [...doc.querySelectorAll('.infoPiece')];
+	extract_informations_model: (doc, selector_elements) => {
+		const elements = [...doc.querySelectorAll(selector_elements)];
 
-		const keys_values = elements.map(element => {
+		return Object.fromEntries(elements.map(element => {
 			const element_key = element.querySelector('span:nth-child(1)');
 			const element_key_text = utils.sanitizer_key(element_key.innerHTML);
 
@@ -14,9 +14,12 @@ module.exports = {
 			const element_value_text = utils.sanitizer_string(element_value.innerHTML);
 
 			return [element_key_text, element_value_text];
-		})
-
-		console.log(keys_values);
+		}));
+	},
+	scrap_unfixed_content_informations: (doc, keys, selectors, attributs) => {
+		const informations = module.exports.extract_informations_model(doc, consts_model.PROFIL_INFOS_LIST);
+		const informations_restricted = utils.selectors_restriction(keys, informations);
+		return informations_restricted;
 	},
 	scrap: (source, keys) => {
 		const doc = utils.source_to_dom(source);
