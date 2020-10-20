@@ -152,6 +152,13 @@ module.exports = {
 		value = entities.decode(value);
 		return value;
 	},
+	sanitizer_key: value => {
+		value = module.exports.sanitizer_string(value);
+		value = value.replace(/\s/g, '_');
+		value = value.replace(/:/g, '');
+		value = value.toUpperCase();
+		return value;
+	},
 	remove_duplicate: array => {
 		return array.filter((item, index) => array.indexOf(item) === index);
 	},

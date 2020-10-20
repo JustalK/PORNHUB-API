@@ -162,6 +162,18 @@ async model(name, keys)
 | rank_month_model | String | The rank of the model for this month |
 | rank_last_month_model | String | The rank of the model for last month |
 | rank_year_model | String | The rank of the model for this year |
+| relationship_status | String | The status of the model (Work only if the model has filled up this field) |
+| interested_in | String | The interest of the model (Work only if the model has filled up this field) |
+| gender | String | The gender of the model (Work only if the model has filled up this field) |
+| birthday | Date | The birthday of the model (Work only if the model has filled up this field) |
+| age | Number | The age of the model (Work only if the model has filled up this field) |
+| height | String | The height of the model (Work only if the model has filled up this field) |
+| weight | String | The weight of the model (Work only if the model has filled up this field) |
+| ethnicity | String | The ethnicity of the model (Work only if the model has filled up this field) |
+| video_views | Number | The number of video view of the model (Work only if the model has filled up this field) |
+| profile_views | Number | The number of profil view of the model (Work only if the model has filled up this field) |
+| videos_watched | Number | The number of video watched by the model (Work only if the model has filled up this field) |
+| joined | String | The period passed after the model joined Pornhub  |
 
 </details>
 
