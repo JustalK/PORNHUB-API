@@ -64,3 +64,9 @@ test('[PAGE] Test page model', async t => {
 	t.not(page.related_videos[0].hd, undefined);
 	t.not(page.related_videos[0].premium, undefined);
 });
+
+test('[PAGE] Test search', async t => {
+	const search = await m.search('Aa', ['title']);
+
+	t.not(search.results[0].title, undefined);
+});
