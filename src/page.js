@@ -25,11 +25,11 @@ module.exports = {
 				}
 			}
 
-			rsl = urls.map(x => [x.match(/(?<=_)\d*P(?=_)/g)[0], x]);
+			rsl = urls.map(x => [x.match(/(?<=_|\/)\d*P(?=_)/g)[0], x]);
 			rsl = Object.fromEntries(rsl);
 		}
 
-		return rsl;
+		return Object.keys(rsl).length > 0 ? rsl : null;
 	},
 	scraper_comments_informations: (doc, keys) => {
 		if (keys.includes(consts_global.keys.COMMENTS)) {

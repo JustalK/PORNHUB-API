@@ -1,6 +1,14 @@
 const test = require('ava');
 const m = require('../../src');
 
+test('[PAGE] Test page model with only a title', async t => {
+	const page = await m.page('https://pornhub.com/view_video.php?viewkey=ph5cacd6fc1e731', [
+		'title'
+	]);
+
+	t.is(page.title, 'CUM4K MULTIPLE CUM FILLED Creampies Compilation');
+});
+
 test('[PAGE] Test page model', async t => {
 	const page = await m.page('https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c', [
 		'title',
