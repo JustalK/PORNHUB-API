@@ -35,9 +35,13 @@ module.exports = {
 		return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
 	},
 	url_to_source: async url => {
+		url = module.exports.http_to_https(url);
 		const safe_url = url.toLowerCase();
 		const response = await got(safe_url);
 		return response.body;
+	},
+	http_to_https: url => {
+		return url.replace(/^http:/gi, 'https:');
 	},
 	multi_url_to_source: async (url, options) => {
 		return promise.all([...new Array(options.page)].map(async (page, index) => {

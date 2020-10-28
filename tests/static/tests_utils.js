@@ -89,3 +89,9 @@ test('[UTILS] Test scrap  dataContent with bad parameter - empty', async t => {
 
 	t.is(scrap.test, 'No Data');
 });
+
+test('[UTILS] Test http_to_https with good parameter', t => {
+	const url = m.http_to_https('http://pornhub.com/view_video.php?viewkey=ph5cacd6fc1e731');
+
+	t.is(url, 'https://pornhub.com/view_video.php?viewkey=ph5cacd6fc1e731');
+});

@@ -1,6 +1,6 @@
 {
 	"name": "@justalk/pornhub-api",
-	"version": "3.1.0",
+	"version": "3.2.0",
 	"description": "Very complete scrapper for the famous porn website pornhub",
 	"license": "MIT",
 	"repository": {
@@ -17,7 +17,7 @@
 		"test-s": "ava tests/static/*.js --verbose --timeout=20s",
 		"test-p": "ava tests/dynamic/tests_page.js --verbose --timeout=20s",
 		"coverage": "nyc report --reporter=text-lcov | coveralls",
-        "postinstall": "node src/packages/postinstall.js"
+		"postinstall": "node src/packages/postinstall.js"
 	},
 	"keywords": [
 		"porn",
