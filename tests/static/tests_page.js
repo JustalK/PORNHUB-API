@@ -46,9 +46,9 @@ test('[PAGE] Try call on a pornhub page with exception', async t => {
 		'production'
 	]);
 
-	t.is(video.author, undefined);
-	t.is(video.pornstars, undefined);
-	t.is(video.production, undefined);
+	t.is(video.author, 'No Data');
+	t.is(video.pornstars, 'No Data');
+	t.is(video.production, 'No Data');
 	nock.cleanAll();
 });
 

@@ -78,3 +78,14 @@ test('[PAGE] Test search', async t => {
 
 	t.not(search.results[0].title, undefined);
 });
+
+test('[SEARCH&PAGE] Chaining the search and page', async t => {
+	const result = await m.search('japan', ['title', 'link', 'premium', 'hd']);
+	const url = result.results[1].link;
+	const page = await m.page(url, ['title', 'pornstars', 'download_urls']);
+
+	t.not(page.title, undefined);
+	t.not(page.pornstars, undefined);
+	t.not(page.download_urls, undefined);
+	t.is(page.upload_date, undefined);
+});

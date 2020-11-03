@@ -80,8 +80,8 @@ module.exports = {
 		PAGE_: 'PAGE'
 	},
 	links: {
-		BASE_URL: 'https://www.pornhub.com/',
-		SEARCH: '/search?search=',
+		BASE_URL: 'https://www.pornhub.com',
+		SEARCH: 'search?search=',
 		MODEL: 'model/'
 	},
 	errors: {
