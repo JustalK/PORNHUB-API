@@ -32,7 +32,7 @@ module.exports = {
 		}
 
 		const search = options.search ? options.search : 'video';
-		return consts_global.links.BASE_URL + search + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
+		return consts_global.links.BASE_URL + '/' + search + '/' + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
 	},
 	url_to_source: async url => {
 		url = module.exports.http_to_https(url);
@@ -54,7 +54,7 @@ module.exports = {
 		}
 
 		const slug = name.replace(/\s/gi, '-').toLowerCase();
-		return consts_global.links.BASE_URL + consts_global.links.MODEL + slug;
+		return consts_global.links.BASE_URL + '/' + consts_global.links.MODEL + slug;
 	},
 	source_to_dom: source => {
 		const dom = new JSDOM(source);
@@ -167,8 +167,12 @@ module.exports = {
 		return array.filter((item, index) => array.indexOf(item) === index);
 	},
 	sanitizer_array: array => {
-		array = array.map(x => module.exports.sanitizer_string(x));
-		return module.exports.remove_duplicate(array);
+		if (Array.isArray(array)) {
+			array = array.map(x => module.exports.sanitizer_string(x));
+			return module.exports.remove_duplicate(array);
+		}
+
+		return module.exports.sanitizer_string(array);
 	},
 	sanitizer_date: value => {
 		return new Date(value);
