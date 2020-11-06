@@ -31,7 +31,7 @@ module.exports = {
 		return datas;
 	},
 	filter_value: (datas, keys) => {
-		const match = datas.VIDEO_NUMBER.match(/(?<=of )\d+/gi, '');
+		const match = datas.VIDEO_NUMBER === null || datas.VIDEO_NUMBER === undefined ? null : datas.VIDEO_NUMBER.match(/(?<=of )\d+/gi, '');
 		datas.VIDEO_NUMBER = match[0];
 
 		return datas;
