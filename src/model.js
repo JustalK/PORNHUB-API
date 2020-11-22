@@ -31,8 +31,10 @@ module.exports = {
 		return datas;
 	},
 	filter_value: (datas, keys) => {
-		const match = datas.VIDEO_NUMBER?.match(/(?<=of )\d+/gi, '');
-		datas.VIDEO_NUMBER = match[0];
+		if (datas.VIDEO_NUMBER) {
+			const match = datas.VIDEO_NUMBER.match(/(?<=of )\d+/gi, '');
+			datas.VIDEO_NUMBER = match[0];
+		}
 
 		return datas;
 	}
