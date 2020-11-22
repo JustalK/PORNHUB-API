@@ -100,6 +100,8 @@ async search(value, keys, options)
 | :--- | :---------- | :--- |
 | page | Number | Number of page to scraper |
 | production | String | Type of production targeted : homemade or professional |
+| min_duration | Number | Minimum number of minute of the video searched : 10, 20, 30  |
+| max_duration | Number | Maximum number of minute of the video searched : 10, 20, 30 |
 | search | String | Type of search targeted : `video` or `pornstars` or `gifs` |
 
 </details>

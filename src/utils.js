@@ -30,6 +30,12 @@ module.exports = {
 		if (options.production) {
 			q += '&p=' + options.production;
 		}
+		if (options.max_duration) {
+			q += '&max_duration=' + options.max_duration;
+		}
+		if (options.min_duration) {
+			q += '&min_duration=' + options.min_duration;
+		}
 
 		const search = options.search ? options.search : 'video';
 		return consts_global.links.BASE_URL + '/' + search + '/' + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
@@ -206,6 +212,7 @@ module.exports = {
 		return Object.fromEntries(rsl);
 	},
 	error_message: error => {
+		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };
