@@ -89,3 +89,11 @@ test('[SEARCH&PAGE] Chaining the search and page', async t => {
 	t.not(page.download_urls, undefined);
 	t.is(page.upload_date, undefined);
 });
+
+test('[PAGE] Test a specific page', async t => {
+	const page = await m.page('https://cn.pornhub.com/view_video.php?viewkey=ph5c41444a7bed7', ['title', 'duration', 'download_urls']);
+
+	t.not(page.title, undefined);
+	t.not(page.duration, undefined);
+	t.not(page.download_urls, undefined);
+});
