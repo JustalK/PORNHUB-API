@@ -2,10 +2,25 @@ const test = require('ava');
 const nock = require('nock');
 const m = require('../../src');
 
+test('[SEARCH] Aa on 1 page', async t => {
+	nock('https://www.pornhub.com')
+		.get('/pornstars/search?search=aa&page=1&p=homemade')
+		.replyWithFile(200, './tests/datas/search_pornhub_aa_page_1.html');
+	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS']);
+
+	t.is(search.results[0].title, 'AA Big Fake Tits Shower');
+	t.is(search.results[0].hd, true);
+	t.is(search.results[0].author, 'branleur47');
+	t.assert(search.results[0].views >= 15400);
+	t.is(search.results[0].premium, false);
+	t.not(search.related_search[0], undefined);
+	nock.cleanAll();
+});
+
 test('[SEARCH] Aa', async t => {
 	nock('https://www.pornhub.com')
 		.get('/pornstars/search?search=aa&page=1&p=homemade')
-		.replyWithFile(200, './tests/datas/search_pornhub_aa_actor_1.html')
+		.replyWithFile(200, './tests/datas/search_pornhub_aa_page_1.html')
 		.get('/video/search?search=aa&page=2')
 		.replyWithFile(200, './tests/datas/search_pornhub_aa_page_2.html');
 	const search = await m.search('Aa', ['related_search', 'RELATED_PORNSTARS'], {page: 2});

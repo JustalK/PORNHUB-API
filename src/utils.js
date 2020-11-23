@@ -25,8 +25,11 @@ module.exports = {
 
 		return array_keys_uppercase;
 	},
-	createLink: (url, page, options) => {
+	create_queries: (options, page_index, search = null) => {
 		let q = '';
+		if (!module.exports.is_parameter_missing(search)) {
+			q += '&search=' + search;
+		}
 		if (options.production) {
 			q += '&p=' + options.production;
 		}
@@ -37,8 +40,20 @@ module.exports = {
 			q += '&min_duration=' + options.min_duration;
 		}
 
-		const search = options.search ? options.search : 'video';
-		return consts_global.links.BASE_URL + '/' + search + '/' + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
+		q += '&page=' + (page_index + 1);
+		q = q.replace('&', '?');
+		return q;
+	},
+	create_section_type: options => {
+		return options.search ? options.search : 'video';
+	},
+	create_link: (options, page_index, search = null) =>  {
+		let link = consts_global.links.BASE_URL + '/';
+		link += module.exports.create_section_type(options);
+		link += module.exports.is_parameter_missing(search) ? '' : '/' + consts_global.links.SEARCH;
+		link += module.exports.create_queries(options, page_index, search);
+		console.log(link);
+		return link;
 	},
 	url_to_source: async url => {
 		url = module.exports.http_to_https(url);
@@ -49,9 +64,9 @@ module.exports = {
 	http_to_https: url => {
 		return url.replace(/^http:/gi, 'https:');
 	},
-	multi_url_to_source: async (url, options) => {
-		return promise.all([...new Array(options.page)].map(async (page, index) => {
-			return module.exports.url_to_source(module.exports.createLink(url, index, options));
+	multi_url_to_source: async (options, search = null) => {
+		return promise.all([...new Array(options.page)].map(async (page, page_index) => {
+			return module.exports.url_to_source(module.exports.create_link(options, page_index, search));
 		}));
 	},
 	name_to_url: name => {

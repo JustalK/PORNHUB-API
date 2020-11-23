@@ -1,6 +1,6 @@
 module.exports = {
 	primary_search_selectors: {
-		RELATED_SEARCH: '.relatedSearch li a',
+		RELATED_SEARCH: '.relatedSearches li a',
 		RELATED_PORNSTARS: '#relatedPornstarSidebar li a .pornstars-name'
 	},
 	page_search_element_attributs: {
