@@ -1,5 +1,6 @@
 const consts_global = require('./constants/consts_global');
 const consts_page = require('./constants/consts_page');
+const consts_queries = require('./constants/consts_queries');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
@@ -13,7 +14,7 @@ module.exports = {
 	},
 	options_to_keys: key => {
 		if (module.exports.is_parameter_missing(key)) {
-			throw new Error('A key need to be used with this call');
+			return [];
 		}
 
 		const array_keys = Array.isArray(key) ? key : [key];
@@ -25,20 +26,30 @@ module.exports = {
 
 		return array_keys_uppercase;
 	},
+	transform_filter: value  => {
+		return module.exports.is_parameter_missing(value) ? null : consts_queries.filter[value];
+	},
+	is_value_allowed: (value, values_allowed) => {
+		return values_allowed.includes(value);
+	},
+	create_query: (parameter, value, values_allowed = null) => {
+		if (module.exports.is_parameter_missing(value)) {
+			return '';
+		}
+
+		if (values_allowed && !module.exports.is_value_allowed(value, values_allowed)) {
+			return '';
+		}
+
+		return '&' + parameter + '=' + value;
+	},
 	create_queries: (options, page_index, search = null) => {
 		let q = '';
-		if (!module.exports.is_parameter_missing(search)) {
-			q += '&search=' + search;
-		}
-		if (options.production) {
-			q += '&p=' + options.production;
-		}
-		if (options.max_duration) {
-			q += '&max_duration=' + options.max_duration;
-		}
-		if (options.min_duration) {
-			q += '&min_duration=' + options.min_duration;
-		}
+		q += module.exports.create_query('search', search);
+		q += module.exports.create_query('p', options.production, consts_queries.production);
+		q += module.exports.create_query('max_duration', options.max_duration, consts_queries.max_duration);
+		q += module.exports.create_query('min_duration', options.min_duration, consts_queries.min_duration);
+		q += module.exports.create_query('o', module.exports.transform_filter(options.filter), Object.values(consts_queries.filter));
 
 		q += '&page=' + (page_index + 1);
 		q = q.replace('&', '?');
@@ -52,7 +63,6 @@ module.exports = {
 		link += module.exports.create_section_type(options);
 		link += module.exports.is_parameter_missing(search) ? '' : '/' + consts_global.links.SEARCH;
 		link += module.exports.create_queries(options, page_index, search);
-		console.log(link);
 		return link;
 	},
 	url_to_source: async url => {

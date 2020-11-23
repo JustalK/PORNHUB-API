@@ -29,15 +29,20 @@ module.exports = {
 			return utils.error_message(error);
 		}
 	},
-	video: async (key, options) => {
-		const keys = utils.options_to_keys(key);
-		if (!options || !options.page) {
-			options = options ? options : {};
-			options.page = 1;
-		}
+	video: async (key = null, options = null) => {
+		try {
+			const keys = utils.options_to_keys(key);
+			if (!options || !options.page) {
+				options = options ? options : {};
+				options.page = 1;
+			}
 
-		const source = await utils.multi_url_to_source(options);
-		const datas = page_search.scraping_search(source, keys, options);
+			const source = await utils.multi_url_to_source(options);
+			const datas = page_search.scraping_search(source, keys, options);
+			return utils.sanitizer(datas);
+		} catch (error) {
+			return utils.error_message(error);
+		}
 	},
 	search: async (search, key, options) => {
 		try {

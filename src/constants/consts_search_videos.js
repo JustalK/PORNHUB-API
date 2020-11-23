@@ -1,5 +1,5 @@
 module.exports = {
-	VIDEOS_LIST: '#videoSearchResult .pcVideoListItem',
+	VIDEOS_LIST: '.nf-videos ul .pcVideoListItem',
 	videos_search_selectors: {
 		LINK: 'a',
 		TITLE: '.title a',
