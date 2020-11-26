@@ -41,9 +41,25 @@ module.exports = {
 
 		return array_keys_uppercase;
 	},
+	/**
+	* Transform the value of a filter from the package to his equivalent for pornhub
+	* By example is really not easy to remember that `mv` is the value for pornhub for `MOST_VIEWED`
+	* So the user of the api can just enter MOST_VIEWED and I will search for the pornhub value
+	*
+	* @params {string} value The query parameter that he wan to translate
+	* @return {string|null} The value translated if it exists or else null
+	**/
 	transform_filter: value => {
 		return module.exports.is_parameter_missing(value) ? null : consts_queries.filter[value];
 	},
+	/**
+	* Search in the array `values_allowed` if the `value` exist
+	* This function is used for checking the value available for a query parameter
+	*
+	* @params {string} value The value of the parameter to check
+	* @params {array} values_allowed The array that we will check into if the value is allowed
+	* @return {boolean} True if the value is allowed or else false
+	**/
 	is_value_allowed: (value, values_allowed) => {
 		return values_allowed.includes(value);
 	},
