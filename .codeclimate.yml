@@ -1,3 +1,4 @@
 exclude_patterns:
     - "node_modules/"
     - "src/constants/"
+    - "tests/"
