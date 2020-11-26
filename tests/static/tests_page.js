@@ -4,13 +4,13 @@ const m = require('../../src');
 
 const url = 'https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c';
 
-test('[PAGE] Test with no keys', async t => {
+test('[PAGE] Test with no keys, by default title', async t => {
 	nock('https://www.pornhub.com')
 		.get('/view_video.php?viewkey=ph56fc59c124c0c')
 		.replyWithFile(200, './tests/datas/page_pornhub.html');
-	const video = await m.page(url);
+	const page = await m.page(url);
 
-	t.is(video.error, 'An error occured');
+	t.is(page.title, 'Hot Kissing Scene');
 	nock.cleanAll();
 });
 
@@ -80,7 +80,7 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.pornstars[0], 'Rocco Reed');
 	t.is(video.pornstars[1], 'Jessie Andrews');
 	t.is(video.author, 'lovewetkissing');
-	t.is(video.percent, 69);
+	t.is(video.percent, 70);
 	t.not(video.thumbnail_url, undefined);
 	t.assert(video.number_of_comment > 0);
 	t.is(video.tags[0], 'kissing');
@@ -89,8 +89,8 @@ test('[PAGE] Try all selector on a pornhub page', async t => {
 	t.is(video.categories[4], 'Pornstar');
 	t.is(video.comments[0].username, 'kingsignature');
 	t.is(video.comments[0].message, 'full video');
-	t.assert(video.upload_date.getTime() === new Date('2016-03-30T22:59:58.000Z').getTime());
-	t.assert(video.related_videos.length === 32);
+	t.is(video.upload_date.getTime(), new Date('2016-03-30T22:59:58.000Z').getTime());
+	t.is(video.related_videos.length, 36);
 	nock.cleanAll();
 });
 

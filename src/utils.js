@@ -1,5 +1,6 @@
 const consts_global = require('./constants/consts_global');
 const consts_page = require('./constants/consts_page');
+const consts_queries = require('./constants/consts_queries');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
@@ -8,12 +9,27 @@ const got = require('got');
 const promise = require('promise');
 
 module.exports = {
+	/**
+	* Check if the parameter is defined and exist
+	*
+	* @params {string} parameter The parameter we want to test
+	* @return {boolean} True if the parameter exist or else false
+	**/
 	is_parameter_missing: parameter => {
 		return parameter === null || parameter === '' || parameter === undefined;
 	},
+	/**
+	* Read the keys passed and sanitize them in uppercase.
+	* If there is no key passed, we define a simple key `title`
+	* If the key passed is a string instead of an array, we put that key inside an array
+	*
+	* @params {(string|array)} key The single or multiples key passed with the call
+	* @return {array} The key in uppercase in an array
+	* @throws {Error} If the array passed in the call is empty
+	**/
 	options_to_keys: key => {
 		if (module.exports.is_parameter_missing(key)) {
-			throw new Error('A key need to be used with this call');
+			return ['TITLE'];
 		}
 
 		const array_keys = Array.isArray(key) ? key : [key];
@@ -25,14 +41,45 @@ module.exports = {
 
 		return array_keys_uppercase;
 	},
-	createLink: (url, page, options) => {
-		let q = '';
-		if (options.production) {
-			q += '&p=' + options.production;
+	transform_filter: value => {
+		return module.exports.is_parameter_missing(value) ? null : consts_queries.filter[value];
+	},
+	is_value_allowed: (value, values_allowed) => {
+		return values_allowed.includes(value);
+	},
+	create_query: (parameter, value, values_allowed = null) => {
+		if (module.exports.is_parameter_missing(value)) {
+			return '';
 		}
 
-		const search = options.search ? options.search : 'video';
-		return consts_global.links.BASE_URL + '/' + search + '/' + consts_global.links.SEARCH + url + '&page=' + (page + 1) + q;
+		if (values_allowed && !module.exports.is_value_allowed(value, values_allowed)) {
+			return '';
+		}
+
+		return '&' + parameter + '=' + value;
+	},
+	create_queries: (options, page_index, search = null) => {
+		let q = '';
+		q += module.exports.create_query('search', search);
+		q += module.exports.create_query('p', options.production, consts_queries.production);
+		q += module.exports.create_query('max_duration', options.max_duration, consts_queries.max_duration);
+		q += module.exports.create_query('min_duration', options.min_duration, consts_queries.min_duration);
+		q += module.exports.create_query('promo', options.promo, consts_queries.promo);
+		q += module.exports.create_query('o', module.exports.transform_filter(options.filter), Object.values(consts_queries.filter));
+
+		q += '&page=' + (page_index + 1);
+		q = q.replace('&', '?');
+		return q;
+	},
+	create_section_type: options => {
+		return options.search ? options.search : 'video';
+	},
+	create_link: (options, page_index, search = null) => {
+		let link = consts_global.links.BASE_URL + '/';
+		link += module.exports.create_section_type(options);
+		link += module.exports.is_parameter_missing(search) ? '' : '/' + consts_global.links.SEARCH;
+		link += module.exports.create_queries(options, page_index, search);
+		return link;
 	},
 	url_to_source: async url => {
 		url = module.exports.http_to_https(url);
@@ -43,9 +90,9 @@ module.exports = {
 	http_to_https: url => {
 		return url.replace(/^http:/gi, 'https:');
 	},
-	multi_url_to_source: async (url, options) => {
-		return promise.all([...new Array(options.page)].map(async (page, index) => {
-			return module.exports.url_to_source(module.exports.createLink(url, index, options));
+	multi_url_to_source: async (options, search = null) => {
+		return promise.all([...new Array(options.page)].map(async (page, page_index) => {
+			return module.exports.url_to_source(module.exports.create_link(options, page_index, search));
 		}));
 	},
 	name_to_url: name => {
@@ -204,6 +251,21 @@ module.exports = {
 		}).filter(x => x);
 
 		return Object.fromEntries(rsl);
+	},
+	performance_calculation: (request_start_time, usage_start) => {
+		const request_duration = process.hrtime(request_start_time);
+		const request_performance_time = request_duration[0] + '.' + request_duration[1] + ' seconds';
+		const usage_end = process.memoryUsage();
+		const request_rss = usage_end.rss - usage_start.rss;
+		const request_heap_total = usage_end.heapTotal - usage_start.heapTotal;
+		const request_heap_used = usage_end.heapUsed - usage_start.heapUsed;
+		const performance = {
+			request_duration: request_performance_time,
+			request_diff_rss: request_rss,
+			request_diff_heap_total: request_heap_total,
+			request_diff_heap_used: request_heap_used
+		};
+		return {performance};
 	},
 	error_message: error => {
 		return {error: consts_global.errors.DEFAULT};

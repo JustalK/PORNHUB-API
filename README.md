@@ -49,10 +49,10 @@ const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 async page(url, options)
 ```
 
-| name | type | description |
-| :--- | :---------- | :--- |
-| url | String | url of the page |
-| keys | Array | List of the keys |
+| name | type        | description                 | default   |
+| :--- | :---------- | :-------------------------- | :-------- |
+| url  | String      | [Mandatory] url of the page | -         |
+| keys | Array       | List of the keys            | ['title'] |
 
 <details>
   <summary><b>Lists of options available for a search</b> (click to show)</summary>
@@ -96,11 +96,14 @@ async search(value, keys, options)
 <details>
   <summary><b>Lists of options available for a search</b> (click to show)</summary>
 
-| name of options | return type | description |
-| :--- | :---------- | :--- |
-| page | Number | Number of page to scraper |
-| production | String | Type of production targeted : homemade or professional |
-| search | String | Type of search targeted : `video` or `pornstars` or `gifs` |
+| name of options | return type | description                                    | options                  | default   |
+| :-------------- | :---------- | :--------------------------------------------- | :----------------------- | :-------- |
+| page            | Number      | Number of page to scraper                      | -                        | 1         |
+| production      | String      | Type of production targeted                    | homemade, professional   | -         |
+| min_duration    | Number      | Minimum number of minute of the video searched | 10, 20, 30               | -         |
+| max_duration    | Number      | Maximum number of minute of the video searched | 10, 20, 30               | -         |
+| search          | String      | Type of search targeted                        | video, pornstars, gifs   | video     |
+| promo           | String      | Category of video                              | premium, modelhub        | -         |
 
 </details>
 

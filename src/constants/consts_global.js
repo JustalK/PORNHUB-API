@@ -81,7 +81,8 @@ module.exports = {
 	},
 	links: {
 		BASE_URL: 'https://www.pornhub.com',
-		SEARCH: 'search?search=',
+		SEARCH: 'search',
+		VIDEO: 'video',
 		MODEL: 'model/'
 	},
 	errors: {

@@ -73,12 +73,6 @@ test('[PAGE] Test page model', async t => {
 	t.not(page.related_videos[0].premium, undefined);
 });
 
-test('[PAGE] Test search', async t => {
-	const search = await m.search('Aa', ['title']);
-
-	t.not(search.results[0].title, undefined);
-});
-
 test('[SEARCH&PAGE] Chaining the search and page', async t => {
 	const result = await m.search('japan', ['title', 'link', 'premium', 'hd']);
 	const url = result.results[1].link;
