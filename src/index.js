@@ -12,8 +12,8 @@ module.exports = {
 	*
 	* @params {string} url The url of the page you wanna scrap
 	* @params {array} key The array of key of value that you want to scrap
-	* @return {object} The result of the scrap in an object containing only the key choosen
-	* @throws {object} If an error happen
+	* @return {Object} The result of the scrap in an object containing only the key choosen
+	* @throws {Object} If an error happen
 	**/
 	page: async (url, key) => {
 		try {
@@ -30,8 +30,8 @@ module.exports = {
 	*
 	* @params {string} name The exact name of the model
 	* @params {array} key The array of key of value that you want to scrap
-	* @return {object} The result of the scrap in an object containing only the key choosen
-	* @throws {object} If an error happen
+	* @return {Object} The result of the scrap in an object containing only the key choosen
+	* @throws {Object} If an error happen
 	**/
 	model: async (name, key) => {
 		try {
@@ -50,8 +50,8 @@ module.exports = {
 	*
 	* @params {array} key The array of key of value that you want to scrap
 	* @params {object} options The options for display the video of a selected page
-	* @return {object} The result of the scrap in an object containing only the key choosen
-	* @throws {object} If an error happen
+	* @return {Object} The result of the scrap in an object containing only the key choosen
+	* @throws {Object} If an error happen
 	**/
 	video: async (key = null, options = null) => {
 		try {

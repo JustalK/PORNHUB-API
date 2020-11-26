@@ -9,9 +9,24 @@ const got = require('got');
 const promise = require('promise');
 
 module.exports = {
+	/**
+	* Check if the parameter is defined and exist
+	*
+	* @params {string} parameter The parameter we want to test
+	* @return {boolean} True if the parameter exist or else false
+	**/
 	is_parameter_missing: parameter => {
 		return parameter === null || parameter === '' || parameter === undefined;
 	},
+	/**
+	* Read the keys passed and sanitize them in uppercase.
+	* If there is no key passed, we define a simple key `title`
+	* If the key passed is a string instead of an array, we put that key inside an array
+	*
+	* @params {(string|array)} key The single or multiples key passed with the call
+	* @return {array} The key in uppercase in an array
+	* @throws {Error} If the array passed in the call is empty
+	**/
 	options_to_keys: key => {
 		if (module.exports.is_parameter_missing(key)) {
 			return ['TITLE'];
