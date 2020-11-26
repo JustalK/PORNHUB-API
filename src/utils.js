@@ -14,7 +14,7 @@ module.exports = {
 	},
 	options_to_keys: key => {
 		if (module.exports.is_parameter_missing(key)) {
-			return [];
+			return ['TITLE'];
 		}
 
 		const array_keys = Array.isArray(key) ? key : [key];
@@ -26,7 +26,7 @@ module.exports = {
 
 		return array_keys_uppercase;
 	},
-	transform_filter: value  => {
+	transform_filter: value => {
 		return module.exports.is_parameter_missing(value) ? null : consts_queries.filter[value];
 	},
 	is_value_allowed: (value, values_allowed) => {
@@ -58,7 +58,7 @@ module.exports = {
 	create_section_type: options => {
 		return options.search ? options.search : 'video';
 	},
-	create_link: (options, page_index, search = null) =>  {
+	create_link: (options, page_index, search = null) => {
 		let link = consts_global.links.BASE_URL + '/';
 		link += module.exports.create_section_type(options);
 		link += module.exports.is_parameter_missing(search) ? '' : '/' + consts_global.links.SEARCH;

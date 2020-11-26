@@ -7,4 +7,4 @@ module.exports = {
 	min_duration: [10, 20, 30],
 	max_duration: [10, 20, 30],
 	production: ['homemade', 'professional']
-}
+};
