@@ -5,7 +5,7 @@ test('[VIDEO] Test video without options', async t => {
 	const video = await m.video();
 
 	t.not(video.results[0].title, undefined);
-	t.is(video.results.length, 36);
+	t.assert(video.results.length <= 40);
 });
 
 test('[VIDEO] Test video with options page', async t => {
