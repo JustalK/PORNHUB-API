@@ -95,3 +95,33 @@ test('[UTILS] Test http_to_https with good parameter', t => {
 
 	t.is(url, 'https://pornhub.com/view_video.php?viewkey=ph5cacd6fc1e731');
 });
+
+test('[UTILS] Test create_query with good parameter', t => {
+	const query = m.create_query('p', 'test', ['test', 'notest']);
+
+	t.is(query, '&p=test');
+});
+
+test('[UTILS] Test create_query with empty parameter', t => {
+	const query = m.create_query('p', undefined, ['test', 'notest']);
+
+	t.is(query, '');
+});
+
+test('[UTILS] Test create_query with not allowed parameter', t => {
+	const query = m.create_query('p', 'not_allowed', ['test', 'notest']);
+
+	t.is(query, '');
+});
+
+test('[UTILS] Test create_queries with not allowed parameter', t => {
+	const query = m.create_queries({max_duration: 20}, 0);
+
+	t.is(query, '?max_duration=20&page=1');
+});
+
+test('[UTILS] Test create_link with not allowed parameter', t => {
+	const query = m.create_link({max_duration: 20}, 0);
+
+	t.is(query, 'https://www.pornhub.com/video?max_duration=20&page=1');
+});

@@ -248,12 +248,11 @@ module.exports = {
 			request_duration: request_performance_time,
 			request_diff_rss: request_rss,
 			request_diff_heap_total: request_heap_total,
-			request_diff_heap_used: request_heap_used,
+			request_diff_heap_used: request_heap_used
 		};
-		return {performance: performance};
+		return {performance};
 	},
 	error_message: error => {
-		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };

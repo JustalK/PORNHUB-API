@@ -53,6 +53,18 @@ test('[PAGE] Test page model', async t => {
 	nock.cleanAll();
 });
 
+test('[PAGE] Test page model without video number', async t => {
+	nock('https://www.pornhub.com')
+		.get('/model/teacher-of-magic')
+		.replyWithFile(200, './tests/datas/page_model.html');
+	const model = await m.model('Teacher of Magic', [
+		'TITLE'
+	]);
+
+	t.not(model.video_number, 242);
+	nock.cleanAll();
+});
+
 test('[SEARCH] Try to trigger an error', async t => {
 	nock('https://www.pornhub.com')
 		.get('/model/teacher-of-magic')

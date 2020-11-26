@@ -7,6 +7,14 @@ const page_search = require('./search');
 const page_model = require('./model');
 
 module.exports = {
+	/**
+	* Scrap the content of a video page of pornhub
+	*
+	* @params {string} url The url of the page you wanna scrap
+	* @params {array} key The array of key of value that you want to scrap
+	* @return {object} The result of the scrap in an object containing only the key choosen
+	* @throws {object} If an error happen
+	**/
 	page: async (url, key) => {
 		try {
 			const keys = utils.options_to_keys(key);
@@ -17,6 +25,14 @@ module.exports = {
 			return utils.error_message(error);
 		}
 	},
+	/**
+	* Scrap the content of a model page of pornhub
+	*
+	* @params {string} name The exact name of the model
+	* @params {array} key The array of key of value that you want to scrap
+	* @return {object} The result of the scrap in an object containing only the key choosen
+	* @throws {object} If an error happen
+	**/
 	model: async (name, key) => {
 		try {
 			const keys = utils.options_to_keys(key);
@@ -29,6 +45,14 @@ module.exports = {
 			return utils.error_message(error);
 		}
 	},
+	/**
+	* Scrap the content of the featured videos of pornhub
+	*
+	* @params {array} key The array of key of value that you want to scrap
+	* @params {object} options The options for display the video of a selected page
+	* @return {object} The result of the scrap in an object containing only the key choosen
+	* @throws {object} If an error happen
+	**/
 	video: async (key = null, options = null) => {
 		try {
 			const request_start_time = process.hrtime();
@@ -43,11 +67,20 @@ module.exports = {
 			const source = await utils.multi_url_to_source(options);
 			const datas = page_search.scraping_search(source, keys, options);
 			const datas_sanitize = utils.sanitizer(datas);
-			return {...datas_sanitize,...utils.performance_calculation(request_start_time, usage_start)};
+			return {...datas_sanitize, ...utils.performance_calculation(request_start_time, usage_start)};
 		} catch (error) {
 			return utils.error_message(error);
 		}
 	},
+	/**
+	* Scrap the content of a search page of pornhub
+	*
+	* @params {string} search The exact terms of the search
+	* @params {array} key The array of key of value that you want to scrap
+	* @params {object} options The options for display the video of a selected page
+	* @return {object} The result of the scrap in an object containing only the key choosen
+	* @throws {object} If an error happen
+	**/
 	search: async (search, key, options) => {
 		try {
 			const keys = utils.options_to_keys(key);
