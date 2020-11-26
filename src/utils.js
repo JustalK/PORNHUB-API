@@ -49,6 +49,7 @@ module.exports = {
 		q += module.exports.create_query('p', options.production, consts_queries.production);
 		q += module.exports.create_query('max_duration', options.max_duration, consts_queries.max_duration);
 		q += module.exports.create_query('min_duration', options.min_duration, consts_queries.min_duration);
+		q += module.exports.create_query('promo', options.promo, consts_queries.promo);
 		q += module.exports.create_query('o', module.exports.transform_filter(options.filter), Object.values(consts_queries.filter));
 
 		q += '&page=' + (page_index + 1);
