@@ -31,6 +31,9 @@ module.exports = {
 	},
 	video: async (key = null, options = null) => {
 		try {
+			const request_start_time = process.hrtime();
+			const usage_start = process.memoryUsage();
+
 			const keys = utils.options_to_keys(key);
 			if (!options || !options.page) {
 				options = options ? options : {};
@@ -39,7 +42,8 @@ module.exports = {
 
 			const source = await utils.multi_url_to_source(options);
 			const datas = page_search.scraping_search(source, keys, options);
-			return utils.sanitizer(datas);
+			const datas_sanitize = utils.sanitizer(datas);
+			return {...datas_sanitize,...utils.performance_calculation(request_start_time, usage_start)};
 		} catch (error) {
 			return utils.error_message(error);
 		}

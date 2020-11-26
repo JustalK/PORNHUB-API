@@ -236,6 +236,21 @@ module.exports = {
 
 		return Object.fromEntries(rsl);
 	},
+	performance_calculation: (request_start_time, usage_start) => {
+		const request_duration = process.hrtime(request_start_time);
+		const request_performance_time = request_duration[0] + '.' + request_duration[1] + ' seconds';
+		const usage_end = process.memoryUsage();
+		const request_rss = usage_end.rss - usage_start.rss;
+		const request_heap_total = usage_end.heapTotal - usage_start.heapTotal;
+		const request_heap_used = usage_end.heapUsed - usage_start.heapUsed;
+		const performance = {
+			request_duration: request_performance_time,
+			request_diff_rss: request_rss,
+			request_diff_heap_total: request_heap_total,
+			request_diff_heap_used: request_heap_used,
+		};
+		return {performance: performance};
+	},
 	error_message: error => {
 		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
