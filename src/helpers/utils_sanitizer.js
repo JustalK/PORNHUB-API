@@ -3,7 +3,7 @@
  * @author Justal Kevin
  */
 
-'use strict'
+'use strict';
 
 const consts_global = require('./../constants/consts_global');
 const consts_sanitizer = require('./../constants/consts_sanitizer');

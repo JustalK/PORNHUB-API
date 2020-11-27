@@ -12,7 +12,7 @@
 		"node": ">=12.0"
 	},
 	"scripts": {
-		"test": "xo && nyc --reporter=html --reporter=text ava --verbose --timeout=20s",
+		"test": "xo --fix && nyc --reporter=html --reporter=text ava --verbose --timeout=20s",
 		"test-no": "ava tests/static/* --verbose --timeout=20s",
 		"test-s": "ava tests/static/*.js --verbose --timeout=20s",
 		"test-p": "ava tests/static/tests_video.js --verbose --timeout=20s",

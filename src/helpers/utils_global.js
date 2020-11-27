@@ -3,7 +3,7 @@
  * @author Justal Kevin
  */
 
- 'use strict'
+'use strict';
 
 module.exports = {
 	/**
