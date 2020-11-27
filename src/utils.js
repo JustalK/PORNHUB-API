@@ -63,6 +63,14 @@ module.exports = {
 	is_value_allowed: (value, values_allowed) => {
 		return values_allowed.includes(value);
 	},
+	/**
+	* Create the url query for the parameter and value passed in argument
+	*
+	* @params {string} parameter The parameter that we want to config
+	* @params {string} value The value we want to give to the parameter
+	* @params {array} [values_allowed=null] The allowed value for this parameter
+	* @return {string} An url params with the form : & + parameter + = + value
+	**/
 	create_query: (parameter, value, values_allowed = null) => {
 		if (module.exports.is_parameter_missing(value)) {
 			return '';
@@ -74,6 +82,14 @@ module.exports = {
 
 		return '&' + parameter + '=' + value;
 	},
+	/**
+	* Create the url query of all the options
+	*
+	* @params {Object} options The object of the params and value
+	* @params {number} page_index The page of the search
+	* @params {string} [search=null] The term of the search
+	* @return {string} The url with all the params ready to be append to the url
+	**/
 	create_queries: (options, page_index, search = null) => {
 		let q = '';
 		q += module.exports.create_query('search', search);

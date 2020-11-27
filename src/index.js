@@ -48,8 +48,8 @@ module.exports = {
 	/**
 	* Scrap the content of the featured videos of pornhub
 	*
-	* @params {array} key The array of key of value that you want to scrap
-	* @params {object} options The options for display the video of a selected page
+	* @params {array} [key=null] The array of key of value that you want to scrap
+	* @params {object} [options=null] The options for display the video of a selected page
 	* @return {Object} The result of the scrap in an object containing only the key choosen
 	* @throws {Object} If an error happen
 	**/
