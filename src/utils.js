@@ -230,7 +230,6 @@ module.exports = {
 		return {performance};
 	},
 	error_message: error => {
-		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };

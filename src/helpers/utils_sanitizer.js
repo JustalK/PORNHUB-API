@@ -1,3 +1,10 @@
+/**
+ * @file Regroup all the functions use for sanitize the informations coming and going in the api
+ * @author Justal Kevin
+ */
+
+'use strict'
+
 const consts_global = require('./../constants/consts_global');
 const consts_sanitizer = require('./../constants/consts_sanitizer');
 const utils_global = require('./utils_global');
@@ -5,17 +12,37 @@ const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
 module.exports = {
+	/**
+	* Sanitize the number of pornhub to a javascript type Number
+	* Most of the number in pornhub contains letters or commas, so it need to be filter
+	*
+	* @params {string} value The string that represents a number
+	* @return {number} The string converted into a number javascript
+	**/
 	sanitizer_number: value => {
 		value = value.replace(/[()&A-Za-z,%]/g, '');
 		value = Number(value);
 		return value;
 	},
+	/**
+	* Sanitize the string from pornhub to a single ligne.
+	* This function remove the tabs, break line and trim the string
+	*
+	* @params {string} value The string that we want to sanitize
+	* @return {string} The string sanitized
+	**/
 	sanitizer_string: value => {
 		value = value.replace(/[\t\n]/g, '');
 		value = value.trim();
 		value = entities.decode(value);
 		return value;
 	},
+	/**
+	* Convert a string or number into a boolean
+	*
+	* @params {(string|number)} value The string or number representing a boolean
+	* @return {boolean} True or False depending of the value passed
+	**/
 	sanitizer_boolean: value => {
 		return Boolean(value);
 	},

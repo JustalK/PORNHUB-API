@@ -30,8 +30,6 @@ test('[PAGE] Test page model', async t => {
 		'JOINED'
 	]);
 
-	console.log(model);
-
 	t.is(model.title, 'Teacher of Magic');
 	t.not(model.description, undefined);
 	t.is(model.rank_model, 53);
