@@ -1,6 +1,7 @@
 const consts_global = require('./constants/consts_global');
 const consts_page = require('./constants/consts_page');
 const consts_queries = require('./constants/consts_queries');
+const utils_sanitizer = require('./helpers/utils_sanitizer');
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jsdom = require('jsdom');
@@ -63,6 +64,14 @@ module.exports = {
 	is_value_allowed: (value, values_allowed) => {
 		return values_allowed.includes(value);
 	},
+	/**
+	* Create the url query for the parameter and value passed in argument
+	*
+	* @params {string} parameter The parameter that we want to config
+	* @params {string} value The value we want to give to the parameter
+	* @params {array} [values_allowed=null] The allowed value for this parameter
+	* @return {string} An url params with the form : & + parameter + = + value
+	**/
 	create_query: (parameter, value, values_allowed = null) => {
 		if (module.exports.is_parameter_missing(value)) {
 			return '';
@@ -74,6 +83,14 @@ module.exports = {
 
 		return '&' + parameter + '=' + value;
 	},
+	/**
+	* Create the url query of all the options
+	*
+	* @params {Object} options The object of the params and value
+	* @params {number} page_index The page of the search
+	* @params {string} [search=null] The term of the search
+	* @return {string} The url with all the params ready to be append to the url
+	**/
 	create_queries: (options, page_index, search = null) => {
 		let q = '';
 		q += module.exports.create_query('search', search);
@@ -151,17 +168,6 @@ module.exports = {
 				return Number(time);
 		}
 	},
-	convert_KM_to_unit: units => {
-		if (units.includes('K')) {
-			return Number(units.replace('K', '')) * 1000;
-		}
-
-		if (units.includes('M')) {
-			return Number(units.replace('M', '')) * 1000000;
-		}
-
-		return units;
-	},
 	scrap: (object, keys, attributs) => {
 		return Object.fromEntries(Object.keys(keys).map(key => {
 			switch (attributs[key]) {
@@ -205,68 +211,8 @@ module.exports = {
 		const elements = [...doc.querySelectorAll(global)];
 		return elements.map((element, index) => {
 			const temporary = module.exports.scrap(element, selectors, attributs);
-			return module.exports.sanitizer(temporary);
+			return utils_sanitizer.sanitizer(temporary);
 		});
-	},
-	sanitizer_number: value => {
-		value = value.replace(/[()&A-Za-z,%]/g, '');
-		value = Number(value);
-		return value;
-	},
-	sanitizer_string: value => {
-		value = value.replace(/[\t\n]/g, '');
-		value = value.trim();
-		value = entities.decode(value);
-		return value;
-	},
-	sanitizer_key: value => {
-		value = module.exports.sanitizer_string(value);
-		value = value.replace(/\s/g, '_');
-		value = value.replace(/:/g, '');
-		value = value.toUpperCase();
-		return value;
-	},
-	remove_duplicate: array => {
-		return array.filter((item, index) => array.indexOf(item) === index);
-	},
-	sanitizer_array: array => {
-		if (Array.isArray(array)) {
-			array = array.map(x => module.exports.sanitizer_string(x));
-			return module.exports.remove_duplicate(array);
-		}
-
-		return module.exports.sanitizer_string(array);
-	},
-	sanitizer_date: value => {
-		return new Date(value);
-	},
-	sanitizer: datas => {
-		const rsl = Object.keys(consts_global.type).map(x => {
-			if (datas[x] === null || datas[x] === undefined) {
-				return;
-			}
-
-			switch (consts_global.type[x]) {
-				case consts_global.js_type.STRING:
-					return [x.toLowerCase(), module.exports.sanitizer_string(datas[x])];
-				case consts_global.js_type.ARRAY:
-					return [x.toLowerCase(), module.exports.sanitizer_array(datas[x])];
-				case consts_global.js_type.NUMBER:
-					return [x.toLowerCase(), module.exports.sanitizer_number(datas[x])];
-				case consts_global.js_type.BOOLEAN:
-					return [x.toLowerCase(), Boolean(datas[x])];
-				case consts_global.js_type.DATE:
-					return [x.toLowerCase(), module.exports.sanitizer_date(datas[x])];
-				case consts_global.js_type.NUMBER_KM:
-					return [x.toLowerCase(), module.exports.convert_KM_to_unit(datas[x])];
-				case consts_global.js_type.URL_PORNHUB:
-					return [x.toLowerCase(), consts_global.links.BASE_URL + datas[x]];
-				default:
-					return [x.toLowerCase(), datas[x]];
-			}
-		}).filter(x => x);
-
-		return Object.fromEntries(rsl);
 	},
 	performance_calculation: (request_start_time, usage_start) => {
 		const request_duration = process.hrtime(request_start_time);

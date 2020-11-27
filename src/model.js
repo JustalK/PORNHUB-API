@@ -1,4 +1,5 @@
 const utils = require('./utils');
+const utils_sanitizer = require('./helpers/utils_sanitizer');
 const consts_global = require('./constants/consts_global');
 const consts_model = require('./constants/consts_model');
 
@@ -8,10 +9,10 @@ module.exports = {
 
 		return Object.fromEntries(elements.map(element => {
 			const element_key = element.querySelector('span:nth-child(1)');
-			const element_key_text = utils.sanitizer_key(element_key.innerHTML);
+			const element_key_text = utils_sanitizer.sanitizer_key(element_key.innerHTML);
 
 			const element_value = element.querySelector('span:nth-child(2)');
-			const element_value_text = utils.sanitizer_string(element_value.innerHTML);
+			const element_value_text = utils_sanitizer.sanitizer_string(element_value.innerHTML);
 
 			return [element_key_text, element_value_text];
 		}));

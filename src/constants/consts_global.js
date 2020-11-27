@@ -1,14 +1,14 @@
 const js_type = {
-	STRING: 'string',
-	URL: 'url',
-	URL_PORNHUB: 'url pornhub',
-	NUMBER: 'number',
-	NUMBER_KM: 'number with KM',
-	NUMBER_SECONDS: 'number in seconds',
-	ARRAY: 'array',
-	DATE: 'date',
-	OBJECT: 'object',
-	BOOLEAN: 'boolean'
+	STRING: 'STRING',
+	URL: 'URL',
+	URL_PORNHUB: 'URL_PORNHUB',
+	NUMBER: 'NUMBER',
+	NUMBER_KM: 'NUMBER_KM',
+	NUMBER_SECONDS: 'NUMBER_SECONDS',
+	ARRAY: 'ARRAY',
+	DATE: 'DATE',
+	OBJECT: 'OBJECT',
+	BOOLEAN: 'BOOLEAN'
 };
 
 module.exports = {

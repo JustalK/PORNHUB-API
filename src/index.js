@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('./utils');
+const utils_sanitizer = require('./helpers/utils_sanitizer');
 const consts_global = require('./constants/consts_global');
 const page = require('./page');
 const page_search = require('./search');
@@ -20,7 +21,7 @@ module.exports = {
 			const keys = utils.options_to_keys(key);
 			const source = await utils.url_to_source(url);
 			const datas = page.scraping_page(source, keys);
-			return utils.sanitizer(datas);
+			return utils_sanitizer.sanitizer(datas);
 		} catch (error) {
 			return utils.error_message(error);
 		}
@@ -40,7 +41,7 @@ module.exports = {
 			const source = await utils.url_to_source(url);
 			const datas = page_model.scrap(source, keys);
 			const datas_filtered = page_model.filter_value(datas, keys);
-			return utils.sanitizer(datas_filtered);
+			return utils_sanitizer.sanitizer(datas_filtered);
 		} catch (error) {
 			return utils.error_message(error);
 		}
@@ -48,8 +49,8 @@ module.exports = {
 	/**
 	* Scrap the content of the featured videos of pornhub
 	*
-	* @params {array} key The array of key of value that you want to scrap
-	* @params {object} options The options for display the video of a selected page
+	* @params {array} [key=null] The array of key of value that you want to scrap
+	* @params {object} [options=null] The options for display the video of a selected page
 	* @return {Object} The result of the scrap in an object containing only the key choosen
 	* @throws {Object} If an error happen
 	**/
@@ -66,7 +67,7 @@ module.exports = {
 
 			const source = await utils.multi_url_to_source(options);
 			const datas = page_search.scraping_search(source, keys, options);
-			const datas_sanitize = utils.sanitizer(datas);
+			const datas_sanitize = utils_sanitizer.sanitizer(datas);
 			return {...datas_sanitize, ...utils.performance_calculation(request_start_time, usage_start)};
 		} catch (error) {
 			return utils.error_message(error);
@@ -91,7 +92,7 @@ module.exports = {
 
 			const source = await utils.multi_url_to_source(options, search);
 			const datas = page_search.scraping_search(source, keys, options);
-			return utils.sanitizer(datas);
+			return utils_sanitizer.sanitizer(datas);
 		} catch (error) {
 			return utils.error_message(error);
 		}
