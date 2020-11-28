@@ -140,19 +140,6 @@ module.exports = {
 		const dom = new JSDOM(source);
 		return dom.window.document;
 	},
-	selectors_restriction: (keys, selectors) => {
-		return Object.fromEntries(Object.keys(selectors).map(selector => {
-			if (keys.includes(selector)) {
-				return [selector, selectors[selector]];
-			}
-
-			return null;
-		}).filter(x => x));
-	},
-	scraper_content_informations: (doc, keys, selectors, element_attributs) => {
-		const selectors_restricted = module.exports.selectors_restriction(keys, selectors);
-		return module.exports.scrap(doc, selectors_restricted, element_attributs);
-	},
 	convert_to_second: time => {
 		if (module.exports.is_parameter_missing(time)) {
 			return consts_global.NO_DATA;
@@ -167,52 +154,6 @@ module.exports = {
 			default:
 				return Number(time);
 		}
-	},
-	scrap: (object, keys, attributs) => {
-		return Object.fromEntries(Object.keys(keys).map(key => {
-			switch (attributs[key]) {
-				case 'innerHTML':
-					if (!object.querySelector(keys[key])) {
-						return [key, consts_global.NO_DATA];
-					}
-
-					return [key, object.querySelector(keys[key]).innerHTML];
-				case 'dataContent':
-					if (!object.querySelector(keys[key])) {
-						return [key, consts_global.NO_DATA];
-					}
-
-					return [key, object.querySelector(keys[key]).getAttribute('content')];
-				case 'textContent':
-					if (!object.querySelector(keys[key])) {
-						return [key, consts_global.NO_DATA];
-					}
-
-					return [key, object.querySelector(keys[key]).textContent];
-				case 'multi_textContent': {
-					const elm = [...object.querySelectorAll(keys[key])];
-					if (!elm || elm.length === 0) {
-						return [key, consts_global.NO_DATA];
-					}
-
-					return [key, elm.map(node => node.textContent)];
-				}
-
-				case 'javascript':
-					return [key, JSON.parse(object.querySelector(keys[key]).textContent)[consts_page.javascript[key]]];
-				case null:
-					return object.querySelector(keys[key]) ? [key, true] : [key, false];
-				default:
-					return [key, object.querySelector(keys[key]).getAttribute(attributs[key])];
-			}
-		}));
-	},
-	scraper_array: (doc, global, selectors, attributs) => {
-		const elements = [...doc.querySelectorAll(global)];
-		return elements.map((element, index) => {
-			const temporary = module.exports.scrap(element, selectors, attributs);
-			return utils_sanitizer.sanitizer(temporary);
-		});
 	},
 	performance_calculation: (request_start_time, usage_start) => {
 		const request_duration = process.hrtime(request_start_time);
@@ -230,6 +171,7 @@ module.exports = {
 		return {performance};
 	},
 	error_message: error => {
+		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };

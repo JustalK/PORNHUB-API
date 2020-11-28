@@ -1,5 +1,7 @@
 const utils = require('./utils');
 const utils_sanitizer = require('./helpers/utils_sanitizer');
+const utils_scrap = require('./helpers/utils_scrap');
+const utils_global = require('./helpers/utils_global');
 const consts_global = require('./constants/consts_global');
 const consts_model = require('./constants/consts_model');
 
@@ -19,14 +21,14 @@ module.exports = {
 	},
 	scrap_unfixed_content_informations: (doc, keys, selectors, attributs) => {
 		const informations = module.exports.extract_informations_model(doc, consts_model.PROFIL_INFOS_LIST);
-		const informations_restricted = utils.selectors_restriction(keys, informations);
+		const informations_restricted = utils_global.selectors_restriction(keys, informations);
 		return informations_restricted;
 	},
 	scrap: (source, keys) => {
 		const doc = utils.source_to_dom(source);
 
 		let datas = {};
-		datas = {...datas, ...utils.scraper_content_informations(doc, keys, consts_model.model_selectors, consts_model.model_element_attributs)};
+		datas = {...datas, ...utils_scrap.scraper_content_informations(doc, keys, consts_model.model_selectors, consts_model.model_element_attributs)};
 		datas = {...datas, ...module.exports.scrap_unfixed_content_informations(doc, keys, consts_model.model_selectors, consts_model.model_element_attributs)};
 
 		return datas;

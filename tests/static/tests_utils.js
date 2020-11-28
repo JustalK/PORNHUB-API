@@ -1,6 +1,7 @@
 const test = require('ava');
 const jsdom = require('jsdom');
 const m = require('../../src/utils');
+const utils_scrap = require('../../src/helpers/utils_scrap');
 
 test('[UTILS] Test name_to_url', async t => {
 	const url = await m.name_to_url('teacher in macao');
@@ -74,7 +75,7 @@ test('[UTILS] Test scrap dataContent with good parameter', async t => {
 	const keys = {test: 'meta'};
 	const attributs = {test: 'dataContent'};
 
-	const scrap = await m.scrap(doc, keys, attributs);
+	const scrap = await utils_scrap.scrap(doc, keys, attributs);
 
 	t.is(scrap.test, 'inside');
 });
@@ -85,7 +86,7 @@ test('[UTILS] Test scrap  dataContent with bad parameter - empty', async t => {
 	const keys = {test: null};
 	const attributs = {test: 'dataContent'};
 
-	const scrap = await m.scrap(doc, keys, attributs);
+	const scrap = await utils_scrap.scrap(doc, keys, attributs);
 
 	t.is(scrap.test, 'No Data');
 });
