@@ -53,6 +53,12 @@ module.exports = {
 		value = value.toUpperCase();
 		return value;
 	},
+	/**
+	* Convert the value with an unit to a number javascript
+	*
+	* @params {string} value The string with an unit representing a number
+	* @return {number} The javascript number
+	**/
 	sanitizer_KM_to_unit: value => {
 		if (value.includes('K')) {
 			return Number(value.replace('K', '')) * 1000;
@@ -64,15 +70,41 @@ module.exports = {
 
 		return value;
 	},
+	/**
+	* Convert a string date to a javascript date
+	*
+	* @params {string} value A string representing a date
+	* @return {Date} The javascript date representing the value passed in argument
+	**/
 	sanitizer_date: value => {
 		return new Date(value);
 	},
+	/**
+	* Create a complete url pornhub from a route passed in argument
+	*
+	* @params {string} value A pornhub route
+	* @return {string} A complete url pornhub
+	**/
 	sanitizer_url_pornhub: value => {
 		return consts_global.links.BASE_URL + value;
 	},
+	/**
+	* Simply return the variable passed in argument
+	* This function is used for getting the function sanitizer possible and givig every type a function
+	*
+	* @params {Object} A value
+	* @return {Object} The same value without any change
+	**/
 	sanitizer_normal: value => {
 		return value;
 	},
+	/**
+	* Sanitize every string element of an array of string
+	* and remove duplicate value
+	*
+	* @params {array} array An array containing string
+	* @return {array} Return the array with unique value and sanitized string
+	**/
 	sanitizer_array: array => {
 		if (Array.isArray(array)) {
 			array = array.map(x => module.exports.sanitizer_string(x));
