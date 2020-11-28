@@ -46,6 +46,13 @@ module.exports = {
 	sanitizer_boolean: value => {
 		return Boolean(value);
 	},
+	/**
+	* Sanitize the key passed to the API
+	* Replace space and : and put the key in uppercase
+	*
+	* @params {string} value The API key that we want to sanitize
+	* @return {string} The key sanitized 
+	**/
 	sanitizer_key: value => {
 		value = module.exports.sanitizer_string(value);
 		value = value.replace(/\s/g, '_');
@@ -113,6 +120,12 @@ module.exports = {
 
 		return module.exports.sanitizer_string(array);
 	},
+	/**
+	* Sanitize all the data receive from pornhub to a more flexible format
+	*
+	* @params {Object} datas The datas that we want to sanitize
+	* @return {Object} The datas sanitized
+	**/
 	sanitizer: datas => {
 		const rsl = Object.keys(consts_global.type).map(x => {
 			if (datas[x] === null || datas[x] === undefined) {
