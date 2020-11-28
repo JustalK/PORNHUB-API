@@ -4,7 +4,7 @@ const m = require('../../src');
 
 test('[SEARCH] Aa', async t => {
 	nock('https://www.pornhub.com')
-		.get('/pornstars/search?search=aa&page=1&p=homemade')
+		.get('/video/search?search=aa&page=1')
 		.replyWithFile(200, './tests/datas/search_pornhub_aa_page_1.html')
 		.get('/video/search?search=aa&page=2')
 		.replyWithFile(200, './tests/datas/search_pornhub_aa_page_2.html');
