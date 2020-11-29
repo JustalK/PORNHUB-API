@@ -3,6 +3,20 @@ const utils_scrap = require('./helpers/utils_scrap');
 const consts_global = require('./constants/consts_global');
 const consts_page = require('./constants/consts_page');
 
+const scraper_comments_options = {
+	key: consts_global.keys.COMMENTS,
+	list: consts_page.COMMENTS_LIST,
+	selectors: consts_page.comment_selectors,
+	attributs: consts_page.page_element_attributs
+};
+
+const scraper_related_videos_options = {
+	key: consts_global.keys.RELATED_VIDEOS,
+	list: consts_page.RELATED_VIDEOS_LIST,
+	selectors: consts_page.related_videos_selectors,
+	attributs: consts_page.page_related_videos_element_attributs
+};
+
 module.exports = {
 	scraper_video_informations: (source, keys) => {
 		let rsl = {};
@@ -32,19 +46,8 @@ module.exports = {
 
 		return Object.keys(rsl).length > 0 ? rsl : null;
 	},
-	scraper_comments_informations: (doc, keys) => {
-		if (keys.includes(consts_global.keys.COMMENTS)) {
-			return {[consts_global.keys.COMMENTS]: utils_scrap.scraper_array(doc, consts_page.COMMENTS_LIST, consts_page.comment_selectors, consts_page.page_element_attributs)};
-		}
-
-		return {};
-	},
-	scraper_related_videos_informations: (doc, keys) => {
-		if (keys.includes(consts_global.keys.RELATED_VIDEOS)) {
-			return {[consts_global.keys.RELATED_VIDEOS]: utils_scrap.scraper_array(doc, consts_page.RELATED_VIDEOS_LIST, consts_page.related_videos_selectors, consts_page.page_related_videos_element_attributs)};
-		}
-
-		return {};
+	scraper_block_informations: (doc, keys, scrap_options) => {
+		return keys.includes(scrap_options.key) ? {[scrap_options.key]: utils_scrap.scraper_array(doc, scrap_options.list, scrap_options.selectors, scrap_options.attributs)} : {};
 	},
 	scraping_page: (source, keys) => {
 		const doc = utils.source_to_dom(source);
@@ -53,8 +56,8 @@ module.exports = {
 
 		datas = {...datas, ...utils_scrap.scraper_content_informations(doc, keys, consts_page.page_selectors, consts_page.page_element_attributs)};
 		datas = {...datas, DOWNLOAD_URLS: module.exports.scraper_video_informations(source, keys)};
-		datas = {...datas, ...module.exports.scraper_comments_informations(doc, keys)};
-		datas = {...datas, ...module.exports.scraper_related_videos_informations(doc, keys)};
+		datas = {...datas, ...module.exports.scraper_block_informations(doc, keys, scraper_comments_options)};
+		datas = {...datas, ...module.exports.scraper_block_informations(doc, keys, scraper_related_videos_options)};
 
 		return datas;
 	}

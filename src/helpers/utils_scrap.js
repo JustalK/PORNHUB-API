@@ -15,14 +15,17 @@ module.exports = {
 	is_array_available: array => {
 		return array !== null && array.length > 0;
 	},
+	scrap_object_selected: (object, keys, key, attribut) => {
+		return module.exports.is_data_available(object, keys[key]) ? object.querySelector(keys[key])[attribut] : consts_global.NO_DATA;
+	},
 	scrap_inner_html: (object, keys, key) => {
-		return module.exports.is_data_available(object, keys[key]) ? object.querySelector(keys[key]).innerHTML : consts_global.NO_DATA;
+		return module.exports.scrap_object_selected(object, keys, key, 'innerHTML');
 	},
 	scrap_data_content: (object, keys, key) => {
 		return module.exports.is_data_available(object, keys[key]) ? object.querySelector(keys[key]).getAttribute('content') : consts_global.NO_DATA;
 	},
 	scrap_text_content: (object, keys, key) => {
-		return module.exports.is_data_available(object, keys[key]) ? object.querySelector(keys[key]).textContent : consts_global.NO_DATA;
+		return module.exports.scrap_object_selected(object, keys, key, 'textContent');
 	},
 	scrap_multi_text_content: (object, keys, key) => {
 		const elm = [...object.querySelectorAll(keys[key])];
