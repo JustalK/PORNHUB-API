@@ -51,7 +51,7 @@ module.exports = {
 	* Replace space and : and put the key in uppercase
 	*
 	* @params {string} value The API key that we want to sanitize
-	* @return {string} The key sanitized 
+	* @return {string} The key sanitized
 	**/
 	sanitizer_key: value => {
 		value = module.exports.sanitizer_string(value);
