@@ -120,6 +120,12 @@ module.exports = {
 		const response = await got(safe_url);
 		return response.body;
 	},
+	/**
+	* Change the protocol http to https in an url
+	*
+	* @params {string} url The url that we want to replace the protocol
+	* @return {string} The url with https protocol
+	**/
 	http_to_https: url => {
 		return url.replace(/^http:/gi, 'https:');
 	},
@@ -155,6 +161,13 @@ module.exports = {
 				return Number(time);
 		}
 	},
+	/**
+	* Give additionnal informations about the performance of the request
+	*
+	* @params {Object} request_start_time The process.hrtime of the beginning of the request
+	* @params {Object} usage_start The process.memoryUsage at the beginning of the request
+	* @return {Object} The result of the performance of the request
+	**/
 	performance_calculation: (request_start_time, usage_start) => {
 		const request_duration = process.hrtime(request_start_time);
 		const request_performance_time = request_duration[0] + '.' + request_duration[1] + ' seconds';
@@ -170,8 +183,13 @@ module.exports = {
 		};
 		return {performance};
 	},
+	/**
+	* Handle the error message of the api
+	*
+	* @params {Object} error The error javascript object
+	* @return {Object} The object that notice there is an error
+	**/
 	error_message: error => {
-		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };
