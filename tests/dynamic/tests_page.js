@@ -10,7 +10,7 @@ test('[PAGE] Test page model with only a title', async t => {
 });
 
 test('[PAGE] Test page model', async t => {
-	const page = await m.page('https://www.pornhub.com/view_video.php?viewkey=ph56fc59c124c0c', [
+	const page = await m.page('https://www.pornhub.com/view_video.php?viewkey=2006034279', [
 		'title',
 		'description',
 		'views',
@@ -32,29 +32,28 @@ test('[PAGE] Test page model', async t => {
 		'related_videos'
 	]);
 
-	t.is(page.title, 'Hot Kissing Scene');
+	t.is(page.title, 'Kim Kardashian Sex Tape with Ray J');
 	t.not(page.description, undefined);
 	t.not(page.views, undefined);
 	t.not(page.up_votes, undefined);
 	t.not(page.down_votes, undefined);
 	t.not(page.percent, undefined);
-	t.is(page.author, 'lovewetkissing');
+	t.is(page.author, 'No Data');
 	t.not(page.author_subscriber, undefined);
 	t.not(page.author_subscriber, 0);
 	t.not(page.pornstars, undefined);
-	t.is(page.pornstars[0], 'Rocco Reed');
+	t.is(page.pornstars[0], 'Kim Kardashian');
 	t.not(page.categories, undefined);
-	t.is(page.categories[0], 'Babe');
+	t.is(page.categories[0], 'Amateur');
 	t.not(page.tags, undefined);
-	t.is(page.tags[0], 'kissing');
+	t.is(page.tags[0], 'big tits');
 	t.not(page.number_of_comment, undefined);
 	t.not(page.number_of_comment, 0);
 	t.is(page.production, 'professional');
-	t.is(page.duration, 266);
+	t.is(page.duration, 300);
 	t.not(page.thumbnail_url, undefined);
 	t.not(page.upload_date, undefined);
 	t.not(page.download_urls, undefined);
-	t.not(page.download_urls['720P'], undefined);
 	t.not(page.download_urls['480P'], undefined);
 	t.not(page.download_urls['240P'], undefined);
 	t.not(page.comments, undefined);
@@ -85,7 +84,7 @@ test('[SEARCH&PAGE] Chaining the search and page', async t => {
 });
 
 test('[PAGE] Test a specific page', async t => {
-	const page = await m.page('https://cn.pornhub.com/view_video.php?viewkey=ph5c41444a7bed7', ['title', 'duration', 'download_urls']);
+	const page = await m.page('https://cn.pornhub.com/view_video.php?viewkey=ph5b1169ea3eda1', ['title', 'duration', 'download_urls']);
 
 	t.not(page.title, undefined);
 	t.not(page.duration, undefined);

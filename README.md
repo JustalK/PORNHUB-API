@@ -43,7 +43,7 @@ const video = await pornhub.page(url, ['title','pornstars','download_urls']);
 
 - **Flexible:** The results are always return in a very specific javascrypt type making it easy to integrate to your need.
 
-### Video page pornhub
+### Scraping of a single video page pornhub
 
 ```js
 async page(url, options)
@@ -81,17 +81,17 @@ async page(url, options)
 
 </details>
 
-### Search page pornhub
+### Scraping of a search page pornhub
 
 ```js
 async search(value, keys, options)
 ```
 
-| name | type | description |
-| :--- | :---------- | :--- |
-| value | String | value search in pornhub |
-| keys | Array or String if there is only one option | List of the keys |
-| options | Array | [OPTIONNAL] List of the optional options |
+| name    | type                                             | description                              |
+| :------ | :----------------------------------------------- | :--------------------------------------- |
+| value   | String                                           | value search in pornhub                  |
+| keys    | Array or String if there is only one option      | List of the keys                         |
+| options | Array                                            | [OPTIONNAL] List of the optional options |
 
 <details>
   <summary><b>Lists of options available for a search</b> (click to show)</summary>
@@ -111,10 +111,10 @@ async search(value, keys, options)
 <details>
   <summary><b>Lists of keys available for a search by video</b> (click to show)</summary>
 
-| name of keys | return type | description |
-| :--- | :---------- | :--- |
-| related_search | String | List of the related researches |
-| related_pornstars | String | List of the related pornstars |
+| name of keys      | return type | description                    |
+| :---------------- | :---------- | :----------------------------- |
+| related_search    | String      | List of the related researches |
+| related_pornstars | String      | List of the related pornstars  |
 
 </details>
 
@@ -139,6 +139,43 @@ async search(value, keys, options)
 | thumbnail_url | String | Url of the thumbnail |
 | link_mp4 | String | Url of the mp4 version |
 | link_webm | String | Url of the webm version |
+
+</details>
+
+### Scraping of a special search page by category
+
+There are two kind of possible way to search on pornhub. The first one is to search by term and the second one is to search by filter. This call is for the search by category and subcategory.
+
+```js
+async video(keys, options)
+```
+
+| name    | type                                             | description                              | default   |
+| :------ | :----------------------------------------------- | :--------------------------------------- | :-------- |
+| keys    | Array or String if there is only one option      | [OPTIONNAL] List of the keys             | null      |
+| options | Array                                            | [OPTIONNAL] List of the optional options | null      |
+
+<details>
+  <summary><b>Lists of keys available for a special search page by category</b> (click to show)</summary>
+
+| name of keys      | return type | description                    |
+| :---------------- | :---------- | :----------------------------- |
+| related_search    | String      | List of the related videos |
+| related_pornstars | String      | List of the related pornstars  |
+</details>
+
+<details>
+  <summary><b>Lists of options available for a search</b> (click to show)</summary>
+
+| name of options | return type | description                                    | options                         | default   |
+| :-------------- | :---------- | :--------------------------------------------- | :------------------------------ | :-------- |
+| page            | Number      | Number of page to scraper                      | -                               | 1         |
+| production      | String      | Type of production targeted                    | homemade, professional          | -         |
+| min_duration    | Number      | Minimum number of minute of the video searched | 10, 20, 30                      | -         |
+| max_duration    | Number      | Maximum number of minute of the video searched | 10, 20, 30                      | -         |
+| search          | String      | Type of search targeted                        | video, pornstars, gifs          | video     |
+| promo           | String      | Category of video                              | premium, modelhub               | -         |
+| filter          | String      | Filter of the page                             | MOST_VIEWED, HOTTEST, TOP_RATED | -         |
 
 </details>
 
