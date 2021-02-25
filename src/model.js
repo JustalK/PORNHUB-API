@@ -14,7 +14,7 @@ module.exports = {
 			const element_key_text = utils_sanitizer.sanitizer_key(element_key.innerHTML);
 
 			const element_value = element.querySelector('span:nth-child(2)');
-			const element_value_text = utils_sanitizer.sanitizer_string(element_value.innerHTML);
+			const element_value_text = element_value === null ? consts_global.NO_DATA : utils_sanitizer.sanitizer_string(element_value.innerHTML);
 
 			return [element_key_text, element_value_text];
 		}));

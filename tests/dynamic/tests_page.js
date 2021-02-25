@@ -9,6 +9,18 @@ test('[PAGE] Test page model with only a title', async t => {
 	t.is(page.title, 'CUM4K MULTIPLE CUM FILLED Creampies Compilation');
 });
 
+test('[PAGE] Test page model miakhalifa', async t => {
+	const model = await m.model('mia khalifa', [
+		'TITLE',
+		'DESCRIPTION',
+		'RANK_MODEL'
+	], 'pornstar');
+
+	t.is(model.title, 'Mia Khalifa');
+	t.is(model.description, 'No Data');
+	t.is(model.rank_model, 8);
+});
+
 test('[PAGE] Test page model', async t => {
 	const page = await m.page('https://www.pornhub.com/view_video.php?viewkey=2006034279', [
 		'title',

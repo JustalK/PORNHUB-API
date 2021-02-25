@@ -189,6 +189,7 @@ async model(name, keys)
 | :--- | :---------- | :--- |
 | name | String | name of the model in pornhub |
 | keys | Array or String if there is only one option | List of the keys |
+| type | String  | There is two kind of model : pornstar or model |
 
 <details>
   <summary><b>Lists of keys available for a model page</b> (click to show)</summary>

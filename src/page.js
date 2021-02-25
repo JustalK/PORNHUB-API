@@ -24,7 +24,6 @@ module.exports = {
 		if (keys.includes(consts_global.keys.DOWNLOAD_URLS)) {
 			const matches = source.match(/(?<=\*\/)\w+/g);
 			const urls = [];
-
 			for (const match of matches) {
 				const regex = new RegExp('(?<=' + match + '=")[^;]+(?=")', 'g');
 				const value = source.match(regex)[0].replace(/[" +]/g, '');
@@ -40,7 +39,11 @@ module.exports = {
 				}
 			}
 
-			rsl = urls.map(x => [x.match(/(?<=_|\/)\d*P(?=_)/g)[0], x]);
+			rsl = urls.map(x => {
+				// Sometime PH does not provide a resolution, meaning the link is broken
+				const resolution = x.match(/(?<=_|\/)\d*P(?=_)/g);
+				return resolution !== null && resolution.length > 0 ? [x.match(/(?<=_|\/)\d*P(?=_)/g)[0], x] : null;
+			}).filter(x => x !== null);
 			rsl = Object.fromEntries(rsl);
 		}
 
@@ -51,7 +54,6 @@ module.exports = {
 	},
 	scraping_page: (source, keys) => {
 		const doc = utils.source_to_dom(source);
-
 		let datas = {};
 
 		datas = {...datas, ...utils_scrap.scraper_content_informations(doc, keys, consts_page.page_selectors, consts_page.page_element_attributs)};

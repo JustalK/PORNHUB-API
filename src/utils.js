@@ -134,13 +134,14 @@ module.exports = {
 			return module.exports.url_to_source(module.exports.create_link(options, page_index, search));
 		}));
 	},
-	name_to_url: name => {
+	name_to_url: (name, type) => {
 		if (module.exports.is_parameter_missing(name)) {
 			return null;
 		}
 
 		const slug = name.replace(/\s/gi, '-').toLowerCase();
-		return consts_global.links.BASE_URL + '/' + consts_global.links.MODEL + slug;
+		const type_slug = type === consts_global.types.MODEL ? consts_global.types.MODEL : consts_global.types.PORNSTAR;
+		return consts_global.links.BASE_URL + '/' + type_slug + '/' + slug;
 	},
 	source_to_dom: source => {
 		const dom = new JSDOM(source);
@@ -190,6 +191,7 @@ module.exports = {
 	* @return {Object} The object that notice there is an error
 	**/
 	error_message: error => {
+		console.log(error);
 		return {error: consts_global.errors.DEFAULT};
 	}
 };
