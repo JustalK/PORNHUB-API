@@ -31,13 +31,14 @@ module.exports = {
 	*
 	* @params {string} name The exact name of the model
 	* @params {array} key The array of key of value that you want to scrap
+	* @params {string} type The type of the result (pornstar or model)
 	* @return {Object} The result of the scrap in an object containing only the key choosen
 	* @throws {Object} If an error happen
 	**/
-	model: async (name, key) => {
+	model: async (name, key, type = consts_global.types.MODEL) => {
 		try {
 			const keys = utils.options_to_keys(key);
-			const url = utils.name_to_url(name);
+			const url = utils.name_to_url(name, type);
 			const source = await utils.url_to_source(url);
 			const datas = page_model.scrap(source, keys);
 			const datas_filtered = page_model.filter_value(datas, keys);

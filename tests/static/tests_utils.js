@@ -4,9 +4,15 @@ const m = require('../../src/utils');
 const utils_scrap = require('../../src/helpers/utils_scrap');
 
 test('[UTILS] Test name_to_url', async t => {
-	const url = await m.name_to_url('teacher in macao');
+	const url = await m.name_to_url('teacher in macao', 'model');
 
 	t.is(url, 'https://www.pornhub.com/model/teacher-in-macao');
+});
+
+test('[UTILS] Test name_to_url with pornstar', async t => {
+	const url = await m.name_to_url('teacher in macao', 'pornstar');
+
+	t.is(url, 'https://www.pornhub.com/pornstar/teacher-in-macao');
 });
 
 test('[UTILS] Test name_to_url without a name', async t => {

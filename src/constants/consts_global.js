@@ -85,6 +85,10 @@ module.exports = {
 		VIDEO: 'video',
 		MODEL: 'model/'
 	},
+	types: {
+		MODEL: 'model',
+		PORNSTAR: 'pornstar'
+	},
 	errors: {
 		DEFAULT: 'An error occured'
 	}
