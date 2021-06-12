@@ -22,20 +22,13 @@ module.exports = {
 		let rsl = {};
 
 		if (keys.includes(consts_global.keys.DOWNLOAD_URLS)) {
-			const matches = source.match(/(?<=\*\/)\w+/g);
+			const regex = new RegExp('qualityItems.+;', 'g');
+			const value = source.match(regex)[0].replace(/\\/g, '').match(/\[.+\]/g)
+			const matches = JSON.parse(value)
 			const urls = [];
 			for (const match of matches) {
-				const regex = new RegExp('(?<=' + match + '=")[^;]+(?=")', 'g');
-				const value = source.match(regex)[0].replace(/[" +]/g, '');
-
-				if (value.startsWith('https')) {
-					if (urls.length === 4) {
-						break;
-					}
-
-					urls.push(value);
-				} else {
-					urls[urls.length - 1] += value;
+				if (match.url) {
+					urls.push(match.url)
 				}
 			}
 
